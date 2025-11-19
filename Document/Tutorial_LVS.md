@@ -19,3 +19,5 @@ Given that the LVS runset is also applicable to LVL or SVS comparisons, it’s i
 
 ## [Chapter 3](./LVS03_Chapter.md)
 
+## [Compare](./LVS04_Compare.md)
+

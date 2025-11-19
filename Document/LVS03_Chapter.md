@@ -36,32 +36,34 @@ X1 plus minus sub F_CSIO_mst c=c m=m  x=x*1e+6  y=y*1e+6
 .ends F_CSIO
 ```
 
-**IMHO:** Given the influence of parasitic capacitance between the N-well and P-substrate junction, it is advisable to use the F_CSIO model for accurate circuit-level simulation. This model captures the junction capacitance effects more precisely, which is critical for analog or mixed-signal performance analysis. However, for LVS purposes, a simplified two-terminal device representation is sufficient. In this context, verifying the physical area of the gate capacitor is more fundamental than achieving simulation accuracy, since LVS focuses on structural and topological consistency rather than analog behavior.
+**IMHO:** Given the influence of parasitic capacitance between the N-well and P-substrate junction, it is advisable to use the F_CSIO model for accurate circuit-level simulation. This model captures the junction capacitance effects more precisely, which is critical for analog or mixed-signal performance analysis. However, for LVS purposes, verifying the physical area of the gate capacitor as **C** and each terminal connections **A**,**B**, and **W** are fundamental, since LVS focuses on structural and topological consistency rather than analog behavior.
 
 ```
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # Capacitance extraction ( F_CSIO: 3 terminal capacitor device is optional, either one to use )
 #
-extract_devices(capacitor("m_CSIO", 0.6e-15 ), 
-                    { "P1" => (SGG),            # Top plate
-                      "P2" => (AACC),           # Bottom plate
-                      "tA" => (SGG),            # Terminal: A
-                      "tB" => (NWCS) })         # Terminal: B
-#
-# extract_devices(capacitor_with_bulk("F_CSIO", 0.6e-15 ), 
+#extract_devices(capacitor("m_CSIO", 0.6e-15 ), 
 #                    { "P1" => (SGG),            # Top plate
 #                      "P2" => (AACC),           # Bottom plate
-#                      "W"  => (NWCS),           # Bulk plate
 #                      "tA" => (SGG),            # Terminal: A
-#                      "tB" => (NWCS),           # Terminal: B
-#                      "tW" => (BULK) })         # Terminal: BULK
+#                      "tB" => (NWCS) })         # Terminal: B
+#
+extract_devices(capacitor_with_bulk("F_CSIO", 0.6e-15 ), 
+                    { "P1" => (SGG),            # Top plate
+                      "P2" => (AACC),           # Bottom plate
+                      "W"  => (NWCS),           # Bulk plate
+                      "tA" => (SGG),            # Terminal: A
+                      "tB" => (NWCS),           # Terminal: B
+                      "tW" => (BULK) })         # Terminal: BULK
+#
+tolerance("F_CSIO", "C", :relative => 0.01)     # 1% tolerance 
 #
 ```
 Then following spice file was extracted which are also reflect C = Cs x Area information.
 
 ```
-* device instance $6 r0 *1 -46,18 m_CSIO
-C$6 2 5 4.8735e-13 m_CSIO
+* device instance $8 r90 *1 -46,18 F_CSIO
+C$8 2 5 5 4.8735e-13 F_CSIO
 ```
 
 ### Resistor (RR/RS)
@@ -96,19 +98,19 @@ c_d1 MINUS SUB c=0
 ```
 _**NOTE:** The root level model F_RR is tree terminal .subckt model and it include polynominal equation to precisely reflect voltage dependency and prasitic capacitance of PLUS/MINUS terminals. In case of LVS, L and W matching are needed._
 
-The [**"extract_devices(resistor/resistor_with_bulk)"**](https://www.klayout.de/doc-qt5/manual/lvs_device_extractors.html#h2-19) command in KLayout LVS allows extraction of both two-terminal and three-terminal resistor devices. However, this command does not support checking for L/W (length/width) matching or constraints during extraction, making it unsuitable for use cases where dimensional accuracy of the resistor is critical for verification.
+The [**"extract_devices(resistor/resistor_with_bulk)"**](https://www.klayout.de/doc-qt5/manual/lvs_device_extractors.html#h2-19) command in KLayout LVS allows extraction of both two-terminal and three-terminal resistor devices. However, this command does not support checking for L/W (length/width) matching in general, yet there is a way to compare L/W with new class definition.
 
 ```
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # Resistor extraction
 #
-extract_devices(resistor("F_RS", 1),
+extract_devices(resistor("F_RS", 1, LWResistor),
                     { "R"  => (SGB),             # Resistance Layer`
                       "C"  => (SGC),             # Contact Layer
                       "tA" => (SGC),             # Terminal: A
                       "tB" => (SGC) })           # Terminal: B
 #
-extract_devices(resistor_with_bulk("F_RR", 1),
+extract_devices(resistor_with_bulk("F_RR", 1, LWResistorWithBulk),
                     { "R"  => (AARB),            # Resistance Layer`
                       "C"  => (AARC),            # Contact Layer
                       "W"  => (NWRR),            # Bulk plate
@@ -117,3 +119,55 @@ extract_devices(resistor_with_bulk("F_RR", 1),
                       "tW" => (NWRR) })          # Terminal: BULK
 #
 ```
+
+**LWResistor** and **LWResistorWithBulk** are new class definition to enable L/W comparison in LVS. See below.
+
+```
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# L/W extraction Class definition
+#
+class LWResistor < RBA::DeviceClassResistor
+  def initialize
+    super
+    enable_parameter("W", true)
+    enable_parameter("L", true)
+  end
+end
+#
+class LWResistorWithBulk < RBA::DeviceClassResistorWithBulk
+  def initialize
+    super
+    enable_parameter("W", true)
+    enable_parameter("L", true)
+  end
+end
+#
+```
+
+Also we have to specify **torerance** for L/W comparison and ignore **R** value. In addition, **A** and **B** terminals are switchable.
+
+```
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+tolerance("F_RS", "W", :relative => 0.01)        # 1% tolerance 
+tolerance("F_RS", "L", :relative => 0.01)        # 1% tolerance
+ignore_parameter("F_RS", "R")                    # ignore "R" for comparison
+#
+tolerance("F_RR", "W", :relative => 0.01)        # 1% tolerance 
+tolerance("F_RR", "L", :relative => 0.01)        # 1% tolerance
+ignore_parameter("F_RR", "R")                    # ignore "R" for comparison
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+equivalent_pins("F_RS", "A", "B")
+equivalent_pins("F_RR", "A", "B")
+```
+
+Then following spice file was extracted which are also reflect L and W information.
+
+```
+* device instance $6 r0 *1 101.5,108.4 F_RS
+R$6 4 3 2.83333333333 F_RS L=17U W=6U
+* device instance $7 r0 *1 -7,100 F_RR
+R$7 2 4 3 1.1 F_RR L=6.6U W=6U
+```
+
+
