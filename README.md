@@ -3,9 +3,10 @@
 TR-1um -- openIP62 -- AnagixLoader
        |           +- IP62
        +- GDSII
-       +- schematic
+       +- Schematic
        +- STDLIB
-       +- tech
+       +- libs.tech -- klayout
+       |            +- xschem 
        +- Tools
        +- Document
 ```
@@ -18,18 +19,22 @@ The directory contains the original PDKs provided by [**Tokai Rika**](https://tr
 ## GDSII
 Final GDSII data for 2025/09/24-25 OSS hands-on seminar on Kyushu university.
 
-## schematic
+## Schematic
 Final schematic data for 2025/09/24-25 OSS hands-on seminar on Kyushu university.
 
 ## STDLIB
 Extracted spice files from **openIP62/IP62/Basic/libraries/xxx.gds** by LVS operation which are including AD/AS/PD/PS information.
 
-## tech
-Working directry for Open Source Silicon community to exchange new idea and currently **drc** and **lvs** directories are active for KLayout DRC/LVS runset development. **TR-1um.lyp** is KLayout layer file for both **DRC** and **LVS**.
+## libs.tech
+**Try to make this fit to IIC-OSIC-TOOLS** 
 
-- **drc** directory contain DRC runset files.
-- **lvs** directory contain LVS runset files.
+Currently working directry for Open Source Silicon community to exchange new idea and **drc** and **lvs** directories are active for KLayout DRC/LVS runset development. **TR-1um.lyp** is KLayout layer file for both **DRC** and **LVS**.
+Also Xschem symbol library development is ongoing. 
+
+- **klayout/drc** directory contain DRC runset files.
+- **klayout/lvs** directory contain LVS runset files.
 - **ngspice** directory is a symbolic link to the originals.
+- **xschem** directory contain symbol library which under development.
 
 ## Tools
 Preserved.
