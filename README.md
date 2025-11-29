@@ -47,3 +47,4 @@ Preserved.
 
 [Tutorial: How to make LVS runset for KLayout](Document/Tutorial_LVS.md) 
 
+[Manifesto: PDK renewal for TR-1um technology](Document/Manifesto.md)
