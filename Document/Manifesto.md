@@ -43,7 +43,7 @@ Key Changes
 
 - Introduce two active region layers: **AP** (Active P-region) and **AN** (Active N-region)
 
-- Remove all implant-related layers except for: **PSUB** (Denoting the N-well region, renamed from WN for clarity)
+- Remove all implant-related layers except for: **PSUB** (Denoting the N-well region, renamed to **WN** for clarity)
 
 ![](Figures/Layout_2.png)
 
