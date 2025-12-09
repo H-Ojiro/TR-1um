@@ -17,31 +17,37 @@ class pfet(pya.PCellDeclarationHelper):
         # Initialize super class.
         super(pfet, self).__init__()
         #
-        self.param("type", self.TypeString, "PFET")
+        self.param("type", self.TypeString, "Type", default="PFET")
         #
         self.param("l", self.TypeDouble, "Length", default=fet_lp, unit="um")
         self.param("w", self.TypeDouble, "Width",  default=fet_wp, unit="um")
         #
-
     def display_text_impl(self):
         # Provide a descriptive text for the cell
         return "pfet(L=" + ('%.3f' % self.l) + ",W=" + ('%.3f' % self.w) + ")"
     
     '''
     def coerce_parameters_impl(self):
-        return()
+        self.a = self.w * self.l
 
     def can_create_from_shape_impl(self):
+        # OPTIONAL: Implement the "Create PCell from shape" protocol: we can use any shape which
+        # has a finite bounding box
+        print("Shape:" + self.shape.is_box() or self.shape.is_polygon() or self.shape.is_path())
         return self.shape.is_box() or self.shape.is_polygon() or self.shape.is_path()
 
     def parameters_from_shape_impl(self):
-        self.r = self.shape.bbox().width() * self.layout.dbu / 2
-        # self.l = self.layout.get_info(self.layer)
+        # OPTIONAL: Implement the "Create PCell from shape" protocol:
+        # bounding box width and layer
+        print(self.layout.get_info(self.layer))
+        self.b = self.shape.bbox().width() * self.shape.bbox().height()
     
     def transformation_from_shape_impl(self):
+        # OPTIONAL: Implement the "Create PCell from shape" protocol: we use the center of the shape's
+        # bounding box to determine the transformation
         return pya.Trans(self.shape.bbox().center())
     '''
-        
+    
     def produce_impl(self):
         end_cap = 1.2       # end cap
         co2g_sp = 1.0       # contact to poly space
