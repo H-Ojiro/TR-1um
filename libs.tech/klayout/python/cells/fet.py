@@ -7,6 +7,7 @@
 #
 import pya
 from .layers_def import *
+from .util       import *
 
 fet_lp   = 1.0
 fet_wp   = 2.6
@@ -19,8 +20,9 @@ class pfet(pya.PCellDeclarationHelper):
         #
         self.param("type", self.TypeString, "Type", default="PFET")
         #
-        self.param("l", self.TypeDouble, "Length", default=fet_lp, unit="um")
-        self.param("w", self.TypeDouble, "Width",  default=fet_wp, unit="um")
+        self.param("l", self.TypeDouble, "Length",  default=fet_lp, unit="um")
+        self.param("w", self.TypeDouble, "Width",   default=fet_wp, unit="um")
+        self.param("n", self.TypeInt,    "Fingers", default=1)
         #
     def display_text_impl(self):
         # Provide a descriptive text for the cell
@@ -54,16 +56,17 @@ class pfet(pya.PCellDeclarationHelper):
         co_w    = 1.0       # contact size
         co_enc  = 0.8       # contact enclosure
         #
+        num     = len_2_num( self.w )
         sdg_w   = self.l + 2 * (co2g_sp + co_w + co_enc)
         co_disp = self.l/2.0 + co2g_sp + co_w/2.0
-        po_disp = self.w/2.0 + end_cap
-        po_path = pya.DPath([pya.DPoint(0, -po_disp), pya.DPoint(0, po_disp)], self.l)
-        sdg_box = pya.DBox(-sdg_w/2.0,  -self.w/2.0, sdg_w/2.0, self.w/2.0 )
-        co_box  = pya.DBox(-co_w/2.0,   -co_w/2.0,   co_w/2.0,  co_w/2.0)
         #
-        self.cell.shapes(PG_layer).insert(po_path)
+        sdg_box = pya.DBox(-sdg_w/2.0,  -self.w/2.0, sdg_w/2.0, self.w/2.0 )
+        #
         self.cell.shapes(AP_layer).insert(sdg_box)
-        self.cell.shapes(CO_layer).insert(co_box).transform(pya.DTrans(-co_disp, 0))
-        self.cell.shapes(CO_layer).insert(co_box).transform(pya.DTrans( co_disp, 0))
+        #
+        draw_gate( self.cell, self.l, self.w , 1.2, self.n )
+        draw_cont( self.cell, num, x_disp = -co_disp )
+        draw_cont( self.cell, num, x_disp =  co_disp )
+        # 
     #
       

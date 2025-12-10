@@ -6,12 +6,13 @@
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 #
 import pya
-
+#
 AP_layer = pya.LayerInfo( 3, 1)
 AN_layer = pya.LayerInfo( 3, 2)
 AR_layer = pya.LayerInfo( 3, 3)
 AC_layer = pya.LayerInfo( 3, 4)
 PG_layer = pya.LayerInfo( 8, 1)
+PR_layer = pya.LayerInfo( 8, 2)
 CO_layer = pya.LayerInfo(11, 0)
 M1_layer = pya.LayerInfo(13, 0)
 V1_layer = pya.LayerInfo(19, 0)
