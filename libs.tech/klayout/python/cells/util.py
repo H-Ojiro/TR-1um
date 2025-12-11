@@ -13,7 +13,8 @@ from .rules_def  import *
 co_width    = DR['CO.1'].value
 co_space    = DR['CO.2'].value
 co_enc_diff = DR['CO.P'].value
-co_enc_po   = DR['PC.P'].value
+co_sep_pg   = DR['CO.G'].value
+co_enc_po   = DR['CO.O'].value
 co_enc_m1   = DR['CO.M'].value
 po_end      = DR['PO.E'].value
 po_space    = DR['PO.2'].value
@@ -55,6 +56,59 @@ def draw_metal ( cell, num : int = 1, x_disp : float = 0 ):
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # Insert number of contacts into cell
 #
+def draw_acont ( cell, xnum : int = 1, ynum : int = 1 ):
+    #
+    sign     = 1.0
+    co_pitch = (co_width + co_space)
+    co_box   = pya.DBox(-co_width/2.0, -co_width/2.0,  co_width/2.0,  co_width/2.0)
+    #
+    if xnum > 0 :
+        for n in range(xnum) :
+            if xnum % 2 == 0 :   # even number of contacts
+                n2 = math.floor(n / 2)
+                x_disp = sign * (co_pitch * n2 + co_pitch / 2)
+            else :              # odd number of contacts
+                n2 = math.ceil(n / 2)
+                x_disp = sign * co_pitch * n2
+            #
+            draw_cont( cell, num = ynum , x_disp = x_disp )
+            #
+            sign = sign * -1
+    #
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# 
+#
+def draw_poly ( cell, xnum : int = 1, ynum : int = 1 ):
+    #
+    co_pitch = (co_width + co_space)
+    #
+    if ynum > 0 :
+        if ynum % 2 == 0 :   # even number of contacts
+            n2 = math.floor((ynum - 1)/ 2)
+            y_disp = (co_pitch * n2 + co_pitch / 2) + co_width / 2
+        else :              # odd number of contacts
+            n2 = math.ceil((ynum - 1) / 2)
+            y_disp = co_pitch * n2 + co_width / 2 
+        #
+    if xnum > 0 :
+        if xnum % 2 == 0 :   # even number of contacts
+            n2 = math.floor((xnum - 1)/ 2)
+            x_disp = (co_pitch * n2 + co_pitch / 2) + co_width / 2
+        else :              # odd number of contacts
+            n2 = math.ceil((xnum - 1) / 2)
+            x_disp = co_pitch * n2 + co_width / 2 
+        #
+    po_box = pya.DBox(-(x_disp + co_enc_po),-(y_disp + co_enc_po), (x_disp + co_enc_po), (y_disp + co_enc_po))
+    m1_box = pya.DBox(-(x_disp + co_enc_po),-(y_disp + co_enc_m1), (x_disp + co_enc_po), (y_disp + co_enc_m1))
+    #                      
+    cell.shapes(PG_layer).insert(po_box)
+    cell.shapes(M1_layer).insert(m1_box)
+    #
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Insert number of contacts into cell
+#
 def draw_cont ( cell, num : int = 1, x_disp : float = 0 ):
     #
     sign     = 1.0
@@ -83,7 +137,7 @@ def draw_fet( cell, l, w ,layer, fnum = 1):
     sign      = 1.0
     po_pitch  = l + po_space
     po_length = w + 2 * po_end
-    sdg_width = l + 2 * (co_enc_diff + co_width + co_enc_po)
+    sdg_width = l + 2 * (co_enc_diff + co_width + co_sep_pg)
     #
     po_path = pya.DPath([pya.DPoint(0, -po_length/2), pya.DPoint(0, po_length/2)], l)
     #

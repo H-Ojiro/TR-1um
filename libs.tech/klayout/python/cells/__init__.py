@@ -7,6 +7,7 @@
 #
 import pya
 from .fet     import *
+from .cont    import *
 
 # It's a Python class that inherits from the pya.Library class
 class tr_1um(pya.Library):
@@ -17,12 +18,13 @@ class tr_1um(pya.Library):
 
     # Create the PCell declarations
         # MOS DEVICES
-        self.layout().register_pcell("pfet", pfet())
-        self.layout().register_pcell("nfet", nfet())
-
+        self.layout().register_pcell("pfet",  pfet())
+        self.layout().register_pcell("nfet",  nfet())
+        #
+        self.layout().register_pcell("contp", cont_po())
+        #
         # CAP Devices 
         #self.layout().register_pcell("cap",  cap()) # CSIO device
-
         # RES Devices 
         #self.layout().register_pcell("res_diff", cap()) # Diff resistance
         #self.layout().register_pcell("res_poly", cap()) # Poly resistance
