@@ -36,8 +36,5 @@ Option: ln -s $PWD/TR-1um/lib.tech/klayout $HOME/.klayout
 
 klayout -e
 
-# Acknowledgement
-The XSection and D25 setup are gratefully borrowed from: sky130A_el.
-
 # License
 If not otherwise noted The Apache License, version 2.0.
