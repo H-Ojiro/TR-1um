@@ -1,4 +1,4 @@
-# Tutorial: How to make LVS runset for KLayout 
+# Tutorial: How to make Pcell for KLayout by Python API
 by jun1okamura 
 ---
 Regardless of the original PDK package from TOKAI RIKA, I would like to remake the PCell script for the KLayout by Python API base step-by-step as a Tutorial and ask the Open-Source Silicon community to provide feedback and/or collaborate to polish it. This is my first deep dive into Klayout Python API and TR-1um technology, so there may be misunderstandings and non-optimized use of the runset command. Please feel free to let me know and guide me to the proper method or command.
