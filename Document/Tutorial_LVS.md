@@ -5,7 +5,6 @@ Regardless of the original PDK package from TOKAI RIKA, I would like to remake t
 
 I might be one of the first users and chip designers of EWS-based EDA software in Japan. In 1987, I installed the **SDA Edge** tool on a Sun-3 workstation and learned many of the features for designing Dynamic Memory device. Bundled DRC/LVS feature for physical verification, later called **DIVA** after **SDA** acquired and renamed to **Cadence**, we have to develop the runsets for DRC/LVS by desginers themselves, since there was no EDA team at that moment. So, the following method is based on such personal experiences and might not reflect upfront engineering technology driven by commercial EDA tool vendors. It would be much appreciated if I could have that feedback as well.
 
-
 **IMHO**, I prefer to keep the LVS runset simple, readable, and consistent with the DRC runset, especially in terms of device recognition. The current approach uses many recognition layers, which can be overly complex and difficult to maintain.
 Given that the LVS runset is also applicable to LVL or SVS comparisons, it’s important for all users to understand each step and how it works. A simplified structure would make the runset easier to maintain and more accessible to the broader user base.
 

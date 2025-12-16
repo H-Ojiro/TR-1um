@@ -42,13 +42,14 @@ Currently working directry for Open Source Silicon community to exchange new ide
 Also Xschem symbol library development is ongoing. 
 
 ### Contents
-|         | Description |
-| ------- | ---------   |
+|                 | Description |
+| -------         | ---------   |
 | - **klayout**   | directory contain KLayout (DRC/LVS/PCells)
 | - **ngspice**   | directory is tentativly a symbolic link to the originals.
 | - **xschem**    | directory contain symbol library which under development.
 
 ## Tools
+
 Preserved.
 
 ## Document
@@ -60,3 +61,5 @@ Preserved.
 [Tutorial: How to make PCell python script for KLayout](Document/Tutorial_PCell.md) 
 
 [Manifesto: PDK renewal for TR-1um technology](Document/Manifesto.md)
+
+[Layers and Design steps: Layers reenewal for TR-1um technology](Drawing_vs_Mask.md)
