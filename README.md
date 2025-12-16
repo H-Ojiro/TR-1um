@@ -62,4 +62,4 @@ Preserved.
 
 [Manifesto: PDK renewal for TR-1um technology](Document/Manifesto.md)
 
-[Layers and Design steps: Layers reenewal for TR-1um technology](Drawing_vs_Mask.md)
+[Layers and Design steps: Layers reenewal for TR-1um technology](Document/Drawing_vs_Mask.md)
