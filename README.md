@@ -50,7 +50,7 @@ Also Xschem symbol library development is ongoing.
 
 ## Tools
 
-- IP62_to_TR-1um.py  INOUT_TR62.gds OUTPUT_TR-1um.gds
+- IP62_to_TR-1um.py  INPUT_TR62.gds OUTPUT_TR-1um.gds
 
        IP62(MASK Layers) to TR-1um(Drawing Layers) conversion Python script, which is hierachically execute it bottom to top.
 
