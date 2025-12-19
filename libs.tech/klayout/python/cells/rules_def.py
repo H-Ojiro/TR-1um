@@ -89,6 +89,7 @@ DR['CO.PO'] = DRule(  1.0,  "CO-PO min in AA" )
 DR['CO.PG'] = DRule(  0.8,  "ENC min to PG  " )
 DR['CO.PR'] = DRule(  0.8,  "ENC min to PR  " )
 DR['CO.AR'] = DRule(  0.8,  "ENC min to AR  " )
+DR['CO.AT'] = DRule(  1.5,  "ENC min to ART " )
 DR['CO.M1'] = DRule(  0.8,  "ENC min to M1  " )
 # PO to AA related
 DR['PO.W1'] = DRule(  1.0,  "Width min      " )

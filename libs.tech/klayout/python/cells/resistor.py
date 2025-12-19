@@ -56,5 +56,6 @@ class res_d(pya.PCellDeclarationHelper):
 
     def produce_impl(self):
         #
-        draw_res( self.cell, l=self.l, w=self.w, layer=AR_layer)
+        draw_res( self.cell, l=self.l, w=self.w, layer=AR_layer, )
+        draw_rpo( self.cell, l=self.l, w=self.w, layer=PG_layer)
 

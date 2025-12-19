@@ -16,6 +16,7 @@ co_enc_diff = DR['CO.AP'].value
 co_sep_pg   = DR['CO.PO'].value
 co_enc_pg   = DR['CO.PG'].value
 co_enc_pr   = DR['CO.PR'].value
+co_enc_difft= DR['CO.AT'].value
 co_enc_m1   = DR['CO.M1'].value
 po_end      = DR['PO.EC'].value
 po_space    = DR['PO.S2'].value
