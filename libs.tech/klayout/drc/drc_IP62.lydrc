@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <klayout-macro>
- <description>TR-1um DRC(Drawing)</description>
+ <description>TR-1um DRC(MASK)</description>
  <version/>
  <category>drc</category>
  <prolog/>
@@ -21,7 +21,7 @@
 # LICENSE: Apache License Version 2.0, January 2004,
 #          http://www.apache.org/licenses/
 # ----- ------ ----- 
-# %include run.drc
+# %include run_IP62.drc
 #----
 </text>
 </klayout-macro>

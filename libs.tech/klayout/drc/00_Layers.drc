@@ -7,40 +7,31 @@
 # Input layers
 #
 RS    = input(63,61)               # RS area recognition
-ESD   = input(63,62)               # IO/ESD area recognition
-MASK  = input(63,63)               # DRC check waiver area
+MASK  = input(63,0)                # DRC check waiver area
+MEAS  = input(63,1)                # MEASUREMT area recognition
+ESD   = input(63,2)                # IO/ESD area recognition
+SCRB  = input(80,0)                # DRC check waiver area (Seal-Ring)
 #
-PSUB  = input(140, 0).not(MASK)    # Nwell/Pwell
-NW    = input(36,  0).not(MASK)    # N-well mask
-HVNW  = input(141, 0).not(MASK)    # HV N-well mask
-L     = input(3,   0).not(MASK)    # Acitive = inverse LOCOS 
-NF    = input(25,  0).not(MASK)    # S/D P+ impla
-PF    = input(26,  0).not(MASK)    # S/D N+ impla
-CL    = input(143, 0).not(MASK)    # CSIO bottom impla
-HPBE  = input(144, 0).not(MASK)    # HV PMOS channel impla
-HNBE  = input(145, 0).not(MASK)    # HV NMOS channel impla
-PBE   = input(146, 0).not(MASK)    # PMOS channel impla
-NBE   = input(147, 0).not(MASK)    # NMOS channel impla
-HPM   = input(33,  0).not(MASK)    # ???
-RHP   = input(148, 0).not(MASK)    # Hi-res impla
-SG    = input(8,   0).not(MASK)    # Salisaide
-PM    = input(35,  0).not(MASK)    # PMOS LDD
-NM    = input(7,   0).not(MASK)    # NMOS LDD
-R     = input(12,  0).not(MASK)    # Resistor
-PSD   = input(9,   0).not(MASK)    # PMOS S/D
-NSD   = input(28,  0).not(MASK)    # NMOS S/D
-CONT  = input(11,  0).not(MASK)    # Contact
-M1    = input(13,  0).not(MASK)    # Metal-1
-TC    = input(19,  0).not(MASK)    # Via1
-M2    = input(20,  0).not(MASK)    # Metal-2
-PRO   = input(14,  0).not(MASK)    # PAD
+WN    = input(140, 0).not(MASK + SCRB)    # Nwell/Pwell
+AP    = input(3,   1).not(MASK + SCRB)    # Acitive = inverse LOCOS 
+AN    = input(3,   2).not(MASK + SCRB)    # Acitive = inverse LOCOS 
+AR    = input(3,   3).not(MASK + SCRB)    # Acitive = inverse LOCOS 
+AC    = input(3,   4).not(MASK + SCRB)    # Acitive = inverse LOCOS 
+PO    = input(8,   1).not(MASK + SCRB)    # Salisaide for Gate
+PR    = input(8,   2).not(MASK + SCRB)    # Salisaide for Resistor
+CO    = input(11,  0).not(MASK + SCRB)    # Contact
+M1    = input(13,  0).not(MASK + SCRB)    # Metal-1
+V1    = input(19,  0).not(MASK + SCRB)    # Via1
+M2    = input(20,  0).not(MASK + SCRB)    # Metal-2
+PD    = input(14,  0).not(MASK + SCRB)    # PAD
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 #  Label Layer
 #
-M1_LBL = labels(48,  0).not(MASK)  # M1 Label
-M2_LBL = labels(49,  0).not(MASK)  # M2 Label
+M1_LBL = labels(48,  0).not(MASK + SCRB)  # M1 Label
+M2_LBL = labels(49,  0).not(MASK + SCRB)  # M2 Label
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 #  Bounding box means BULK
 #
 BULK  = extent
+WP    = (BULK - WN)            # PWEL  for NMOS
