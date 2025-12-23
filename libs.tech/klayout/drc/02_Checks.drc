@@ -26,39 +26,39 @@ WM = WN.covering(AP)    # PMOS
 # ----- ------ ----- 
 # AR related
 #
-(AR).drc( width     <  2.8 ).output("AR.W1: AR Wmin <  2.8")
-(AR).drc( space     <  4.0 ).output("AR.S1: AR Smin <  4.0")
-(AR).drc( enc(WR)   < 10.0 ).output("AR.WR: AR-WN(R) Emin < 10.0")
-(AN).drc( enc(WR)   <  5.0 ).output("AN.WR: AN-WN(R) Emin <  5.0")
-(AR).drc( sep(AN)   <  4.0 ).output("AR.AN: AR-AN    Smin <  4.0")
+(AR     ).drc( width     <  2.8 ).output("AR.W1: AR Wmin <  2.8")
+(AR     ).drc( space     <  4.0 ).output("AR.S1: AR Smin <  4.0")
+(AR     ).drc( enc(WR)   < 10.0 ).output("AR.WR: AR-WN(R) Emin < 10.0")
+(AN & WR).drc( enc(WR)   <  5.0 ).output("AN.WR: AN-WN(R) Emin <  5.0")
+(AR     ).drc( sep(AN)   <  4.0 ).output("AR.AN: AR-AN    Smin <  4.0")
 # ----- ------ ----- 
 # AC related
 #
-(AC).drc( width     <  7.0 ).output("AC.W1: AC Wmin <  7.0")
-#(AC).drc( space    <  4.0 ).output("AC.S1: AC Smin <  4.0")
-#(AC).drc( enc(WC)  < 10.0 ).output("AC.WR: AC-WN(C) Emin < 10.0")
-(AN).drc( enc(WR)   <  3.0 ).output("AC.WR: AN-WN(C) Emin <  3.0")
-(AC).drc( sep(AN)   <  2.8 ).output("AC.AN: AC-AN    Smin <  2.8")
+(AC     ).drc( width     <  7.0 ).output("AC.W1: AC Wmin <  7.0")
+#(AC     ).drc( space    <  4.0 ).output("AC.S1: AC Smin <  4.0")
+#(AC     ).drc( enc(WC)  < 10.0 ).output("AC.WR: AC-WN(C) Emin < 10.0")
+(AN & WC).drc( enc(WR)   <  3.0 ).output("AC.WR: AN-WN(C) Emin <  3.0")
+(AC     ).drc( sep(AN)   <  2.8 ).output("AC.AN: AC-AN    Smin <  2.8")
 # 
-(AN.holes).not_covering(AC ).output("AC.R1: AN must surrounded AC")
+((AN & WC).holes).not_covering( AC ).output("AC.R1: AN must surrounded AC")
 # ----- ------ ----- 
 # AP in WN related
 #
-(AP).drc( width    <  1.4 ).output("AP.W1: AP Wmin <  1.4")
-(AP).drc( space    <  1.4 ).output("AP.S1: AP Smin <  1.4")
-(AP).drc( sep(AN)  <  2.8 ).output("AP.AN: AP-AN Smin <  2.8")
+(AP     ).drc( width    <  1.4 ).output("AP.W1: AP Wmin <  1.4")
+(AP     ).drc( space    <  1.4 ).output("AP.S1: AP Smin <  1.4")
+(AP     ).drc( sep(AN)  <  2.8 ).output("AP.AN: AP-AN Smin <  2.8")
 #
 (AP & PO).sep((AP - PO), 0.1, projection, projecting <  3.4  ).output("AP.WM: PMOS Wmin  <  3.4")
 #
-(AP).drc( enc(WN) <  7.0 ).output("AP.WN: AP-WN Emin <  7.0")
+(AP     ).drc( enc(WN) <  7.0 ).output("AP.WN: AP-WN Emin <  7.0")
 # ----- ------ ----- 
 # AN in WN related
 #
-(AN).drc( width    <  1.4 ).output("AP.W1: AN Wmin <  1.4")
-(AN).drc( space    <  1.4 ).output("AP.S1: AN Smin <  1.4")
-(AN).drc( sep(AP)  <  2.8 ).output("AP.AN: AM-AP Smin <  2.8")
+(AN     ).drc( width    <  1.4 ).output("AP.W1: AN Wmin <  1.4")
+(AN     ).drc( space    <  1.4 ).output("AP.S1: AN Smin <  1.4")
+(AN     ).drc( sep(AP)  <  2.8 ).output("AP.AN: AM-AP Smin <  2.8")
 #
 (AN & PO).sep((AN - PO), 0.1, projection, projecting <  3.4  ).output("AN.WM: NMOS Wmin  <  3.4")
 #
-(AN).drc( enc(WN) <  7.0 ).output("AP.WN: AP-WN Emin <  5.0")
+(AN     ).drc( enc(WN) <  7.0 ).output("AP.WN: AP-WN Emin <  5.0")
 #

@@ -1,6 +1,6 @@
 # Chapter 4 : 04_Check.drc
 
-## [04_Check.drc](../libs.tech/klayout/drc/04_Check.drc)
+## [04_Check.drc](../libs.tech/klayout/drc/IP62/04_Check.drc)
 
 In here, **L(AA)** related allowance checks are described. L(AA) allowances are based on device structures, so they should be individual numbers for each generated AA layer.
 

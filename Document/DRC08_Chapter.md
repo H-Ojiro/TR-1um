@@ -1,6 +1,6 @@
 # Chapter 8 : 08_Check.drc
 
-## [08_Check.drc](../libs.tech/klayout/drc/08_Check.drc)
+## [08_Check.drc](../libs.tech/klayout/drc/IP62/08_Check.drc)
 
 In here, **M1/TC/M2** related rules, so called BEOL, are described. 
 

@@ -1,6 +1,6 @@
 # Chapter 6 : 06_Check.drc
 
-## [06_Check.drc](../libs.tech/klayout/drc/06_Check.drc)
+## [06_Check.drc](../libs.tech/klayout/drc/IP62/06_Check.drc)
 
 In here, **SG** related rules are described. 
 

@@ -1,6 +1,6 @@
 # Chapter 2 : 02_Device.drc
 
-## [02_Device.drc](../libs.tech/klayout/drc/02_Device.drc)
+## [02_Device.drc](../libs.tech/klayout/drc/IP62/02_Device.drc)
 
 Device recognition based on a logical combination of mask layers is the most crucial definition for DRC and LVS, which reflects the actual process flow and integration. With that knowledge of process flow and device structure is a fundamental requirement.
 

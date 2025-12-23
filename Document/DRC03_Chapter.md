@@ -1,6 +1,6 @@
 # Chapter 3 : 03_Check.drc
 
-## [03_Check.drc](../libs.tech/klayout/drc/03_Check.drc)
+## [03_Check.drc](../libs.tech/klayout/drc/IP62/03_Check.drc)
 
 In here, **PSUB**, **NW**, **HVNW**, **PF**, and **NF** related DRC checks are described. First, **NW** and **HVNW** separations.
 

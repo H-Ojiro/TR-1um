@@ -1,6 +1,6 @@
 # Chapter 9 : 09_Check.drc
 
-## [09_Check.drc](../libs.tech/klayout/drc/09_Check.drc)
+## [09_Check.drc](../libs.tech/klayout/drc/IP62/09_Check.drc)
 
 ### IO and PRO related
 
