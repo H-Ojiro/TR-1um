@@ -20,16 +20,16 @@ M1W = M1.drc( width(projection) > 10.0 ).extents(1)
 # 
 (V1 - (M1 & M2)).output("V1 outside of M1/M2")
 #
-(V1 - PD).drc( width   !=  1.4 ).output("V1.W1: V1 Wmin   != 1.4")
-(V1 - PD).drc( space    <  1.5 ).output("V1.S1: V1 Smin    < 1.5")
-(V1 - PD).drc( enc(M1)  <  1.0 ).output("V1.M1: V1-M1 Emin < 1.0")
-(V1 - PD).drc( enc(M2)  <  1.0 ).output("V1.M1: V1-M2 Emin < 1.0")
-(V1 - PD).drc( sep(PO)  <  1.2 ).output("V1.PO: V1-PO Smin < 1.2")
-(V1 - PD).drc( sep(CO)  <  1.0 ).output("V1.CO: V1-CO Smin < 1.0")
+(V1 - PD).drc( width        !=  1.4 ).output("V1.W1: V1 Wmin   != 1.4")
+(V1 - PD).drc( space         <  1.5 ).output("V1.S1: V1 Smin    < 1.5")
+(V1 - PD).drc( enclosed(M1)  <  1.0 ).output("V1.M1: V1-M1 Emin < 1.0")
+(V1 - PD).drc( enclosed(M2)  <  1.0 ).output("V1.M1: V1-M2 Emin < 1.0")
+(V1 - PD).drc( sep(PO)       <  1.2 ).output("V1.PO: V1-PO Smin < 1.2")
+(V1 - PD).drc( sep(CO)       <  1.0 ).output("V1.CO: V1-CO Smin < 1.0")
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 #  M2 related
 # 
-(M2).drc( width     <  3.0 ).output("M2.W1: M2 Wmin <  3.0")
-(M2).drc( space     <  2.0 ).output("M2.S1: M2 Smin <  2.0")
+(M2    ).drc( width          <  3.0 ).output("M2.W1: M2 Wmin <  3.0")
+(M2    ).drc( space          <  2.0 ).output("M2.S1: M2 Smin <  2.0")
 #

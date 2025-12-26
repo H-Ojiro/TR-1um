@@ -11,14 +11,20 @@
 (PO).drc( sep(AP)   <  0.4 ).output("PO.AP: PO-AP Smin <  0.4")
 (PO).drc( sep(AN)   <  0.4 ).output("PO.AN: PO-AN Smin <  0.4")
 #
-(PO & AP).drc(enc(PO, projection, without_touching_edges ) < 1.2 ).output("PO.EM: PMOS Endcap  < 1.2") # PMOS
-(PO & AN).drc(enc(PO, projection, without_touching_edges ) < 1.2 ).output("PO.EM: NMOS Endcap  < 1.2") # NMOS
+(PO & AP).drc(enclosed(PO, projection, without_touching_edges ) < 1.2 ).output("PO.EM: PMOS Endcap  < 1.2") # PMOS
+(PO & AN).drc(enclosed(PO, projection, without_touching_edges ) < 1.2 ).output("PO.EM: NMOS Endcap  < 1.2") # NMOS
 #
-(PO     ).drc( sep(AR)   <  1.0 ).output("PO.AR: PO-AR  Smin <  1.0")
-(PO & WR).drc( width     <  2.0 ).output("PO.WR: PO(AR) Wmin <  2.0")
-#(PO & WR).drc( sep(AN)  <  2.0 ).output("PO.AN: PO(AR)-AN Smin <  2.0")
-(PR     ).drc( width     <  1.0 ).output("PR.W1: PO(R) Wmin <  1.0")
-(PR     ).drc( space     <  2.0 ).output("PR.S1: PO(R) Smin <  2.0")
+(PO & WR).drc( sep(AR)   <  1.0 ).output("PO.AR: PO(AR)-AR Smin <  1.0")
+(PO & WR).drc( width     <  2.0 ).output("PO.WR: PO(AR)    Wmin <  2.0")
+(PO & WR).holes.not_covering(AR ).output("PO.R1: PO(AR) must surround AR")
+(PO & WR).drc( sep(AN)   <  2.0 ).output("PO.AN: PO(AR)-AN Smin <  2.0")
+#
+(PR     ).drc(        bbox_min <  4.0 ).output("PR.W1: PO(R) Wmax <  4.0")
+(PR     ).drc(  4.0 < bbox_min <  6.0 ).output("PR.W1: PO(R) Wmax <  6.0")
+(PR     ).drc(  6.0 < bbox_min < 12.0 ).output("PR.W1: PO(R) Wmax < 12.0")
+(PR     ).drc( 12.0 < bbox_min < 20.0 ).output("PR.W1: PO(R) Wmax < 20.0")
+(PR     ).drc(        bbox_min > 20.0 ).output("PR.W1: PO(R) Wmax > 20.0")
+(PR     ).drc( space           <  2.0 ).output("PR.S1: PO(R) Smin <  2.0")
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # Contact related
@@ -26,18 +32,35 @@
 AD = (AP.not_interacting(PO) & WN + AN.not_interacting(PO) & WP)
 AA = (AN + AP - AD)
 #
-(CO & AA).drc( width        <  1.0 ).output("CO.W1: CO     Width !=  1.0")
-(CO     ).drc( space        <  1.0 ).output("CO.S1: CO      Smin  <  1.0")
-(CO & AD).drc( width       !=  1.2 ).output("CO.WD: CO(D)  Width !=  1.2")
-(CO     ).drc( enc(AP)      <  0.8 ).output("CO.AP: CO-AP    Emin <  0.8")
-(CO     ).drc( enc(AN)      <  0.8 ).output("CO.AN: CO-AN    Emin <  0.8")
-(CO     ).drc( sep(PO)      <  1.0 ).output("CO.PG: CO-PO(G) Smin <  1.0")
-(CO     ).drc( enc(PO + PR) <  0.8 ).output("CO.PO: CO-PO    Emin <  0.8")
-(CO     ).drc( enc(AD)      <  1.2 ).output("CO.PO: CO-AD    Emin <  1.2")
-(CO & WC).drc( width        <  1.2 ).output("CC.W1: CO(C)    Wmin <  1.2")
-(CO & WC).drc( space        <  1.2 ).output("CC.S1: CO(C)    Smin <  1.0")
-(CO & WC).drc( enc(AC)      <  2.9 ).output("CC.AC: CO(C)-AC Emin <  2.9")
-(CO & WC).drc( enc(AC)      <  1.2 ).output("CC.AN: CO(C)-AN Emin <  1.2")
+# CO on AP/AD/
 #
-(CO     ).drc( enc(M1)      <  1.0 ).output("CO.M1: CO-M1    Emin <  0.8")
-(CO & WC).drc( enc(M1)      <  1.2 ).output("CC.M1: CO(C)-M1 Emin <  1.2")
+(CO & AA).drc( width            !=  1.0 ).output("CO.W1: CO     Width !=  1.0")
+(CO     ).drc( space             <  1.0 ).output("CO.S1: CO      Smin  <  1.0")
+(CO & AD).drc( width            !=  1.2 ).output("CO.WD: CO(D)  Width !=  1.2")
+(CO     ).drc( enclosed(AP)      <  0.8 ).output("CO.AP: CO-AP    Emin <  0.8")
+(CO     ).drc( enclosed(AN)      <  0.8 ).output("CO.AN: CO-AN    Emin <  0.8")
+(CO     ).drc( sep(PO)           <  1.0 ).output("CO.PG: CO-PO(G) Smin <  1.0")
+(CO     ).drc( enclosed(PO + PR) <  0.8 ).output("CO.PO: CO-PO    Emin <  0.8")
+(CO     ).drc( enclosed(AD)      <  1.2 ).output("CO.PO: CO-AD    Emin <  1.2")
+#
+# CO on AR
+#
+(CO & AR).drc( width             <  1.0 ).output("CR.W1: CO(R)    Wmin <  1.0")
+(CO & AR).drc( bbox_min         !=  1.0 ).output("CR.W1: CO(R)    Wmin <  1.0")  # Narrow-width ==  1.0
+(CO & AR).drc( bbox_max          > 97.5 ).output("CR.W1: CO(R)    Wmax < 97.5")  # Wide-width    < 97.5
+(CO & AR).drc( enclosed(AR)      <  1.0 ).output("CR.AR: CO(R)-AR Emin <  1.0")
+(CO & AR).drc( enclosed(AR, projection, two_sides_allowed ) <  1.5).output("CO(T).AR: Emin 1.5")
+#
+# CO on WC
+#
+(CO & WC).drc( enclosed(AC)      <  2.9 ).output("CC.AC: CO(C)-AC Emin  <  2.9")
+(CO & WC).drc( enclosed(AC)      <  1.2 ).output("CC.AN: CO(C)-AN Emin  <  1.2")
+(CO & WC).drc( width            !=  1.2 ).output("CC.W1: CO(C)   Width !=  1.2")
+(CO & WC).drc( space            !=  1.2 ).output("CC.S1: CO(C)    Smin !=  1.2")
+(CO & WC).drc( enclosed(AC)      <  2.9 ).output("CC.AC: CO(C)-AC Emin  <  2.9")
+(CO & WC).drc( enclosed(AC)      <  1.2 ).output("CC.AN: CO(C)-AN Emin  <  1.2")
+#
+# CO under M1
+#
+(CO     ).drc( enclosed(M1)      <  0.8 ).output("CO.M1: CO-M1    Emin  <  0.8")
+(CO & WC).drc( enclosed(M1)      <  1.2 ).output("CC.M1: CO(C)-M1 Emin  <  1.2")
