@@ -19,7 +19,7 @@ class pfet(pya.PCellDeclarationHelper):
         self.param("type", self.TypeString, "Type", default="PFET")
         #
         self.param("l", self.TypeDouble, "Length",  default=DR['PO.W1'].value, unit="um")
-        self.param("w", self.TypeDouble, "Width",   default=DR['AP.MW'].value, unit="um")
+        self.param("w", self.TypeDouble, "Width",   default=DR['AP.WM'].value, unit="um")
         self.param("n", self.TypeInt,    "Fingers", default=1)
 
     def display_text_impl(self):
@@ -28,8 +28,8 @@ class pfet(pya.PCellDeclarationHelper):
     
     def coerce_parameters_impl(self):
         # Check parameters
-        if self.w < DR['AP.MW'].value :
-            self.w = DR['AP.MW'].value
+        if self.w < DR['AP.WM'].value :
+            self.w = DR['AP.WM'].value
         if self.l < DR['PO.W1'].value :
             self.l = DR['PO.W1'].value
         if self.n < 1 :
@@ -67,7 +67,7 @@ class nfet(pya.PCellDeclarationHelper):
         self.param("type", self.TypeString, "Type", default="NFET")
         #
         self.param("l", self.TypeDouble, "Length",  default=DR['PO.W1'].value, unit="um")
-        self.param("w", self.TypeDouble, "Width",   default=DR['AN.MW'].value, unit="um")
+        self.param("w", self.TypeDouble, "Width",   default=DR['AN.WM'].value, unit="um")
         self.param("n", self.TypeInt,    "Fingers", default=1)
 
     def display_text_impl(self):
@@ -76,8 +76,8 @@ class nfet(pya.PCellDeclarationHelper):
  
     def coerce_parameters_impl(self):
         # Check parameters
-        if self.w < DR['AN.MW'].value :
-            self.w = DR['AN.MW'].value
+        if self.w < DR['AN.WM'].value :
+            self.w = DR['AN.WM'].value
         if self.l < DR['PO.W1'].value :
             self.l = DR['PO.W1'].value
         if self.n < 1 :
