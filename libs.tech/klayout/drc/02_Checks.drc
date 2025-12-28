@@ -28,7 +28,7 @@ WM = WN.covering(AP)    # PMOS
 (WC     ).drc( sep(WC)   < 12.0 ).output("WN.S6: WN(C)-WN(C) Smin < 12.0")
 #
 (WN     ).drc( sep(AN & WP) < 10.0 ).output("WN.AN: WN-AN Smin < 10.0")
-(WN     ).drc( sep(AP & WP) < 10.0 ).output("WN.AP: WN-AP Smin < 10.0")
+(WN     ).drc( sep(AP & WP) <  5.0 ).output("WN.AP: WN-AP Smin <  5.0")
 # ----- ------ ----- 
 # AR related
 #
@@ -51,12 +51,12 @@ WM = WN.covering(AP)    # PMOS
 # ----- ------ ----- 
 # AC in WC related
 #
-(AC     ).drc( width    <  28.5 ).output("AC.W1: AC Wmin <  28.5")
-(AC     ).drc( width    > 120.0 ).output("AC.W1: AC Wmax > 120.0")
+(AC     ).drc( width         <  28.5 ).output("AC.W1: AC Wmin <  28.5")
+(AC     ).drc( width         > 120.0 ).output("AC.W1: AC Wmax > 120.0")
 ### (AC     ).drc( space   <   4.0 ).output("AC.S1: AC Smin <   4.0")
 ### (AC     ).drc( enclosed(WC) <  10.0 ).output("AC.WR: AC-WN(C) Emin < 10.0")
 (AN & WC).drc( enclosed(WR)  <   3.0 ).output("AC.WR: AN-WN(C) Emin <  3.0")
-(AC     ).drc( sep(AN)  <   2.8 ).output("AC.AN: AC-AN    Smin <  2.8")
+(AC     ).drc( sep(AN)       <   2.8 ).output("AC.AN: AC-AN    Smin <  2.8")
 # 
 ((AN & WC).holes).not_covering( AC ).output("AC.R1: AN must surrounded AC")
 # ----- ------ ----- 
@@ -80,5 +80,7 @@ WM = WN.covering(AP)    # PMOS
 (AN & PO).sep((AN - PO), 0.1, projection, projecting <  3.4 ).output("AN.WM: NMOS Wmin  <  3.4")
 (AN & PO).sep((AN - PO), 0.1, projection, projecting > 60.0 ).output("AN.WM: NMOS Wmax  < 60.0")
 #
-(AN     ).drc( enclosed(WN) <  7.0 ).output("AP.WN: AP-WN Emin <  5.0")
+(AN & WM).drc( enclosed(WN) <  5.0 ).output("AN.WN: AN-WN    Emin <  5.0")
+(AN & WM).drc( enclosed(WN) <  5.0 ).output("AN.WN: AN(R)-WN Emin <  5.0")
+(AN & WC).drc( enclosed(WN) <  3.0 ).output("AN.WN: AN(C)-WN Emin <  3.0")
 #

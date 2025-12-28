@@ -315,7 +315,7 @@ def draw_cap( cell, l, w ,
               cc_enc   : float = DR['CC.AC'].min,
               co_width : float = DR['CO.W1'].min, 
               co_space : float = DR['CO.S1'].min, 
-              co_enc   : float = DR['CO.AN'].min, 
+              co_enc   : float = DR['CC.AN'].min, 
               m1_enc   : float = DR['M1.CO'].min, 
               an_sep   : float = DR['AC.AN'].min,
               inlet    : float = DR['M1.SC'].min,
@@ -348,7 +348,7 @@ def draw_cap( cell, l, w ,
     draw_acont( cell, width=cc_width, space=cc_space, 
                xnum=cc_nx, ynum=cc_ny, layer=CO_layer )
     draw_plate( cell, width=cc_space, space=cc_space,
-               xnum=cc_nx, ynum=cc_ny, layer=M1_layer, enc=m1_enc )
+               xnum=cc_nx, ynum=cc_ny, layer=M1_layer, enc=cc_enc )
     #
     # Add AN hole 
     # 

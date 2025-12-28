@@ -29,8 +29,8 @@
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # Contact related
 #
-AD = (AP.not_interacting(PO) & WN + AN.not_interacting(PO) & WP)
-AA = (AN + AP - AD)
+AD = ( (AP.not_interacting(PO) & WN) + (AN.not_interacting(PO) & WP) )
+AA =  (AN + AP - AD)
 #
 # CO on AP/AD/
 #
@@ -53,9 +53,9 @@ AA = (AN + AP - AD)
 #
 # CO on WC
 #
-(CO & WC).drc( enclosed(AC)      <  2.9 ).output("CC.AC: CO(C)-AC Emin  <  2.9")
-(CO & WC).drc( enclosed(AC)      <  1.2 ).output("CC.AN: CO(C)-AN Emin  <  1.2")
-(CO & WC).drc( width            !=  1.2 ).output("CC.W1: CO(C)   Width !=  1.2")
-(CO & WC).drc( space            !=  1.2 ).output("CC.S1: CO(C)    Smin !=  1.2")
-(CO & WC).drc( enclosed(AC)      <  2.9 ).output("CC.AC: CO(C)-AC Emin  <  2.9")
+(CO & AC).drc( enclosed(AC)      <  2.9 ).output("CC.AC: CO(C)-AC Emin  <  2.9")
+(CO & AC).drc( enclosed(AC)      <  1.2 ).output("CC.AN: CO(C)-AN Emin  <  1.2")
+(CO & AC).drc( width            !=  1.2 ).output("CC.W1: CO(C)   Width !=  1.2")
+(CO & AC).drc( space             <  1.2 ).output("CC.S1: CO(C)    Smin !=  1.2")
+(CO & AC).drc( enclosed(AC)      <  2.9 ).output("CC.AC: CO(C)-AC Emin  <  2.9")
 (CO & WC).drc( enclosed(AC)      <  1.2 ).output("CC.AN: CO(C)-AN Emin  <  1.2")
