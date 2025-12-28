@@ -16,24 +16,24 @@ class cap(pya.PCellDeclarationHelper):
         # Initialize super class.
         super(cap, self).__init__()
         #
-        self.param("l", self.TypeDouble, "L", default=10.0, unit="um")
-        self.param("w", self.TypeDouble, "W", default=2.0,  unit="um")
+        self.param("x", self.TypeDouble, "X", default=10.0, unit="um")
+        self.param("y", self.TypeDouble, "Y", default=2.0,  unit="um")
 
     def display_text_impl(self):
         # Provide a descriptive text for the cell
-        return "cap(L=" + ('%3f' % self.l) + ",W=" + ('%3f' % self.w) + ")"
+        return "cap(X=" + ('%3f' % self.x) + ",Y=" + ('%3f' % self.y) + ")"
     
     def coerce_parameters_impl(self):
         # Check parameters
-        if self.w < DR['AC.W1'].min :
-            self.w = DR['AC.W1'].min
-        elif self.w > DR['AC.W1'].max :
-            self.w = DR['AC.W1'].max
-        if self.l < DR['AC.W1'].min :
-            self.l = DR['AC.W1'].min
-        elif self.l > DR['AC.W1'].max :
-            self.l = DR['AC.W1'].max
+        if self.x < DR['AC.W1'].min :
+            self.x = DR['AC.W1'].min
+        elif self.x > DR['AC.W1'].max :
+            self.x = DR['AC.W1'].max
+        if self.y < DR['AC.W1'].min :
+            self.y = DR['AC.W1'].min
+        elif self.y > DR['AC.W1'].max :
+            self.y = DR['AC.W1'].max
 
     def produce_impl(self):
         #
-        draw_cap( self.cell, l=self.l, w=self.w )
+        draw_cap( self.cell, l=self.x, w=self.y )
