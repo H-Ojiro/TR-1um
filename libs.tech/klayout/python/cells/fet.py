@@ -16,11 +16,13 @@ class pfet(pya.PCellDeclarationHelper):
         # Initialize super class.
         super(pfet, self).__init__()
         #
-        self.param("type", self.TypeString, "Type", default="PFET")
+        self.param("type", self.TypeString, "Type",   default="PFET")
         #
-        self.param("l", self.TypeDouble, "Length",  default=DR['PO.W1'].min, unit="um")
-        self.param("w", self.TypeDouble, "Width",   default=DR['AP.WM'].min, unit="um")
-        self.param("n", self.TypeInt,    "Fingers", default=1)
+        self.param("l", self.TypeDouble, "Length",    default=DR['PO.W1'].min, unit="um")
+        self.param("w", self.TypeDouble, "Width",     default=DR['AP.WM'].min, unit="um")
+        self.param("n", self.TypeInt,    "Fingers",   default=1)
+        self.param("y0",self.TypeString, "Y0(b/c/t)", default='c')
+
 
     def display_text_impl(self):
         # Provide a descriptive text for the cell
@@ -38,6 +40,8 @@ class pfet(pya.PCellDeclarationHelper):
             self.l = DR['AP.LM'].max
         if self.n < 1 :
             self.n = 1
+        if self.y0 != 'c' and self.y0 != 'b' and self.y0 != 't' :
+            self.y0 = 'c'
 
     '''
     def can_create_from_shape_impl(self):
@@ -59,7 +63,7 @@ class pfet(pya.PCellDeclarationHelper):
     '''   
     def produce_impl(self):
         #
-        draw_fet( self.cell, l=self.l, w=self.w, fnum=self.n, layer=AP_layer)
+        draw_fet( self.cell, l=self.l, w=self.w, fnum=self.n, y_0=self.y0, layer=AP_layer)
         #
       
 class nfet(pya.PCellDeclarationHelper):
@@ -70,9 +74,10 @@ class nfet(pya.PCellDeclarationHelper):
         #
         self.param("type", self.TypeString, "Type", default="NFET")
         #
-        self.param("l", self.TypeDouble, "Length",  default=DR['PO.W1'].min, unit="um")
-        self.param("w", self.TypeDouble, "Width",   default=DR['AN.WM'].min, unit="um")
-        self.param("n", self.TypeInt,    "Fingers", default=1)
+        self.param("l", self.TypeDouble, "Length",    default=DR['PO.W1'].min, unit="um")
+        self.param("w", self.TypeDouble, "Width",     default=DR['AN.WM'].min, unit="um")
+        self.param("n", self.TypeInt,    "Fingers",   default=1)
+        self.param("y0",self.TypeString, "Y0(b/c/t)", default='c')
 
     def display_text_impl(self):
         # Provide a descriptive text for the cell
@@ -90,8 +95,10 @@ class nfet(pya.PCellDeclarationHelper):
             self.l = DR['AN.LM'].max
         if self.n < 1 :
             self.n = 1
+        if self.y0 != 'c' and self.y0 != 'b' and self.y0 != 't' :
+            self.y0 = 'c'
 
     def produce_impl(self):
         #
-        draw_fet( self.cell, l=self.l, w=self.w, fnum=self.n, layer=AN_layer)
+        draw_fet( self.cell, l=self.l, w=self.w, fnum=self.n, y_0=self.y0, layer=AN_layer)
         #       

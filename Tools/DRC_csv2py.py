@@ -21,13 +21,13 @@ hfile = "./DRC_csv2py.head"
 def print_drc( f, row ) :
     #
     try : 
-        min = float(row[2])
-        if float(row[3]) == float('inf') :
+        min = float(row[4])
+        if float(row[5]) == float('inf') :
             max = -1.0 
         else :
-            max = float(row[3])
+            max = float(row[5])
         #
-        print( "DR['%5s'] = DRule( %5.1f, %5.1f, '%s')" % (row[0], min, max, row[1]), file=f )
+        print( "DR['%5s'] = DRule( %5.1f, %5.1f, '%s','%s','%s' )" % (row[0], min, max, row[1], row[2], row[3]), file=f )
     except :
         return
 
