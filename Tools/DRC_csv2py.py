@@ -6,7 +6,7 @@
 #          http://www.apache.org/licenses/
 # ----- ------ ----- 
 #
-#  DRC_Csv2py.py INPUT_DRC.cvs OUTPUT_DRC.py
+# DRC_csv2py.py ../Document/Layer_Tables/TR-1um_Drawing_Layer_DR_Table.csv ../libs.tech/klayout/python/cells/rules_def.py
 #
 import sys
 import csv
