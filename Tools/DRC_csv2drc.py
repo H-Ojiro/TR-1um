@@ -49,8 +49,6 @@ L = {
     'DN'          : 'DN',
     'PO+PR'       : 'PO + PR',
     'PO'          : 'PO',
-    'PO&AP'       : 'PO & AP',
-    'PO&AN'       : 'PO & AN',
     'PO-AP'       : 'PO - AP',
     'PO-AN'       : 'PO - AN',
     'PR'          : 'PR',

@@ -121,10 +121,10 @@ ARW = (AR - (CO & AR).sized(2.0)).and(AR).sized(2.0)            # AR WIDE
 (PO     ).drc(      sep(AP     ) <  0.4 ).output('PO.AP:PO-AP Smin <  0.4')
 (PO     ).drc(      sep(AN     ) <  0.4 ).output('PO.AN:PO-AN Smin <  0.4')
 # ----- MOS(EndCap) -----
-(PO & AP).drc( enclosed(PO, projection, without_touching_edges ) <  1.2).output('PO.EP:PO&AP Endcap <  1.2')
+(AP & PO).drc( enclosed(PO, projection, without_touching_edges ) <  1.2).output('PO.EP:PMOS Endcap <  1.2')
 # 
 # ----- MOS(EndCap) -----
-(PO & AN).drc( enclosed(PO, projection, without_touching_edges ) <  1.2).output('PO.EN:PO&AN Endcap <  1.2')
+(AN & PO).drc( enclosed(PO, projection, without_touching_edges ) <  1.2).output('PO.EN:NMOS Endcap <  1.2')
 # 
 (CO     ).drc(             width <  1.0 ).output('CO.W1:CO Wmin <  1.0')
 (CO     ).drc(             space <  1.0 ).output('CO.S1:CO Smin <  1.0')
