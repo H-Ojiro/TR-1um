@@ -1,6 +1,6 @@
 # Preface: drc.lydrc
 
-## [drc.lydrc](../libs.tech/klayout/drc/drc.lydrc)
+## [drc.lydrc](../../libs.tech/klayout/drc/drc.lydrc)
 
 It seems **drc.lydrc** file is cached in the KLayout once it is launched, so it has to be edited in the tools for debugging. So my **drc.lydrc** only includes **# %include run.drc** commands, as shown below.
 
@@ -14,7 +14,7 @@ It seems **drc.lydrc** file is cached in the KLayout once it is launched, so it 
 #----
 ```
 
-## [run.drc](../libs.tech/klayout/drc/run.drc)
+## [run.drc](../../libs.tech/klayout/drc/run.drc)
 
 DRC runset should be splited it into each of check categories, like layer-based, to edit. So my **run.drc** only includes **report** for output and a couple of **# %include** commands, as shown below.
 
@@ -40,7 +40,7 @@ This method allows editing each file outside the Klayout, and each DRC run refle
 
 ### Process Steps
 
-_**NOTE:** knowledge of the process steps is a fundamental requirement for DRC/LVS development beyond the check commands and grammars. Regarding TR-1um, **TOKAI RIKA** has not revealed it in the [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf), but there is enough information to imagine it. Thus, I would draw each of them below, focusing on GDSII layers. One of TR-1um technology's unique features is that drawing layers in the Klayout tool is closely tied to mask layers in the process. It is suitable for learning the relationship between MASKs and process integration; however, it may be redundant given the number of drawing layers and NOT designers who are oriented to minimize them, **IMHO**._
+_**NOTE:** knowledge of the process steps is a fundamental requirement for DRC/LVS development beyond the check commands and grammars. Regarding TR-1um, **TOKAI RIKA** has not revealed it in the [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf), but there is enough information to imagine it. Thus, I would draw each of them below, focusing on GDSII layers. One of TR-1um technology's unique features is that drawing layers in the Klayout tool is closely tied to mask layers in the process. It is suitable for learning the relationship between MASKs and process integration; however, it may be redundant given the number of drawing layers and NOT designers who are oriented to minimize them, **IMHO**._
 
 #### Step 1 (PSUB)
 

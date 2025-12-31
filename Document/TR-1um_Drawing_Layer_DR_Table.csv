@@ -74,7 +74,7 @@ AR.PW,PO(AR),,Wmin,2.0,,ERRR06
 AR.XY,AR,Bevel,XYmin,1.0,,
 PO.AN,PO(AR),AN,Smin,???,???,
 PO.R1,AR,PO(AR),Donut,0.0,,
-,PO,TieDown,,0.0,,
+PO.R2,PO,TieDown,,0.0,,
 PR.W1,RS,RS(L),Wmin/max,4.0,20.0,Table I-2-1
 PR.L1,RS,RS(W),Lmin/max,20.0,100.0,Table I-2-1
 PR.S1,RS,RS,Smin,2.0,,ERRS04

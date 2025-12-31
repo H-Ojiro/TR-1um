@@ -6,20 +6,20 @@
 #          http://www.apache.org/licenses/
 # ----- ------ ----- 
 #
-#  ./DRC_csv2drc.py ../Document/Layer_Tables/TR-1um_Drawing_Layer_DR_Table.csv ../libs.tech/klayout/drc/run.drc
+#  ./DR_csv2drc.py ../libs.tech/klayout/drc/run.drc
 #
 import sys
 import csv
 #
 args  = sys.argv
 #
-ifile = args[1]
-
-if len(args) > 2 :
-    ofile = args[2]
+ifile = '../Document/TR-1um_Drawing_Layer_DR_Table.csv'
+hfile = "./DR_csv2drc.head"
+#
+if len(args) > 1 :
+    ofile = args[1]
 else : 
     ofile = None
-hfile = "./DRC_csv2drc.head"
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # Translater

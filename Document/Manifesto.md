@@ -75,6 +75,22 @@ This MDP can generate 17 MASK layers from 8 Drawing layes with Klayout DRC proce
 
 6 recoginiton layers are also can regenerate propoerly with MDP process.
 
+### PCell and DRC integrity
+
+**Design Rules** for Drawing Layers are re-defined on [TR-1um_Drawing_Layer_DR_Table](../TR-1um_Drawing_Layer_DR_Table.xlsx) Excell file and all Critical Dimensions are refrenced to the [TR-1um_Drawing_Layer_DR_Table](../TR-1um_Drawing_Layer_DR_Table.cvs) CVS file from the Excell file.
+
+![](Figures/DRC_PCell.png)
+
+Under **Tools** directory, there are python script files which auto generate [run.drc](../libs.tech/klayout/drc/run.drc) as DRC runset and [rules_def.py](../libs.tech/klayout/python/cells/rules_def.py) for PCell.
+
+
+
+
+
+
+
+
+
 
 
 

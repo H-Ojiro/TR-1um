@@ -1,6 +1,6 @@
 # Chapter 3 : 03_Extract.lvs
 
-## [03_Extract.lvs](../libs.tech/klayout/lvs/03_Extract.lvs)
+## [03_Extract.lvs](../../libs.tech/klayout/lvs/03_Extract.lvs)
 
 ### Capacitor (CSIO)
 

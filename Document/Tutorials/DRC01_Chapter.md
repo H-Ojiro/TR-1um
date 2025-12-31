@@ -1,6 +1,6 @@
 # Chapter 1 : 00_Layers.drc and 01_Basics.drc
 
-## [00_Layers.drc](../libs.tech/klayout/drc/IP62/00_Layers.drc)
+## [00_Layers.drc](../../libs.tech/klayout/drc/IP62/00_Layers.drc)
 
 Loading layer by layer GDSII data while implementing **waiver** capability to ignore the DRC checking area, such as the Shield Ring. **ESD** is also a recognition area, especially for ESD device, which has special rules. I would respect the original "TR-1um MASK Layer name" as an implementation to avoid further confusion. 
 
@@ -29,7 +29,7 @@ BBOX  = extent
 ```
 **BBOX** is boundary box of GDSII active area to generate inverse data from the original shape.
 
-## [01_Basics.drc](../tech/drc/IP62/00_Basics.drc)
+## [01_Basics.drc](../../tech/drc/IP62/00_Basics.drc)
 
 Loading layer by layer GDSII data while implementing **waiver** capability to ignore the DRC checking area, such as the Shield Ring. **ESD** is also a recognition area, especially for ESD device, which has special rules. I would respect the original "TR-1um MASK Layer name" as an implementation to avoid further confusion. 
 
@@ -46,7 +46,7 @@ Loading layer by layer GDSII data while implementing **waiver** capability to ig
 
 ### Off grid check
 
-TOKAI RIKA recommended using a **0.05um** grid in the [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf), so we should check the Off-grid by DRC as follows.
+TOKAI RIKA recommended using a **0.05um** grid in the [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf), so we should check the Off-grid by DRC as follows.
 
 ```
 # --------- --------- --------- --------- --------- --------- ---------
@@ -78,7 +78,7 @@ This is inter-section polygon mentioned on KLayout [discussion](https://www.klay
 
 ### Non-diagonal Polygon
 
-TOKAI RIKA does NOT clearly state that only the diagonal angle is used for all polygon shapes in the [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf). In general, a non-diagonal angle might cause unexpected problems during mask making process, so we checked it for all layers as follows. You might commeted out each in case of non-diagonal shape needed.
+TOKAI RIKA does NOT clearly state that only the diagonal angle is used for all polygon shapes in the [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf). In general, a non-diagonal angle might cause unexpected problems during mask making process, so we checked it for all layers as follows. You might commeted out each in case of non-diagonal shape needed.
 
 ```
 # --------- --------- --------- --------- --------- --------- ---------
@@ -94,7 +94,7 @@ TOKAI RIKA does NOT clearly state that only the diagonal angle is used for all p
 
 ### Line and Space
 
-Minimum Line and Space are listed in the [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section 4, which are defined by lithography and processing equipment in general. 
+Minimum Line and Space are listed in the [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section 4, which are defined by lithography and processing equipment in general. 
 
 ```
 # --------- --------- --------- --------- --------- --------- ---------

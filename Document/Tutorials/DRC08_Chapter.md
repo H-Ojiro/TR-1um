@@ -1,6 +1,6 @@
 # Chapter 8 : 08_Check.drc
 
-## [08_Check.drc](../libs.tech/klayout/drc/IP62/08_Check.drc)
+## [08_Check.drc](../../libs.tech/klayout/drc/IP62/08_Check.drc)
 
 In here, **M1/TC/M2** related rules, so called BEOL, are described. 
 
@@ -28,7 +28,7 @@ There is no **SG/CONT/M1/M2** crossing **TC** and **TC** without **M1/M2**.
 
 **TC** size is fixed to 1.4um except under **PRO** (means PAD).
 
-_**NOTE:** IMHO: maximum **TC** under **PAD** should be checked because of avoid over etching M1, yet does not mentioned in the [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf)._
+_**NOTE:** IMHO: maximum **TC** under **PAD** should be checked because of avoid over etching M1, yet does not mentioned in the [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf)._
 
 ```
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
@@ -62,7 +62,7 @@ _**NOTE:** IMHO: Even **TC** to **M1/M2** enclosures are same, the it's number 1
 
 Over 10um wide **M1** should have relaxed space. **M1W** defined here and checked with sep(projection) method.
 
-_**NOTE:** There is no Wide M2 space rule in the [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf), but it must be ruled._
+_**NOTE:** There is no Wide M2 space rule in the [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf), but it must be ruled._
 
 _**NOTE:** On this method, "sep < X" seems does NOT work, so the space criteria reduced to 2.0 > 1.99._
 

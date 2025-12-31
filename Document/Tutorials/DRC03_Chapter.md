@@ -1,6 +1,6 @@
 # Chapter 3 : 03_Check.drc
 
-## [03_Check.drc](../libs.tech/klayout/drc/IP62/03_Check.drc)
+## [03_Check.drc](../../libs.tech/klayout/drc/IP62/03_Check.drc)
 
 In here, **PSUB**, **NW**, **HVNW**, **PF**, and **NF** related DRC checks are described. First, **NW** and **HVNW** separations.
 
@@ -16,7 +16,7 @@ In here, **PSUB**, **NW**, **HVNW**, **PF**, and **NF** related DRC checks are d
 (NWCS).drc(space     < 12.0).output("ERR03: NWCS to NWCS separation < 12.0") 
 ```
 
-Delivered N-WELL layers, rather than mask layers, are used for each of the DRC checks as above and each of numbers are defined by the table in the [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section 5.
+Delivered N-WELL layers, rather than mask layers, are used for each of the DRC checks as above and each of numbers are defined by the table in the [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section 5.
 
 ### PF and NF
 
@@ -36,7 +36,7 @@ Delivered N-WELL layers, rather than mask layers, are used for each of the DRC c
 (PF  ).not_in(PSUB).output("ERR03: NF not match to PSUB")     # Much more make sense in terms of the process assamption
 ```
 
-**PF** and **NF** do not have a clear restriction on the table of the [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section 5.  I personally proposed a simple rule: **PF** and **NF** must fit to **PSUB** and DRC check command as above.
+**PF** and **NF** do not have a clear restriction on the table of the [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section 5.  I personally proposed a simple rule: **PF** and **NF** must fit to **PSUB** and DRC check command as above.
 
 ### PSUB to NW/HNNW
 
@@ -88,5 +88,5 @@ As well as above, all ion-implantation layers, such as **PF/NF**, **PBE/NBE**, *
 (R - L      ).drc( width < 2.0 ).output("ERR03: L(RR) enclosed R < 2.0")
 #
 ```
-See [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section 6.7.
+See [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section 6.7.
 

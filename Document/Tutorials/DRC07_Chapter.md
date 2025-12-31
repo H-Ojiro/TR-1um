@@ -1,6 +1,6 @@
 # Chapter 7 : 07_Check.drc
 
-## [07_Check.drc](../libs.tech/klayout/drc/IP62/07_Check.drc)
+## [07_Check.drc](../../libs.tech/klayout/drc/IP62/07_Check.drc)
 
 In here, **SG** related rules are described. 
 
@@ -42,4 +42,4 @@ _**projection method for Endcap:**_
 (SG & AANE).drc( enclosed(SG, projection, without_touching_edges ) < 1.2).output("ERR07: Endcap(MNE) < 1.2") # NMOS(ESD)
 ```
 
-_**NOTE:** Endcap surrounding Notch shape Active area, see [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) Table 1-5-1 ER0901/2 are NOT implemented yet. Need another idea to check it._
+_**NOTE:** Endcap surrounding Notch shape Active area, see [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) Table 1-5-1 ER0901/2 are NOT implemented yet. Need another idea to check it._

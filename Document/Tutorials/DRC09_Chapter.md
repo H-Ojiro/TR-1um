@@ -1,6 +1,6 @@
 # Chapter 9 : 09_Check.drc
 
-## [09_Check.drc](../libs.tech/klayout/drc/IP62/09_Check.drc)
+## [09_Check.drc](../../libs.tech/klayout/drc/IP62/09_Check.drc)
 
 ### IO and PRO related
 
@@ -54,7 +54,7 @@ There is no **M1/M2** crossing **PAD** and **PAD** without **M1/M2**.
 (PRO).drc( space <  64.0 ).output("ERR09: PRO space < 64.0")
 #
 ```
-_**NOTE:** IMHO: In the [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section4, PRO L/S metioned 10/20um as mimimum. Table I-5-1 ER1809/10 should be recommendation value for Bonding or Probing._
+_**NOTE:** IMHO: In the [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section4, PRO L/S metioned 10/20um as mimimum. Table I-5-1 ER1809/10 should be recommendation value for Bonding or Probing._
 
 ### PAD M1/M2 to adjacent M1/M2
 
@@ -68,5 +68,5 @@ Minimum distance **M1/M2** for PAD to adjacent **M1/M2** are both 14um.
 (M2.interacting(PRO)).drc( sep(M2) < 14.0).output("ERR09: M2(PRO) separation M2 < 14.0")
 #
 ```
-_**NOTE:** Feeding M1/M2 rule which desctibed in the [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) Table I-5-1 ER1803/04 are NOT implemented yet. I do not know how to implemented it, so feedback are always welcome._
+_**NOTE:** Feeding M1/M2 rule which desctibed in the [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) Table I-5-1 ER1803/04 are NOT implemented yet. I do not know how to implemented it, so feedback are always welcome._
 

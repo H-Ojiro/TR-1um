@@ -1,6 +1,6 @@
 # Chapter 5 : 05_Check.drc
 
-## [05_Check.drc](../libs.tech/klayout/drc/IP62/05_Check.drc)
+## [05_Check.drc](../../libs.tech/klayout/drc/IP62/05_Check.drc)
 
 In here, **CONT** related allowance checks are described. CONT allowance to **L** is perhaps direct, and to **SG** is indirect. The **CONT**-to-**M1** allowance is possibly direct, yet the minimum enclosure distance remains the same 0.8um due to the LOCOS process, I guess. 
 

@@ -1,6 +1,6 @@
 # Chapter 2 : 02_Extract.lvs
 
-## [02_Extract.lvs](../libs.tech/klayout/lvs/02_Extract.lvs)
+## [02_Extract.lvs](../../libs.tech/klayout/lvs/02_Extract.lvs)
 
 ### MOS
 

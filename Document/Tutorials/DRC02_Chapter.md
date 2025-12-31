@@ -1,6 +1,6 @@
 # Chapter 2 : 02_Device.drc
 
-## [02_Device.drc](../libs.tech/klayout/drc/IP62/02_Device.drc)
+## [02_Device.drc](../../libs.tech/klayout/drc/IP62/02_Device.drc)
 
 Device recognition based on a logical combination of mask layers is the most crucial definition for DRC and LVS, which reflects the actual process flow and integration. With that knowledge of process flow and device structure is a fundamental requirement.
 
@@ -14,7 +14,7 @@ NWRR = (PSUB & HVNW)	                # HVNW  for RR
 PWMN = (BBOX - PSUB)                    # PWEL  for NMOS
 ```
 
-**Well** is fundamentally a back-gate terminal of the MOS device, so it is the first step in distinguishing the device structure. Furthermore, combination with **CL** layer is used to distinguish a MOS transistor and a MOS capacitor. **HVNW** is primarily used for high-voltage devices but also as a diffusion register, so it simply defines **RR** device. See [document](../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section 2.
+**Well** is fundamentally a back-gate terminal of the MOS device, so it is the first step in distinguishing the device structure. Furthermore, combination with **CL** layer is used to distinguish a MOS transistor and a MOS capacitor. **HVNW** is primarily used for high-voltage devices but also as a diffusion register, so it simply defines **RR** device. See [document](../../openIP62/IP62/Technology/doc/OS00_リファレンスマニュアル_rev1.1.pdf) section 2.
 
 ```
 # ----- ------ ----- 

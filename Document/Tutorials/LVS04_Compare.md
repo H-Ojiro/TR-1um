@@ -1,6 +1,6 @@
 # Compare: run.lvs
 
-## [04_Compare.lvs](../libs.tech/klayout/lvs/04_Compare.lvs)
+## [04_Compare.lvs](../../libs.tech/klayout/lvs/04_Compare.lvs)
 
 In **run.lvs**, there are couple of LVS preparation and definition to handle TR-1um spice file. 
 

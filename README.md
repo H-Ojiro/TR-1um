@@ -66,16 +66,16 @@ Also Xschem symbol library development is ongoing.
 
 [Manifesto: PDK renewal for TR-1um technology](Document/Manifesto.md)
 
-[Design Rule Manual for Drawing Layers](Document/Layer_Tables/DR_Drawing_layer.pdf) (PDF)
+[Design Rule Manual for Drawing Layers](Document/DR_Drawing_layer.pdf) (PDF)
 
-[Design Rule Table for Drawing Layers](Document/Layer_Tables/TR-1um_Drawing_Layer_DR_Table.xlsx) (XLS)
+[Design Rule Table for Drawing Layers](Document/LTR-1um_Drawing_Layer_DR_Table.xlsx) (XLS)
 
-[Drawing Layer vs Mask Layer Table](Document/Layer_Tables/TR-1um_GDSII_Table.xlsx) (XLS)
+[Drawing Layer vs Mask Layer Table](Document/L/TR-1um_GDSII_Table.xlsx) (XLS)
 
-[Tutorial: How to make DRC runset for KLayout](Document/Tutorial_DRC.md)
+[Tutorial: How to make DRC runset for KLayout](Document/Tutorials/Tutorial_DRC.md)
 
-[Tutorial: How to make LVS runset for KLayout](Document/Tutorial_LVS.md) 
+[Tutorial: How to make LVS runset for KLayout](Document/Tutorials/Tutorial_LVS.md) 
 
-[Tutorial: How to make PCell python script for KLayout](Document/Tutorial_PCell.md) 
+[Tutorial: How to make PCell python script for KLayout](Document/Tutorials/Tutorial_PCell.md) 
 
 [Layers and Design steps: Layers reenewal for TR-1um technology](Document/Drawing_vs_Mask.md)
