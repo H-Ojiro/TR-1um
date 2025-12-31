@@ -45,7 +45,6 @@ def print_head( ifile, ofile ) :
 #
 head_file = open( hfile, "r", encoding="utf8")
 csv_file  = open( ifile, "r", encoding="utf8")
-py_file   = open( ofile, "w", encoding="utf8")
 #
 if ofile == None :
     py_file = sys.stdout
