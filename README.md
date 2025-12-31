@@ -50,15 +50,15 @@ Also Xschem symbol library development is ongoing.
 
 ## Tools
 
-- IP62_to_TR-1um.py  INPUT_TR62.gds OUTPUT_TR-1um.gds
+- Tools/IP62_to_TR-1um.py  INPUT_TR62.gds OUTPUT_TR-1um.gds
 
        IP62(MASK Layers) to TR-1um(Drawing Layers) conversion Python script, which is hierachically execute it bottom to top.
 
-- Tools/DRC_csv2py.py TR-1um_Drawing_Layer_DR_Table.csv rules_def.py
+- Tools/DRC_csv2py.py rules_def.py
 
        TR-1um_DR(Design Rule Table) to Python Class file script.
 
-- Tools/DRC_csv2drc.py TR-1um_Drawing_Layer_DR_Table.csv run.drc
+- Tools/DRC_csv2drc.py run.drc
 
        TR-1um_DR(Design Rule Table) to KLayout DRC runset file script.
 
@@ -66,11 +66,11 @@ Also Xschem symbol library development is ongoing.
 
 [Manifesto: PDK renewal for TR-1um technology](Document/Manifesto.md)
 
-[Design Rule Manual for Drawing Layers](Document/DR_Drawing_layer.pdf) (PDF)
+[New Desgin Rule Summary Manual](Document/TR-1um_DRC_summary.pdf) (PDF)
 
-[Design Rule Table for Drawing Layers](Document/LTR-1um_Drawing_Layer_DR_Table.xlsx) (XLS)
+[Design Rule Table for Drawing Layers](Document/TR-1um_Drawing_Layer_DR_Table.xlsx) (XLS)
 
-[Drawing Layer vs Mask Layer Table](Document/L/TR-1um_GDSII_Table.xlsx) (XLS)
+[Drawing Layer vs Mask Layer Table](Document/TR-1um_GDSII_Table.xlsx) (XLS)
 
 [Tutorial: How to make DRC runset for KLayout](Document/Tutorials/Tutorial_DRC.md)
 
