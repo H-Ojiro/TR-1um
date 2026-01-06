@@ -1,8 +1,14 @@
 * Created by KLayout
 
 * cell CLKBUF_X2
+* pin A
+* pin Y
+* pin vdd
 * pin VSS
-.SUBCKT CLKBUF_X2 5
+.SUBCKT CLKBUF_X2 2 3 4 5
+* net 2 A
+* net 3 Y
+* net 4 vdd
 * net 5 VSS
 * device instance $1 r0 *1 6.1,44.8 PMOS_mst
 M$1 1 2 4 4 PMOS_mst L=1U W=40.8U AS=74.46P AD=61.2P PS=65.6U PD=52.8U

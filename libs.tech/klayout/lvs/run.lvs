@@ -6,6 +6,21 @@
 # See: https://www.klayout.de/doc-qt5/manual/lvs_device_extractors.html
 #
 deep          # Hierarchical extraction
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Extract Netlist Only
+#
+if $netlist_only == 'true'
+    NET_ONLY = true
+else
+    NET_ONLY = false
+end
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# 
+# 
+if $input 
+    source($input)
+end
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 #
 report_lvs    # LVS report window
 #----

@@ -1,9 +1,21 @@
 * Created by KLayout
 
 * cell AND4_X1
-* pin VSS
-.SUBCKT AND4_X1 11
-* net 11 VSS
+* pin A
+* pin C
+* pin Y
+* pin B
+* pin D
+* pin vdd
+* pin gnd
+.SUBCKT AND4_X1 2 5 7 8 9 10 11
+* net 2 A
+* net 5 C
+* net 7 Y
+* net 8 B
+* net 9 D
+* net 10 vdd
+* net 11 gnd
 * device instance $1 r0 *1 6.1,44.8 PMOS_mst
 M$1 1 2 10 10 PMOS_mst L=1U W=10.2U AS=28.56P AD=15.3P PS=26U PD=13.2U
 * device instance $2 r0 *1 10.1,44.8 PMOS_mst

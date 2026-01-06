@@ -86,17 +86,21 @@ class MyDelegate < RBA::NetlistSpiceReaderDelegate
     end
 end
 #
-reader      = RBA::NetlistSpiceReader::new(MyDelegate::new)
-#
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
-# Comparison exection (in case LPE, all comment out)
 #
+unless NET_ONLY
 #
-schematic(Sch_file, reader)
-#
-schematic.make_top_level_pins   # https://www.klayout.de/doc/manual/lvs_compare.html#h2-299
-#
-align
-#
-compare
-#
+    reader      = RBA::NetlistSpiceReader::new(MyDelegate::new)
+    #
+    # Comparison exection (in case LPE, all comment out)
+    #
+    #
+    schematic(Sch_file, reader)
+    #
+    schematic.make_top_level_pins   # https://www.klayout.de/doc/manual/lvs_compare.html#h2-299
+    #
+    align
+    #
+    compare
+    #
+end   

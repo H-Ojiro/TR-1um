@@ -1,9 +1,21 @@
 * Created by KLayout
 
 * cell NOR4
-* pin VSS
-.SUBCKT NOR4 10
-* net 10 VSS
+* pin Y
+* pin A
+* pin B
+* pin C
+* pin D
+* pin vdd
+* pin gnd
+.SUBCKT NOR4 1 2 3 4 5 6 10
+* net 1 Y
+* net 2 A
+* net 3 B
+* net 4 C
+* net 5 D
+* net 6 vdd
+* net 10 gnd
 * device instance $1 r0 *1 6.1,44.8 PMOS_mst
 M$1 7 2 6 6 PMOS_mst L=1U W=10.2U AS=28.56P AD=15.3P PS=26U PD=13.2U
 * device instance $2 r0 *1 10.1,44.8 PMOS_mst
