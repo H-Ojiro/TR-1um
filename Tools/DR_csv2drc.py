@@ -67,6 +67,7 @@ L = {
     'M1(C)'       : 'M1C',
     'M1(W)'       : 'M1W',
     'V1'          : 'V1 - V1P',
+    'V1(P)'       : 'V1P',
     'M2'          : 'M2',
     'Endcap'      : 'Endcap',
     'Bevel'       : 'Bevel',
@@ -101,10 +102,14 @@ L = {
 def print_Zn ( f, rule, func, L1, L2, L3, L4, min, max ) :
     match L1 :
         case 'WR' | 'WC' :
-            print( "(%-7s).covering(%5s).output('%-5s:%2s not in %2s')" % (L1,L2,rule,L4,L3), file=f)
+            print( "(%-7s).covering(%-5s).output('%-5s:%2s not in %2s')" % (L1,L2,rule,L4,L3), file=f)
             return
-        case 'CO' | 'V1' | 'PO' :
+        case 'CO' | 'PO' :
             print( "(%2s - ( %-12s )).output('%-5s:%2s not on %s')" % (L1, L2, rule, L3, L4), file=f)
+            return
+    match L3 :
+        case 'V1' :
+            print( "((%-7s) - (%-6s)).output('%-5s:%2s not on %s')" % (L1, L2, rule, L3, L4), file=f)
             return
     print(rule)
 
@@ -161,7 +166,7 @@ def gen_drc( f, rule, func, L1, L2, L3, L4, min, max ) :
             print_Zn ( f, rule, func, L1, L2, L3, L4, min, max )
             return
         case 'Exist' :
-            print( "(%-7s).not_covering(%5s).output('%-5s:%2s not_covering %2s')" % (L1,L2,rule,L4,L3), file=f)
+            print( "(%-7s).not_covering(%-5s).output('%-5s:%2s not_covering %2s')" % (L1,L2,rule,L4,L3), file=f)
             return
         case 'Wmin' :
             print( "(%-7s).drc(             width < %4.1f ).output('%-5s:%2s %s < %4.1f')" % (L1,min,rule,L3,func,min), file=f)
@@ -194,6 +199,11 @@ def gen_drc( f, rule, func, L1, L2, L3, L4, min, max ) :
         case 'TieDown' :
             print( "# ----- TieDown -----", file=f)
             print( "((%-7s) - antenna_check((%-2s), GC, 0.0)).output('%-5s:%2s must tie down to %s')"             % (L1,L2,rule,L3, L4), file=f) 
+            print( "# ", file=f)
+            return
+        case 'ANTE' :
+            print( "# ----- Floating Gate -----", file=f)
+            print( "( GC_FL ).output('%-5s:%2s must electrically connect to Substrate')"                  % (rule,L3), file=f) 
             print( "# ", file=f)
             return
         case 'XYmin' :
