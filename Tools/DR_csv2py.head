@@ -1,0 +1,76 @@
+#
+# TR-1um: Copyright 2025 OpenSUSI non-profit organaization 
+#
+# Original version was made by jun1okamura
+# LICENSE: Apache License Version 2.0, January 2004,
+#          http://www.apache.org/licenses/
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+#
+class DRule():
+    def __init__(self, min: float, max: float, L1: str, L2: str, func: str) -> None:
+        self.min  = min
+        self.max  = max      
+        self.L1   = L1
+        self.L1   = L2
+        self.func = func
+
+    def min(self) :
+        return self.min
+
+    def max(self) :
+        return self.max
+
+    def L1(self) :
+        return self.L1
+
+    def L2(self) :
+        return self.L2
+
+    def func(self) :
+        return self.func
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+class Design_Rule( DRule ):
+    #
+    def __init__(self) -> None:
+        self._dict = {}
+
+    def __setitem__(self, key, desc: DRule) :
+        if not isinstance(key, str):
+            raise Exception()
+        #
+        # Prohibit Overwrite
+        #
+        if key in self._dict :
+            raise KeyError(f"Key '{key}' already exists. Overwriting is not allowed.")
+        #        
+        self._dict[key]  = desc
+
+    def __getitem__(self, key) :
+        if not isinstance(key, str):
+            raise Exception()
+        return self._dict[key]
+
+    @property
+    def min(self, key) :
+        return self._dict[key].min
+    
+    @property
+    def max(self, key) :
+        return self._dict[key].max
+    
+    @property
+    def L1(self, key) :
+        return self._dict[key].L1
+    
+    @property
+    def L2(self, key) :
+        return self._dict[key].L2
+    
+    @property
+    def func(self, key) :
+        return self._dict[key].func
+    
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+DR = Design_Rule()
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
