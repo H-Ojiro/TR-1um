@@ -12,4 +12,4 @@ report("TR-1um DRC(Drawing)")
 # %include 00_Layers.drc
 # %include 01_Basics.drc
 # %include 02_Device.drc
-#
+# %include 03_Electrical.drc

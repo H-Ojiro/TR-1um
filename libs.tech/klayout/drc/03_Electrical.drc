@@ -1,0 +1,26 @@
+# Basic check for layer polygons
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Original version was made by jun1okamura from TokaiRika's document 
+# LICENSE: Apache License Version 2.0, January 2004,
+#          http://www.apache.org/licenses/
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Drain connected to Backgate
+#
+COS = ( SDPE & antenna_check(GP, CO, 0.0)) + ( SDNE & antenna_check(GN, CO, 0.0))
+COD = (((SDPE & CO) + (SDNE & CO)) - COS)
+# COS.output("SOURCE")      # DEBUG
+# COD.output("DRAIN")       # DEBUG
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Gate electrically connected to Substrate
+#
+GC_MP = antenna_check(SDP,  GC, 0.0)
+GC_MN = antenna_check(SDN,  GC, 0.0)
+GC_PE = antenna_check(SDPE, GC, 0.0)
+GC_NE = antenna_check(SDNE, GC, 0.0)
+GC_DP = antenna_check(DP,   GC, 0.0)
+GC_DN = antenna_check(DN,   GC, 0.0)
+GC_GP = antenna_check(GP,   GC, 0.0)
+GC_GN = antenna_check(GN,   GC, 0.0)
+#
+GC_FL = (GC - (GC_MP + GC_MN + GC_PE + GC_NE + GC_DP + GC_DN + GC_GP + GC+GN))  # Floating Gate
+#

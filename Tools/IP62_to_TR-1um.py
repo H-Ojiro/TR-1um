@@ -75,26 +75,35 @@ GR    = ly.layer(  8, 2)
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # Flatten Cell Names 
 #
-Cell_MAP = ['DCONT', 'pcont', 'MNE_CDNS', 'MPE_CDNS']
+Cell_MAP = ['DCONT', 'pcont', 'MNE_CDNS', 'MPE_CDNS', 'BGMN_CDNS', 'BGMP_CDNS', 'VIA_M21']
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 def convert_flatten( cell : db.Cell ) :
    #
    for map in Cell_MAP :
-      if (cell.name).find(map,0) != -1 :
+      if (cell.name).find(map,0) == 0 :
          return
-   else :
-      for inst in cell.each_inst() :
-         cl = ly.cell(inst.cell_index)
-         for map in Cell_MAP :
-            if (cl.name).find(map,0) != -1 :
-               print("Flatten CELL in %-10s : %-10s" % (cell.name, cl.name))
-               inst.flatten(0)
+      else :
+         for inst in cell.each_inst() :
+            cl = ly.cell(inst.cell_index)
+            for map in Cell_MAP :
+               if (cl.name).find(map,0) == 0 :
+                  print("Flatten CELL in %-10s : %-10s" % (cell.name, cl.name))
+                  inst.flatten(0)
          #
   
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+def delete_flatten( cell : db.Cell ) :
+   #
+   for map in Cell_MAP :
+      if (cell.name).find(map,0) == 0 :
+         print("DELETE:" + cell.name)
+         cell.delete()
+         return
+         #
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 def convert_drawing( cell : db.Cell ) :
-  
     #
     NWMP = (db.Region(cell.shapes(PSUB)).merged() & 
             db.Region(cell.shapes(NW  )).merged()).not_interacting(db.Region(cell.shapes(CL)).merged())
@@ -181,7 +190,6 @@ def convert_drawing( cell : db.Cell ) :
 for cl in ly.each_cell() :
    convert_flatten( cl )      # flatten Maped Cell
    #
-
 if ly.top_cells() != None :
    for idx in ly.each_cell_bottom_up() :
       cl = ly.cell(idx)
@@ -189,13 +197,20 @@ if ly.top_cells() != None :
       #
       # Exclude Seal-Ring to delete IP62 Layers
       #
-      if len(cell_name) > 3 :
+      if len(cell_name) > 2 :
          if (cell_name[0] == "chip") and (cell_name[1] == "outline") and (cell_name[2] == "462") :
             print("CELL(%2d):%-10s" % (idx, cl.name))
             continue
-      else :
-         convert_drawing(cl)
-   #    
+         elif (cell_name[0] == "OSS") and (cell_name[1] == "EDGE") :
+            print("CELL(%2d):%-10s" % (idx, cl.name))
+            continue
+      convert_drawing(cl)
+#    
+for cl in ly.each_cell() :
+   if cl.destroyed() == True :
+      continue
+   delete_flatten( cl )      # flatten Maped Cell
+   #
 #           
 ly.write(ofile)
 #

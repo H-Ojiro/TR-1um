@@ -7,24 +7,24 @@
 # MOS extraction 5V CMOS
 #
 extract_devices(mos4("PMOS_mst" ), 
-                            { "SD" => (MP - PO),        # S/D region
-                              "G"  => (MP & PO),        # Channel region
-                              "W"  => (MP & PO & WN),   # Backgate region
+                            { "SD" => (MP - GC),        # S/D region
+                              "G"  => (MP & GC),        # Channel region
+                              "W"  => (MP & GC & WN),   # Backgate region
                               "tS" => (SDP),            # Terminal: Source
                               "tD" => (SDP),            # Terminal: Drain
-                              "tG" => (PO),             # Terminal: Gate
+                              "tG" => (GC),             # Terminal: Gate
                               "tB" => (WN) })           # Terminal: Backgate
 #
 tolerance("PMOS_mst", "W", :relative => 0.01)           # 1% tolerance 
 tolerance("PMOS_mst", "L", :relative => 0.0)            # 0% tolerance 
 #
 extract_devices(mos4("NMOS_mst" ), 
-                            { "SD" => (MN - PO),        # S/D region
-                              "G"  => (MN & PO),        # Channel region
-                              "W"  => (MN & PO & BULK), # Backgate region
+                            { "SD" => (MN - GC),        # S/D region
+                              "G"  => (MN & GC),        # Channel region
+                              "W"  => (MN & GC & BULK), # Backgate region
                               "tS" => (SDN),            # Terminal: Source
                               "tD" => (SDN),            # Terminal: Drain
-                              "tG" => (PO),             # Terminal: Gate
+                              "tG" => (GC),             # Terminal: Gate
                               "tB" => (BULK) })         # Terminal: Backgate
 #
 tolerance("NMOS_mst", "W", :relative => 0.01)           # 1% tolerance 

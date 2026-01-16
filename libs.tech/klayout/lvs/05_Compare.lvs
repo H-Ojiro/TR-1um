@@ -31,7 +31,7 @@ netlist.flatten_circuit("moscap*")
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 netlist.make_top_level_pins()           # top cell .subckt has pins
 #
-netlist.simplify                        
+#netlist.simplify                        
 #
 target_netlist(Lay_file, write_spice(true), "Created by KLayout")   # use_net_names = true
 #

@@ -16,10 +16,10 @@ class LWCapacitorWithBulk < RBA::DeviceClassCapacitorWithBulk
 end
 #
 extract_devices(capacitor_with_bulk("F_CSIO", 0.6e-15, LWCapacitorWithBulk), 
-                    { "P1" => (PO),             # Top plate
+                    { "P1" => (GC),             # Top plate
                       "P2" => (AC),             # Bottom plate
                       "W"  => (WC),             # Bulk plate
-                      "tA" => (PO),             # Terminal: A
+                      "tA" => (GC),             # Terminal: A
                       "tB" => (GN),             # Terminal: B
                       "tW" => (BULK) })         # Terminal: BULK
 

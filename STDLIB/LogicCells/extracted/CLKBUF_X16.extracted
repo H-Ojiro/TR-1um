@@ -7,12 +7,371 @@
 * pin gnd
 .SUBCKT CLKBUF_X16 Y A vdd gnd
 * device instance $1 r0 *1 6.1,44.8 PMOS_mst
-M$1 \$4 A vdd vdd PMOS_mst L=1U W=122.4U AS=196.86P AD=183.6P PS=171.2U
-+ PD=158.4U
+M$1 \$4 A vdd vdd PMOS_mst L=1U W=10.2U AS=28.56P AD=15.3P PS=26U PD=13.2U
+* device instance $2 r0 *1 10.1,44.8 PMOS_mst
+M$2 vdd A \$4 vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $3 r0 *1 14.1,44.8 PMOS_mst
+M$3 \$4 A vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $4 r0 *1 18.1,44.8 PMOS_mst
+M$4 vdd A \$4 vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $5 r0 *1 22.1,44.8 PMOS_mst
+M$5 \$4 A vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $6 r0 *1 26.1,44.8 PMOS_mst
+M$6 vdd A \$4 vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $7 r0 *1 30.1,44.8 PMOS_mst
+M$7 \$4 A vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $8 r0 *1 34.1,44.8 PMOS_mst
+M$8 vdd A \$4 vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $9 r0 *1 38.1,44.8 PMOS_mst
+M$9 \$4 A vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $10 r0 *1 42.1,44.8 PMOS_mst
+M$10 vdd A \$4 vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $11 r0 *1 46.1,44.8 PMOS_mst
+M$11 \$4 A vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $12 r0 *1 50.1,44.8 PMOS_mst
+M$12 vdd A \$4 vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
 * device instance $13 r0 *1 54.1,44.8 PMOS_mst
-M$13 Y \$4 vdd vdd PMOS_mst L=1U W=816U AS=1224P AD=1237.26P PS=1056U PD=1068.8U
+M$13 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $14 r0 *1 58.1,44.8 PMOS_mst
+M$14 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $15 r0 *1 62.1,44.8 PMOS_mst
+M$15 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $16 r0 *1 66.1,44.8 PMOS_mst
+M$16 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $17 r0 *1 70.1,44.8 PMOS_mst
+M$17 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $18 r0 *1 74.1,44.8 PMOS_mst
+M$18 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $19 r0 *1 78.1,44.8 PMOS_mst
+M$19 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $20 r0 *1 82.1,44.8 PMOS_mst
+M$20 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $21 r0 *1 86.1,44.8 PMOS_mst
+M$21 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $22 r0 *1 90.1,44.8 PMOS_mst
+M$22 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $23 r0 *1 94.1,44.8 PMOS_mst
+M$23 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $24 r0 *1 98.1,44.8 PMOS_mst
+M$24 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $25 r0 *1 102.1,44.8 PMOS_mst
+M$25 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $26 r0 *1 106.1,44.8 PMOS_mst
+M$26 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $27 r0 *1 110.1,44.8 PMOS_mst
+M$27 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $28 r0 *1 114.1,44.8 PMOS_mst
+M$28 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $29 r0 *1 118.1,44.8 PMOS_mst
+M$29 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $30 r0 *1 122.1,44.8 PMOS_mst
+M$30 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $31 r0 *1 126.1,44.8 PMOS_mst
+M$31 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $32 r0 *1 130.1,44.8 PMOS_mst
+M$32 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $33 r0 *1 134.1,44.8 PMOS_mst
+M$33 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $34 r0 *1 138.1,44.8 PMOS_mst
+M$34 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $35 r0 *1 142.1,44.8 PMOS_mst
+M$35 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $36 r0 *1 146.1,44.8 PMOS_mst
+M$36 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $37 r0 *1 150.1,44.8 PMOS_mst
+M$37 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $38 r0 *1 154.1,44.8 PMOS_mst
+M$38 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $39 r0 *1 158.1,44.8 PMOS_mst
+M$39 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $40 r0 *1 162.1,44.8 PMOS_mst
+M$40 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $41 r0 *1 166.1,44.8 PMOS_mst
+M$41 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $42 r0 *1 170.1,44.8 PMOS_mst
+M$42 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $43 r0 *1 174.1,44.8 PMOS_mst
+M$43 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $44 r0 *1 178.1,44.8 PMOS_mst
+M$44 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $45 r0 *1 182.1,44.8 PMOS_mst
+M$45 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $46 r0 *1 186.1,44.8 PMOS_mst
+M$46 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $47 r0 *1 190.1,44.8 PMOS_mst
+M$47 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $48 r0 *1 194.1,44.8 PMOS_mst
+M$48 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $49 r0 *1 198.1,44.8 PMOS_mst
+M$49 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $50 r0 *1 202.1,44.8 PMOS_mst
+M$50 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $51 r0 *1 206.1,44.8 PMOS_mst
+M$51 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $52 r0 *1 210.1,44.8 PMOS_mst
+M$52 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $53 r0 *1 214.1,44.8 PMOS_mst
+M$53 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $54 r0 *1 218.1,44.8 PMOS_mst
+M$54 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $55 r0 *1 222.1,44.8 PMOS_mst
+M$55 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $56 r0 *1 226.1,44.8 PMOS_mst
+M$56 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $57 r0 *1 230.1,44.8 PMOS_mst
+M$57 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $58 r0 *1 234.1,44.8 PMOS_mst
+M$58 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $59 r0 *1 238.1,44.8 PMOS_mst
+M$59 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $60 r0 *1 242.1,44.8 PMOS_mst
+M$60 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $61 r0 *1 246.1,44.8 PMOS_mst
+M$61 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $62 r0 *1 250.1,44.8 PMOS_mst
+M$62 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $63 r0 *1 254.1,44.8 PMOS_mst
+M$63 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $64 r0 *1 258.1,44.8 PMOS_mst
+M$64 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $65 r0 *1 262.1,44.8 PMOS_mst
+M$65 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $66 r0 *1 266.1,44.8 PMOS_mst
+M$66 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $67 r0 *1 270.1,44.8 PMOS_mst
+M$67 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $68 r0 *1 274.1,44.8 PMOS_mst
+M$68 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $69 r0 *1 278.1,44.8 PMOS_mst
+M$69 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $70 r0 *1 282.1,44.8 PMOS_mst
+M$70 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $71 r0 *1 286.1,44.8 PMOS_mst
+M$71 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $72 r0 *1 290.1,44.8 PMOS_mst
+M$72 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $73 r0 *1 294.1,44.8 PMOS_mst
+M$73 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $74 r0 *1 298.1,44.8 PMOS_mst
+M$74 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $75 r0 *1 302.1,44.8 PMOS_mst
+M$75 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $76 r0 *1 306.1,44.8 PMOS_mst
+M$76 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $77 r0 *1 310.1,44.8 PMOS_mst
+M$77 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $78 r0 *1 314.1,44.8 PMOS_mst
+M$78 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $79 r0 *1 318.1,44.8 PMOS_mst
+M$79 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $80 r0 *1 322.1,44.8 PMOS_mst
+M$80 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $81 r0 *1 326.1,44.8 PMOS_mst
+M$81 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $82 r0 *1 330.1,44.8 PMOS_mst
+M$82 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $83 r0 *1 334.1,44.8 PMOS_mst
+M$83 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $84 r0 *1 338.1,44.8 PMOS_mst
+M$84 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $85 r0 *1 342.1,44.8 PMOS_mst
+M$85 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $86 r0 *1 346.1,44.8 PMOS_mst
+M$86 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $87 r0 *1 350.1,44.8 PMOS_mst
+M$87 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $88 r0 *1 354.1,44.8 PMOS_mst
+M$88 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $89 r0 *1 358.1,44.8 PMOS_mst
+M$89 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $90 r0 *1 362.1,44.8 PMOS_mst
+M$90 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $91 r0 *1 366.1,44.8 PMOS_mst
+M$91 Y \$4 vdd vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=15.3P PS=13.2U PD=13.2U
+* device instance $92 r0 *1 370.1,44.8 PMOS_mst
+M$92 vdd \$4 Y vdd PMOS_mst L=1U W=10.2U AS=15.3P AD=28.56P PS=13.2U PD=26U
 * device instance $93 r0 *1 6.1,6.8 NMOS_mst
-M$93 \$4 A gnd gnd NMOS_mst L=1U W=40.8U AS=65.62P AD=61.2P PS=82.8U PD=76.8U
+M$93 \$4 A gnd gnd NMOS_mst L=1U W=3.4U AS=9.52P AD=5.1P PS=12.4U PD=6.4U
+* device instance $94 r0 *1 10.1,6.8 NMOS_mst
+M$94 gnd A \$4 gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $95 r0 *1 14.1,6.8 NMOS_mst
+M$95 \$4 A gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $96 r0 *1 18.1,6.8 NMOS_mst
+M$96 gnd A \$4 gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $97 r0 *1 22.1,6.8 NMOS_mst
+M$97 \$4 A gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $98 r0 *1 26.1,6.8 NMOS_mst
+M$98 gnd A \$4 gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $99 r0 *1 30.1,6.8 NMOS_mst
+M$99 \$4 A gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $100 r0 *1 34.1,6.8 NMOS_mst
+M$100 gnd A \$4 gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $101 r0 *1 38.1,6.8 NMOS_mst
+M$101 \$4 A gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $102 r0 *1 42.1,6.8 NMOS_mst
+M$102 gnd A \$4 gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $103 r0 *1 46.1,6.8 NMOS_mst
+M$103 \$4 A gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $104 r0 *1 50.1,6.8 NMOS_mst
+M$104 gnd A \$4 gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
 * device instance $105 r0 *1 54.1,6.8 NMOS_mst
-M$105 Y \$4 gnd gnd NMOS_mst L=1U W=272U AS=408P AD=412.42P PS=512U PD=518U
+M$105 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $106 r0 *1 58.1,6.8 NMOS_mst
+M$106 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $107 r0 *1 62.1,6.8 NMOS_mst
+M$107 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $108 r0 *1 66.1,6.8 NMOS_mst
+M$108 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $109 r0 *1 70.1,6.8 NMOS_mst
+M$109 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $110 r0 *1 74.1,6.8 NMOS_mst
+M$110 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $111 r0 *1 78.1,6.8 NMOS_mst
+M$111 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $112 r0 *1 82.1,6.8 NMOS_mst
+M$112 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $113 r0 *1 86.1,6.8 NMOS_mst
+M$113 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $114 r0 *1 90.1,6.8 NMOS_mst
+M$114 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $115 r0 *1 94.1,6.8 NMOS_mst
+M$115 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $116 r0 *1 98.1,6.8 NMOS_mst
+M$116 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $117 r0 *1 102.1,6.8 NMOS_mst
+M$117 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $118 r0 *1 106.1,6.8 NMOS_mst
+M$118 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $119 r0 *1 110.1,6.8 NMOS_mst
+M$119 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $120 r0 *1 114.1,6.8 NMOS_mst
+M$120 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $121 r0 *1 118.1,6.8 NMOS_mst
+M$121 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $122 r0 *1 122.1,6.8 NMOS_mst
+M$122 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $123 r0 *1 126.1,6.8 NMOS_mst
+M$123 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $124 r0 *1 130.1,6.8 NMOS_mst
+M$124 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $125 r0 *1 134.1,6.8 NMOS_mst
+M$125 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $126 r0 *1 138.1,6.8 NMOS_mst
+M$126 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $127 r0 *1 142.1,6.8 NMOS_mst
+M$127 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $128 r0 *1 146.1,6.8 NMOS_mst
+M$128 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $129 r0 *1 150.1,6.8 NMOS_mst
+M$129 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $130 r0 *1 154.1,6.8 NMOS_mst
+M$130 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $131 r0 *1 158.1,6.8 NMOS_mst
+M$131 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $132 r0 *1 162.1,6.8 NMOS_mst
+M$132 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $133 r0 *1 166.1,6.8 NMOS_mst
+M$133 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $134 r0 *1 170.1,6.8 NMOS_mst
+M$134 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $135 r0 *1 174.1,6.8 NMOS_mst
+M$135 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $136 r0 *1 178.1,6.8 NMOS_mst
+M$136 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $137 r0 *1 182.1,6.8 NMOS_mst
+M$137 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $138 r0 *1 186.1,6.8 NMOS_mst
+M$138 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $139 r0 *1 190.1,6.8 NMOS_mst
+M$139 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $140 r0 *1 194.1,6.8 NMOS_mst
+M$140 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $141 r0 *1 198.1,6.8 NMOS_mst
+M$141 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $142 r0 *1 202.1,6.8 NMOS_mst
+M$142 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $143 r0 *1 206.1,6.8 NMOS_mst
+M$143 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $144 r0 *1 210.1,6.8 NMOS_mst
+M$144 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $145 r0 *1 214.1,6.8 NMOS_mst
+M$145 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $146 r0 *1 218.1,6.8 NMOS_mst
+M$146 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $147 r0 *1 222.1,6.8 NMOS_mst
+M$147 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $148 r0 *1 226.1,6.8 NMOS_mst
+M$148 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $149 r0 *1 230.1,6.8 NMOS_mst
+M$149 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $150 r0 *1 234.1,6.8 NMOS_mst
+M$150 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $151 r0 *1 238.1,6.8 NMOS_mst
+M$151 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $152 r0 *1 242.1,6.8 NMOS_mst
+M$152 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $153 r0 *1 246.1,6.8 NMOS_mst
+M$153 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $154 r0 *1 250.1,6.8 NMOS_mst
+M$154 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $155 r0 *1 254.1,6.8 NMOS_mst
+M$155 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $156 r0 *1 258.1,6.8 NMOS_mst
+M$156 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $157 r0 *1 262.1,6.8 NMOS_mst
+M$157 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $158 r0 *1 266.1,6.8 NMOS_mst
+M$158 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $159 r0 *1 270.1,6.8 NMOS_mst
+M$159 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $160 r0 *1 274.1,6.8 NMOS_mst
+M$160 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $161 r0 *1 278.1,6.8 NMOS_mst
+M$161 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $162 r0 *1 282.1,6.8 NMOS_mst
+M$162 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $163 r0 *1 286.1,6.8 NMOS_mst
+M$163 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $164 r0 *1 290.1,6.8 NMOS_mst
+M$164 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $165 r0 *1 294.1,6.8 NMOS_mst
+M$165 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $166 r0 *1 298.1,6.8 NMOS_mst
+M$166 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $167 r0 *1 302.1,6.8 NMOS_mst
+M$167 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $168 r0 *1 306.1,6.8 NMOS_mst
+M$168 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $169 r0 *1 310.1,6.8 NMOS_mst
+M$169 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $170 r0 *1 314.1,6.8 NMOS_mst
+M$170 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $171 r0 *1 318.1,6.8 NMOS_mst
+M$171 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $172 r0 *1 322.1,6.8 NMOS_mst
+M$172 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $173 r0 *1 326.1,6.8 NMOS_mst
+M$173 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $174 r0 *1 330.1,6.8 NMOS_mst
+M$174 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $175 r0 *1 334.1,6.8 NMOS_mst
+M$175 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $176 r0 *1 338.1,6.8 NMOS_mst
+M$176 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $177 r0 *1 342.1,6.8 NMOS_mst
+M$177 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $178 r0 *1 346.1,6.8 NMOS_mst
+M$178 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $179 r0 *1 350.1,6.8 NMOS_mst
+M$179 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $180 r0 *1 354.1,6.8 NMOS_mst
+M$180 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $181 r0 *1 358.1,6.8 NMOS_mst
+M$181 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $182 r0 *1 362.1,6.8 NMOS_mst
+M$182 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $183 r0 *1 366.1,6.8 NMOS_mst
+M$183 Y \$4 gnd gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=5.1P PS=6.4U PD=6.4U
+* device instance $184 r0 *1 370.1,6.8 NMOS_mst
+M$184 gnd \$4 Y gnd NMOS_mst L=1U W=3.4U AS=5.1P AD=9.52P PS=6.4U PD=12.4U
 .ENDS CLKBUF_X16
