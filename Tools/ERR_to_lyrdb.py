@@ -1,0 +1,173 @@
+#! /usr/bin/env python3
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# TR-1um DRC v0.001 
+# Original version was made by jun1okamura from TokaiRika's document 
+# LICENSE: Apache License Version 2.0, January 2004,
+#          http://www.apache.org/licenses/
+# ----- ------ ----- 
+#
+#  ./ERR_to_lyrdb.py DRC.err OUTPUT.lyrdb
+#
+import sys
+from   xml.dom.minidom import parseString
+import xml.etree.ElementTree as ET
+#
+args  = sys.argv
+root  = ET.Element('report-database')
+
+if len(args) > 2 :
+    ifile = args[1]
+    ifile = args[2]
+else : 
+    ifile = args[1]
+    ofile = None
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# tag
+tag_list = ['waived','red','green','blue','yellow','important']
+cat_list = []
+err_list = []
+item_dic = {}
+
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# tags
+#
+def xml_tag( ) :
+    #
+    child = ET.SubElement(root, 'tags')
+    #
+    for tag in tag_list :
+        ET.SubElement(child, 'tag')
+        ET.SubElement(child, 'name').text = '%s' % tag
+        ET.SubElement(child, 'description')
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# categories
+#
+def xml_category( ) :
+    #
+    child = ET.SubElement(root, 'categories')
+    #
+    for err_name in item_dic.keys() :
+        category = ET.SubElement(child, 'category')
+        ET.SubElement(category, 'name').text = '%s' % err_name
+        ET.SubElement(category, 'description')
+        ET.SubElement(category, 'categories')
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# categories
+#
+def xml_cell( ) :
+    #
+    child = ET.SubElement(root, 'cells')
+    #
+    cell = ET.SubElement(child, 'cell')
+    ET.SubElement(cell, 'name').text = '%s' % CELL
+    ET.SubElement(cell, 'layout-name')
+    ET.SubElement(cell, 'references')
+
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Print head
+#
+def xml_items( ) :
+    #
+    items = ET.SubElement(root, 'items')
+    #
+    for err_name, err_data in item_dic.items() :
+        for data in err_data :
+            item  = ET.SubElement(items, 'item')
+            ET.SubElement(item, 'tags')
+            ET.SubElement(item, 'category').text = "'%s'" % err_name
+            ET.SubElement(item, 'cell').text = '%s' % CELL
+            ET.SubElement(item, 'visited').text = 'false'
+            ET.SubElement(item, 'multiplicity').text = '1'
+            ET.SubElement(item, 'comment')
+            ET.SubElement(item, 'image')
+            values = ET.SubElement(item, 'values')
+            ET.SubElement(values, 'value').text = 'polygon: (%-.2f, %-.2f ;%-.2f, %-.2f)' % data 
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Print head
+#
+def print_xml( name ) :
+    #
+    ET.SubElement(root, 'description')
+    ET.SubElement(root, 'original-file')
+    ET.SubElement(root, 'generator').text = "script='%s'" % name
+    ET.SubElement(root, 'top-cell')
+    #
+    xml_tag( )
+    xml_category( )
+    xml_cell( )
+    xml_items()
+    #
+    doc = parseString(ET.tostring(root, 'utf-8'))
+    doc.writexml(out_file, encoding='utf-8', newl='\n', indent='', addindent='  ')
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# read_line
+#
+def read_line( line ) :
+    global SKIP
+    global CELL
+    global RULE
+    global item_dic
+    global err_list
+    #
+    w = line.split()
+    if not w : 
+        if err_list != [] :
+            item_dic[RULE] = err_list
+            err_list = [] 
+        return
+    elif w[0][0] == '=' or w[0][0] == '-' :
+        return
+    elif w[0] == 'Rule' :
+        RULE = w[4].split(':')[0]
+        err_list = []
+        SKIP = 5
+        return
+    elif w[0] == 'Cell' :
+        CELL = w[3]
+        SKIP = 8
+        return
+    elif w[0] == 'Shape' :
+        SKIP = 3
+        return
+    elif w[0].isdigit() :
+        err_list.append( (float(w[2]),float(w[3]),float(w[4]),float(w[5])) )
+        return
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Main routine
+#
+err_file  = open( ifile, "r", encoding="utf8")
+#
+if ofile == None :
+    out_file = sys.stdout
+else :
+    out_file  = open( ofile, "w", encoding="utf8")
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+#
+SKIP = 0
+#
+while True :
+    line = err_file.readline()
+    if not line:                # EOF
+        break
+    elif SKIP > 0 :
+        SKIP = SKIP - 1
+        continue
+    #
+    else :
+        read_line( line )
+
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+#
+
+print_xml( args[0] )
+
+exit
