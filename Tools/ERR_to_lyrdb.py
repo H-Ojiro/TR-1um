@@ -5,6 +5,7 @@
 # LICENSE: Apache License Version 2.0, January 2004,
 #          http://www.apache.org/licenses/
 # ----- ------ ----- 
+#　Reference: https://www.klayout.de/rdb_format.html
 #
 #  ./ERR_to_lyrdb.py DRC.err OUTPUT.lyrdb
 #
@@ -17,7 +18,7 @@ root  = ET.Element('report-database')
 
 if len(args) > 2 :
     ifile = args[1]
-    ifile = args[2]
+    ofile = args[2]
 else : 
     ifile = args[1]
     ofile = None
