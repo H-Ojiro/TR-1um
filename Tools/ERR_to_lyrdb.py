@@ -66,9 +66,14 @@ def xml_cell( ) :
     ET.SubElement(cell, 'layout-name')
     ET.SubElement(cell, 'references')
 
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Items
+#
+def box2polygon( box ) :
+    return( (box[0], box[1], box[0], box[3], box[2], box[3], box[2], box[1]) )
 
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
-# Print head
+# Items
 #
 def xml_items( ) :
     #
@@ -85,7 +90,8 @@ def xml_items( ) :
             ET.SubElement(item, 'comment')
             ET.SubElement(item, 'image')
             values = ET.SubElement(item, 'values')
-            ET.SubElement(values, 'value').text = 'edge: (%-.3f, %-.3f ;%-.3f, %-.3f)' % data 
+            # ET.SubElement(values, 'value').text = 'edge: (%-.3f, %-.3f ;%-.3f, %-.3f)' % data 
+            ET.SubElement(values, 'value').text = 'polygon: (%-.3f, %-.3f ;%-.3f, %-.3f ;%-.3f, %-.3f ;%-.3f, %-.3f)' % box2polygon( data )
 
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # Print head
