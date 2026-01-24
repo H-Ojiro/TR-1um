@@ -1,4 +1,5 @@
 #
+# TR-1um DRC header template for KLayout macro generation
 # TR-1um: Copyright 2025 OpenSUSI non-profit organaization 
 #
 # Original version was made by jun1okamura
@@ -12,8 +13,15 @@ if $input
         source($input)
     end
 end
+#
+if $report
+    report("TR-1um DRC(Drawing)", $report)
+else
+    report("TR-1um DRC(Drawing)")
+end
+#
 # warning_rep = new_report("TR-1um DRC(warning)", "warning.lyrdb")
-report("TR-1um DRC(Drawing)")
+#
 #----
 # %include 00_Layers.drc
 # %include 01_Basics.drc
