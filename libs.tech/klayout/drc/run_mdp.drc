@@ -6,7 +6,18 @@
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # Input layers
 #
-source($input, $cellname)
+if $input 
+    if $top_cell
+        source($input, $top_cell)
+    else
+        source($input)
+    end
+end
+if $output
+    target($output)
+end
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 #
 flat                                # FLAT mode 
 # deep
@@ -56,7 +67,6 @@ _R     = input(12,  0).and(SRING)          # Resistor
 _PSD   = input(9,   0).and(SRING)          # PMOS S/D
 _NSD   = input(28,  0).and(SRING)          # NMOS S/D
 #
-target($output)
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # WELL
 #
