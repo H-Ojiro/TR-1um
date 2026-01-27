@@ -1,0 +1,199 @@
+# Layer generation
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Original version was made by jun1okamura from TokaiRika's document 
+# LICENSE: Apache License Version 2.0, January 2004,
+#          http://www.apache.org/licenses/
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Input layers
+#
+if $input 
+    if $top_cell
+        source($input, $top_cell)
+    else
+        source($input)
+    end
+end
+if $output
+    target($output)
+end
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+#
+flat                                # FLAT mode 
+# deep
+#
+MASK  = input(63, 0)                # DRC check waiver area
+MEAS  = input(63, 1)                # MEASUREMT area recognition
+ESD   = input(63, 2)                # IO/ESD area recognition
+#
+AP    = input(3,  1)
+AN    = input(3,  2)
+AR    = input(3,  3)
+AC    = input(3,  4)
+GC    = input(8,  1).merged         # Salisaide
+GR    = input(8,  2).merged         # Salisaide
+#
+PSUB  = input(140, 0)               # Nwell/Pwell
+CO    = input(11,  0)               # Contact
+M1    = input(13,  0).merged        # Metal-1
+TC    = input(19,  0).merged        # Via1
+M2    = input(20,  0).merged        # Metal-2
+PRO   = input(14,  0)               # PAD
+#
+TC23  = input(121, 0)               # Via2
+M3    = input(122, 0)               # Metal-3
+TXM1  = input(48,  0)               # TEXT M1
+TXM2  = input(48,  1)               # PIN  M1
+PIN   = input(49,  0)               # TEXT M1
+#
+SCRB  = input(80, 0)                # SCRB
+BBOX  = extent
+SRING = SCRB.drc(switch(SCRB.holes, (BBOX - SCRB.holes + SCRB), (BBOX - BBOX) ))    # Area of SEAL RING
+BULK  = BBOX - SRING
+#
+_NW    = input(36,  0).and(SRING)          # N-well mask
+_L     = input(3,   0).and(SRING)          # Acitive = inverse LOCOS 
+_NF    = input(25,  0).and(SRING)          # S/D P+ impla
+_HPM   = input(33,  0).and(SRING)          # ???
+_RHP   = input(148, 0).and(SRING)          # Hi-res impla
+_CL    = input(143, 0).and(SRING)          # CSIO bottom impla
+_HPBE  = input(144, 0).and(SRING)          # HV PMOS channel impla
+_HNBE  = input(145, 0).and(SRING)          # HV NMOS channel impla
+_PBE   = input(146, 0).and(SRING)          # PMOS channel impla
+_NBE   = input(147, 0).and(SRING)          # NMOS channel impla
+_PM    = input(35,  0).and(SRING)          # PMOS LDD
+_NM    = input(7,   0).and(SRING)          # NMOS LDD
+_R     = input(12,  0).and(SRING)          # Resistor
+_PSD   = input(9,   0).and(SRING)          # PMOS S/D
+_NSD   = input(28,  0).and(SRING)          # NMOS S/D
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# WELL
+#
+NWMP = (PSUB.not_interacting(AC))
+NWCS = (PSUB.interacting(AC))
+PWMN = (((AN - PSUB).sized(12.0, square_limit) + (AP - PSUB).sized(7.0, square_limit)).merged).sized(-2.0, square_limit).snap(0.05, 0.05)
+L    = (AP + AN + AR + AC)          # L
+SG   = (GC + GR)                    # SG
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# IMPLANT MASK AUTO GENERATION
+#
+MP  = (AP & NWMP - ESD).interacting(GC)
+MN  = (AN & PWMN - ESD).interacting(GC)
+MPE = (AP & NWMP & ESD).interacting(GC)
+MNE = (AN & PWMN & ESD).interacting(GC)
+DP  = (AP & NWMP).not_interacting(GC)
+DN  = (AN & PWMN).not_interacting(GC)
+GP  = (AN & NWMP).not_interacting(GC)
+GN  = (AP & PWMN).not_interacting(GC)
+GCS = (AN & NWCS).not_interacting(GC).hulls    # CSIO Back Gate
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# AR registor
+#
+CL   = (AC.sized(1.4, square_limit)).merged.snap(0.05, 0.05)
+R    = (AR.sized(2.0, square_limit)).extents.merged.snap(0.05, 0.05)
+RS   = (GR.sized(1.4, square_limit)).merged.snap(0.05, 0.05)
+RPSD = (R - (CO & R).sized(4.2)).and(R)
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+NW   = (BULK & PSUB.not_interacting(AR)).sized(1.5)
+HVNW = (BULK & PSUB.interacting(AR)    ).sized(1.5)     
+#
+NF   = PSUB
+PF   = PSUB.not_interacting(AC + AR)
+#
+PBEx = (((MP + MPE).sized(2.7, square_limit)).merged).sized(-2.7, square_limit).snap(0.05, 0.05)
+PBE  = ((PBEx).sized(1.4, octagon_limit).merged).snap(0.05, 0.05)
+#
+NBEx = (((MN + MNE).sized(2.7, square_limit)).merged).sized(-2.7, square_limit).snap(0.05, 0.05)
+NBE  = ((NBEx).sized(1.4, octagon_limit).merged).snap(0.05, 0.05)
+#
+PMx  = (((   DP+GP+MN+DN+GN+    MNE+GCS).sized(2.7, square_limit)).merged).sized(-2.7, square_limit).snap(0.05, 0.05)
+PM   = R + RS + ((PMx).sized(1.4, octagon_limit).merged).snap(0.05, 0.05)
+#
+NMx  = (((MP+DP+GP+   DN+GN+MPE+MNE+GCS).sized(2.7, square_limit)).merged).sized(-2.7, square_limit).snap(0.05, 0.05)
+NM   = R + RS + ((NMx).sized(1.4, octagon_limit).merged).snap(0.05, 0.05)
+#
+PSDx = (((AN + GCS).sized(2.5, square_limit)).merged).sized(-2.5, square_limit).snap(0.05, 0.05)
+PSD  = RPSD + RS + ((PSDx).sized(1.4, octagon_limit).merged).snap(0.05, 0.05)
+#
+NSDx = (((AP + AC ).sized(2.7, square_limit)).merged).sized(-2.7, square_limit).snap(0.05, 0.05) 
+NSD  = (R    + ((NSDx).sized(1.4, octagon_limit).merged).snap(0.05, 0.05) + CL).merged
+#
+HPM  = BULK
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+#  Mask layer generation
+#
+(PSUB      ).output(140, 0)               # Nwell/Pwell
+(NW + _NW  ).output(36,  0)               # NW 
+(HVNW      ).output(141, 0)               # HVNW 
+(NF + _NF  ).output(25,  0)               # NF S/D P+ impla
+(PF        ).output(26,  0)               # PF S/D N+ impla
+(HPM + _HPM).output(33,  0)               # HPM
+(      _RHP).output(148, 0)               # RHP
+(CL + _CL  ).output(143, 0)               # CSIO
+(    _HPBE ).output(144, 0)               # HBPE
+(    _HNBE ).output(145, 0)               # HNBE
+(PBE + _PBE).output(146, 0)               # PMOS channel impla
+(NBE + _NBE).output(147, 0)               # NMOS channel impla
+(L + _L    ).output(3,   0)               # Acitive
+(PM + _PM  ).output(35,  0)               # PMOS LDD
+(NM + _NM  ).output(7,   0)               # NMOS LDD
+(R  + _R   ).output(12,  0)               # Resistor
+(PSD + _PSD).output(9,   0)               # PMOS S/D
+(NSD + _NSD).output(28,  0)               # NMOS S/D
+#
+(SG + CL   ).output(8,   0)               # Salisaide
+(CO        ).output(11,  0)               # Contact
+(M1        ).output(13,  0)               # Metal-1
+(TC        ).output(19,  0)               # Via1
+(M2        ).output(20,  0)               # Metal-2
+(PRO       ).output(14,  0)               # PAD
+(TC23      ).output(121, 0)               # Via2
+(M3        ).output(122, 0)               # Metal-3
+(SCRB      ).output(80,  0)               # SCRB
+(TXM1      ).output(48,  0)               # TEXT M1
+(TXM1      ).output(49,  0)               # TEXT M2
+(PIN       ).output(48,  1)               # PIN M1
+#
+(MASK      ).output(63,  0)               # DRC check waiver area
+(MEAS      ).output(63,  1)               # LVS MEASUREMT area recognition
+(ESD       ).output(63,  2)               # DRC IO/ESD area recognition
+(SCRB      ).output(80,  0)               # DRC check waiver area (Seal-Ring)
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# RECOGNITION LAYER AUTO GENERATION
+#
+DLWLMP = ( NW.not_interacting(AC + AR) )
+DLWLMN = ( PWMN )
+DLWLRR = ( HVNW )
+DLMP   = ( MP.sized(2.7, square_limit).merged.sized(-1.3, square_limit).snap(0.05, 0.05) )
+DLMN   = ( MN.sized(2.7, square_limit).merged.sized(-1.3, square_limit).snap(0.05, 0.05) )
+DLRR   = ( HVNW & GC.hulls)
+DLRS   = ( GR.sized(1.4, square_limit).merged.snap(0.05, 0.05) )
+DLCSIO = ( NWCS ).sized(1.5)
+DLDP   = ( DP.sized(2.7, square_limit).merged.sized(-1.3, square_limit).snap(0.05, 0.05) )
+DLDN   = ( DN.sized(2.7, square_limit).merged.sized(-1.3, square_limit).snap(0.05, 0.05) )
+DLMPE  = (MPE.sized(2.7, square_limit).merged.sized(-1.3, square_limit).snap(0.05, 0.05) )
+DLMNE  = (MNE.sized(2.7, square_limit).merged.sized(-1.3, square_limit).snap(0.05, 0.05) )
+DLBGMP = ( GP.sized(2.7, square_limit).merged.sized(-1.3, square_limit).snap(0.05, 0.05) )
+DLBGMN = ( GN.sized(2.7, square_limit).merged.sized(-1.3, square_limit).snap(0.05, 0.05) )
+DLBGRR = (HVNW & PSD)
+#
+(DLWLMP).output(150, 0)
+(DLWLMN).output(151, 0)
+(DLWLRR).output(154, 0)    
+(DLMP  ).output(157, 0)
+(DLMN  ).output(158, 0)
+(DLRR  ).output(162, 0)
+(DLRS  ).output(165, 0)
+(DLCSIO).output(166, 0)
+(DLDP  ).output(167, 0)
+(DLDN  ).output(168, 0)
+(DLMPE ).output(169, 0)
+(DLMNE ).output(170, 0)
+(DLBGMP).output(177, 0)
+(DLBGMN).output(178, 0)
+(DLBGRR).output(182, 0)    
