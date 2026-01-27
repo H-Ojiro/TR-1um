@@ -467,26 +467,26 @@ C {ipin.sym} 130 770 0 0 {name=p1 lab=D
 }
 C {ipin.sym} 140 220 0 0 {name=p2 lab=CK}
 C {vdd.sym} 290 70 0 0 {name=l1 lab=VDD}
-C {IP62LIB/MP.sym} 250 160 0 0 {name=XMP1 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 250 270 0 0 {name=XMN1 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MP.sym} 250 160 0 0 {name=XMP1 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 250 270 0 0 {name=XMN1 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
 C {gnd.sym} 290 360 0 0 {name=l2 lab=GND}
 C {vdd.sym} 500 70 0 0 {name=l3 lab=VDD}
-C {IP62LIB/MP.sym} 460 160 0 0 {name=XMP2 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 460 270 0 0 {name=XMN2 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MP.sym} 460 160 0 0 {name=XMP2 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 460 270 0 0 {name=XMN2 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
 C {gnd.sym} 500 360 0 0 {name=l4 lab=GND}
 C {vdd.sym} 670 70 0 0 {name=l5 lab=VDD}
-C {IP62LIB/MP.sym} 630 160 0 0 {name=XMP3 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 630 270 0 0 {name=XMN3 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MP.sym} 630 160 0 0 {name=XMP3 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 630 270 0 0 {name=XMN3 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
 C {gnd.sym} 670 360 0 0 {name=l6 lab=GND}
 C {lab_wire.sym} 590 410 0 0 {name=p3 sig_type=std_logic lab=CKP
 }
 C {lab_wire.sym} 760 410 0 0 {name=p4 sig_type=std_logic lab=CKB
 }
 C {vdd.sym} 290 550 0 0 {name=l7 lab=VDD}
-C {IP62LIB/MP.sym} 250 630 0 0 {name=XMP4 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MP.sym} 250 720 0 0 {name=XMP5 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 250 820 0 0 {name=XMN4 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 250 920 0 0 {name=XMN5 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MP.sym} 250 630 0 0 {name=XMP4 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MP.sym} 250 720 0 0 {name=XMP5 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 250 820 0 0 {name=XMN4 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 250 920 0 0 {name=XMN5 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
 C {gnd.sym} 290 990 0 0 {name=l8 lab=GND}
 C {lab_wire.sym} 220 720 0 0 {name=p5 sig_type=std_logic lab=CKP
 }
@@ -494,10 +494,10 @@ C {lab_wire.sym} 220 820 0 0 {name=p6 sig_type=std_logic lab=CKB
 }
 C {vdd.sym} 630 560 0 0 {name=l9 lab=VDD}
 C {vdd.sym} 780 560 0 0 {name=l10 lab=VDD}
-C {IP62LIB/MP.sym} 590 630 0 0 {name=XMP6 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MP.sym} 740 720 0 0 {name=XMP7 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 670 860 0 0 {name=XMN6 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 670 960 0 0 {name=XMN7 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MP.sym} 590 630 0 0 {name=XMP6 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MP.sym} 740 720 0 0 {name=XMP7 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 670 860 0 0 {name=XMN6 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 670 960 0 0 {name=XMN7 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
 C {gnd.sym} 710 1030 0 0 {name=l11 lab=GND}
 C {ipin.sym} 140 460 0 0 {name=p7 lab=SET
 
@@ -510,16 +510,16 @@ C {lab_wire.sym} 570 820 0 0 {name=p9 sig_type=std_logic lab=SET
 
 }
 C {vdd.sym} 630 1190 0 1 {name=l12 lab=VDD}
-C {IP62LIB/MP.sym} 670 1270 0 1 {name=XMP8 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MP.sym} 670 1360 0 1 {name=XMP9 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 670 1460 0 1 {name=XMN8 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 670 1560 0 1 {name=XMN9 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MP.sym} 670 1270 0 1 {name=XMP8 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MP.sym} 670 1360 0 1 {name=XMP9 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 670 1460 0 1 {name=XMN8 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 670 1560 0 1 {name=XMN9 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
 C {gnd.sym} 630 1630 0 1 {name=l13 lab=GND}
 C {vdd.sym} 1220 570 0 0 {name=l14 lab=VDD}
-C {IP62LIB/MP.sym} 1180 650 0 0 {name=XMP10 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MP.sym} 1180 740 0 0 {name=XMP11 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 1180 840 0 0 {name=XMN10 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 1180 940 0 0 {name=XMN11 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MP.sym} 1180 650 0 0 {name=XMP10 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MP.sym} 1180 740 0 0 {name=XMP11 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 1180 840 0 0 {name=XMN10 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 1180 940 0 0 {name=XMN11 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
 C {gnd.sym} 1220 1010 0 0 {name=l15 lab=GND}
 C {lab_wire.sym} 1150 740 0 0 {name=p12 sig_type=std_logic lab=CKB
 
@@ -533,19 +533,19 @@ C {lab_wire.sym} 730 1360 0 1 {name=p11 sig_type=std_logic lab=CKB
 }
 C {vdd.sym} 1650 550 0 0 {name=l16 lab=VDD}
 C {vdd.sym} 1800 550 0 0 {name=l17 lab=VDD}
-C {IP62LIB/MP.sym} 1610 620 0 0 {name=XMP12 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MP.sym} 1760 710 0 0 {name=XMP13 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 1690 850 0 0 {name=XMN12 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 1690 950 0 0 {name=XMN13 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MP.sym} 1610 620 0 0 {name=XMP12 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MP.sym} 1760 710 0 0 {name=XMP13 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 1690 850 0 0 {name=XMN12 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 1690 950 0 0 {name=XMN13 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
 C {gnd.sym} 1730 1020 0 0 {name=l18 lab=GND}
 C {lab_wire.sym} 1590 810 0 0 {name=p14 sig_type=std_logic lab=SET
 
 }
 C {vdd.sym} 1650 1180 0 1 {name=l19 lab=VDD}
-C {IP62LIB/MP.sym} 1690 1260 0 1 {name=XMP14 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MP.sym} 1690 1350 0 1 {name=XMP15 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 1690 1450 0 1 {name=XMN14 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 1690 1550 0 1 {name=XMN15 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MP.sym} 1690 1260 0 1 {name=XMP14 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MP.sym} 1690 1350 0 1 {name=XMP15 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 1690 1450 0 1 {name=XMN14 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 1690 1550 0 1 {name=XMN15 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
 C {gnd.sym} 1650 1620 0 1 {name=l20 lab=GND}
 C {lab_wire.sym} 1730 1450 0 1 {name=p15 sig_type=std_logic lab=CKB
 
@@ -553,12 +553,12 @@ C {lab_wire.sym} 1730 1450 0 1 {name=p15 sig_type=std_logic lab=CKB
 C {lab_wire.sym} 1750 1350 0 1 {name=p16 sig_type=std_logic lab=CKP
 }
 C {vdd.sym} 2180 630 0 0 {name=l21 lab=VDD}
-C {IP62LIB/MP.sym} 2140 720 0 0 {name=XMP16 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 2140 830 0 0 {name=XMN16 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MP.sym} 2140 720 0 0 {name=XMP16 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 2140 830 0 0 {name=XMN16 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
 C {gnd.sym} 2180 920 0 0 {name=l22 lab=GND}
 C {vdd.sym} 2390 1020 0 0 {name=l23 lab=VDD}
-C {IP62LIB/MP.sym} 2350 1110 0 0 {name=XMP17 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 2350 1220 0 0 {name=XMN17 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {IP62LIB/MP.sym} 2350 1110 0 0 {name=XMP17 model=PMOS w=10.2u l=1u m=1 nrd=0 nrs=0} 
+C {IP62LIB/MN.sym} 2350 1220 0 0 {name=XMN17 model=NMOS w=3.4u l=1u m=1 nrd=0 nrs=0} 
 C {gnd.sym} 2390 1310 0 0 {name=l24 lab=GND}
 C {opin.sym} 2510 780 0 0 {name=p17 lab=QB}
 C {opin.sym} 2520 1170 0 0 {name=p18 lab=Q
