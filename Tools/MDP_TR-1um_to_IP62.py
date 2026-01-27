@@ -1,36 +1,39 @@
-#! /usr/bin/env python3
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
-# TR-1um DRC v0.001 
-# Original version was made by jun1okamura from TokaiRika's document 
-# LICENSE: Apache License Version 2.0, January 2004,
-#          http://www.apache.org/licenses/
+# Copyright (c) 2026 jun1okamura <jun1okamura@gmail.com>  
+# SPDX-License-Identifier: Apache-2.0
 # ----- ------ ----- 
 #
-#  IP62_to_TR-1um.py INPUT_IP62_GDS OUTPUT_TR-1um_GDS 
+#  python3 MDP_TR-1um_to_IP62.py INPUT_TR-1um_GDS OUTPUT_IP62_GDS 
 #
 import sys
 import subprocess
-#
-args  = sys.argv
-#
-# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
-# Source - https://stackoverflow.com/a
-def getGitRoot():
-    return subprocess.Popen(['git', 'rev-parse', '--show-toplevel'], stdout=subprocess.PIPE).communicate()[0].rstrip().decode('utf-8')
+import click
+import klayout
 
-# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
-top     = args[1]
-ifile   = args[2]
-ofile   = args[3]
-gitroot = getGitRoot()
-rfile   = gitroot + '/Tools/MDP_TR-1um_to_IP62.drc'
-klayout = '/Applications/klayout.app/Contents/MacOS/klayout'
-#
-# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
-# Main routine
-#
-command = klayout + ' -b -r ' + rfile + ' -rd cellname=' + top + ' -rd input=' + ifile + ' -rd output=' + ofile
-print("exec:" + command)
-subprocess.Popen(command.split())
-#
-exit
+@click.command()
+@click.argument(
+    "rfile",    
+    type=click.Path(exists=True, file_okay=True, dir_okay=False),
+)
+@click.argument(
+    "input",
+    type=click.Path(exists=True, file_okay=True, dir_okay=False),
+)
+@click.argument(
+    "output",
+    type=click.Path(exists=False, file_okay=True, dir_okay=False),
+)
+@click.option("--top", required=True)
+
+def MDP(rfile: str, input: str, output: str, top: str):
+    klayout = "/usr/local/bin/klayout"
+    #
+    mdp_command = klayout + ' -b -r ' + rfile + ' -rd cellname=' + top + ' -rd input=' + input + ' -rd output=' + output
+    mdp_process = subprocess.Popen(mdp_command.split())
+    print(mdp_process.stdout)
+    if mdp_process.returncode != 0:
+        print(mdp_process.stderr)
+        sys.exit(mdp_process.returncode)
+
+if __name__ == "__main__":
+    MDP()
