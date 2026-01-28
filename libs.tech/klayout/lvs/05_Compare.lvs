@@ -9,8 +9,17 @@
 # cell_name + ".cir"       is circuit file to compare
 # cell_name + ".spice"     is circuit file to compare (alternative)
 #
-Lay_file = source.cell_name + ".extracted"
-Sch_file = source.cell_name + ".cir"
+if $extracted
+    Lay_file = $extracted
+else
+    Lay_file = source.cell_name + ".extracted"
+end
+#
+if $schematic
+    Sch_file = $schematic
+else
+    Sch_file = source.cell_name + ".cir"
+end
 #
 writer = RBA::NetlistSpiceWriter::new(MyWriter::new)
 writer.use_net_names = true
@@ -29,11 +38,19 @@ netlist.flatten_circuit("res_diff*")
 netlist.flatten_circuit("moscap*")
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# Refrence https://www.klayout.de/doc-qt5/manual/lvs_tweaks.html
+#
 netlist.make_top_level_pins()           # top cell .subckt has pins
 #
 #netlist.simplify                        
 #
-target_netlist(Lay_file, write_spice(true), "Created by KLayout")   # use_net_names = true
+netlist.make_top_level_pins             # Generate top pin 
+#
+netlist.purge                           # delete empty cell
+netlist.purge_nets                      # delete floating net
+#
+# use_net_names = true
+target_netlist(Lay_file, write_spice(true), "Created by KLayout")   
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 #

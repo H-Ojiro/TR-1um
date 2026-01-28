@@ -9,6 +9,14 @@ deep          # Hierarchical extraction
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # Extract Netlist Only
 #
+if $input 
+    if $top_cell
+        source($input, $top_cell)
+    else
+        source($input)
+    end
+end
+#
 if $netlist_only == 'true'
     NET_ONLY = true
 else
