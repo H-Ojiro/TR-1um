@@ -611,7 +611,7 @@
 ###########################################################################
 
 set    XSCHEM_LIBRARY_PATH {}
-append XSCHEM_LIBRARY_PATH "$env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/xschem_library/devices"
+append XSCHEM_LIBRARY_PATH :${XSCHEM_SHAREDIR}/xschem_library
 append XSCHEM_LIBRARY_PATH ":$env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/IP62LIB"
 append XSCHEM_LIBRARY_PATH ":$env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/IP62_2_ESD"
 append XSCHEM_LIBRARY_PATH ":$env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/IP62_5_stdcell"
