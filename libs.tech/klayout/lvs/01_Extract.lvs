@@ -15,8 +15,8 @@ extract_devices(mos4("PMOS" ),
                               "tG" => (GC),             # Terminal: Gate
                               "tB" => (WN) })           # Terminal: Backgate
 #
-tolerance("PMOS_mst", "W", :relative => 0.01)           # 1% tolerance 
-tolerance("PMOS_mst", "L", :relative => 0.0)            # 0% tolerance 
+tolerance("PMOS", "W", :relative => 0.01)           # 1% tolerance 
+tolerance("PMOS", "L", :relative => 0.0)            # 0% tolerance 
 #
 extract_devices(mos4("NMOS" ), 
                             { "SD" => (MN - GC),        # S/D region
@@ -27,8 +27,32 @@ extract_devices(mos4("NMOS" ),
                               "tG" => (GC),             # Terminal: Gate
                               "tB" => (BULK) })         # Terminal: Backgate
 #
-tolerance("NMOS_mst", "W", :relative => 0.01)           # 1% tolerance 
-tolerance("NMOS_mst", "L", :relative => 0.0)            # 0% tolerance 
+tolerance("NMOS", "W", :relative => 0.01)           # 1% tolerance 
+tolerance("NMOS", "L", :relative => 0.0)            # 0% tolerance 
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# MOS extraction 5V CMOS for ESD only NMOS is special
+#
+extract_devices(mos4("PMOS" ), 
+                            { "SD" => (MPE - GC),       # S/D region
+                              "G"  => (MPE & GC),       # Channel region
+                              "W"  => (MPE & GC & WN),  # Backgate region
+                              "tS" => (SDPE),           # Terminal: Source
+                              "tD" => (SDPE),           # Terminal: Drain
+                              "tG" => (GC),             # Terminal: Gate
+                              "tB" => (WN) })           # Terminal: Backgate
+
+extract_devices(mos4("NMOSE" ), 
+                            { "SD" => (MNE - GC),        # S/D region
+                              "G"  => (MNE & GC),        # Channel region
+                              "W"  => (MNE & GC & BULK), # Backgate region
+                              "tS" => (SDNE),            # Terminal: Source
+                              "tD" => (SDNE),            # Terminal: Drain
+                              "tG" => (GC),              # Terminal: Gate
+                              "tB" => (BULK) })          # Terminal: Backgate
+#
+tolerance("NMOSE", "W", :relative => 0.01)            # 1% tolerance 
+tolerance("NMOSE", "L", :relative => 0.0)             # 0% tolerance 
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # DIODE extraction

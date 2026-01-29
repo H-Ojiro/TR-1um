@@ -66,6 +66,7 @@ SDNE = (MNE - GC)               # MNE S/D
 # Global node
 #
 connect_global(BULK, "VSS")
+connect_global(GN,   "VSS")
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # Connections
@@ -73,7 +74,8 @@ connect_global(BULK, "VSS")
 # ---
 # Well 
 connect(WN  , GP)       # NWELL
-connect(BULK, GN)       # BULK
+#connect(WP,   GN)       # BULK
+#connect(BULK, GN)       # BULK
 # ---
 # Active
 connect(WC,   AC)       # CIS
