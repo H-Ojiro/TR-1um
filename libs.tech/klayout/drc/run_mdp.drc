@@ -23,7 +23,7 @@ flat                                # FLAT mode
 # deep
 #
 MASK  = input(63, 0)                # DRC check waiver area
-MEAS  = input(63, 1)                # MEASUREMT area recognition
+PTECT = input(63, 1)                # MEASUREMT area recognition
 ESD   = input(63, 2)                # IO/ESD area recognition
 #
 AP    = input(3,  1)
@@ -160,7 +160,7 @@ HPM  = BULK
 (PIN       ).output(49,  0)               # TEXT M2
 #
 (MASK      ).output(63,  0)               # DRC check waiver area
-(MEAS      ).output(63,  1)               # LVS MEASUREMT area recognition
+(PTECT     ).output(63,  1)               # PTECT area recognition
 (ESD       ).output(63,  2)               # DRC IO/ESD area recognition
 (SCRB      ).output(80,  0)               # DRC check waiver area (Seal-Ring)
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
