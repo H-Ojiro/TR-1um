@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <klayout-macro>
- <description>TR-1um LVS</description>
+ <description>TR-1um LVS(Drawing)</description>
  <version/>
  <category>lvs</category>
  <prolog/>
