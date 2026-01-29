@@ -15,8 +15,8 @@ else
     Lay_file = source.cell_name + ".extracted"
 end
 #
-if $schematic
-    Sch_file = $schematic
+if $circuit
+    Sch_file = $circuit
 else
     Sch_file = source.cell_name + ".cir"
 end
