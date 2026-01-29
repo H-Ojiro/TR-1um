@@ -159,10 +159,10 @@ HPM  = BULK
 (TXM2      ).output(48,  1)               # PIN M1
 (PIN       ).output(49,  0)               # TEXT M2
 #
-(MASK      ).output(63,  0)               # DRC check waiver area
-(PTECT     ).output(63,  1)               # PTECT area recognition (for protection)
-(ESD       ).output(63,  2)               # DRC IO/ESD area recognition
-(SCRB      ).output(80,  0)               # DRC check waiver area (Seal-Ring)
+(MASK ).output(63,  0)               # DRC check waiver area
+(PTECT).output(63,  1)               # PTECT area recognition (for protection)
+(ESD  ).output(63,  2)               # DRC IO/ESD area recognition
+(SCRB ).output(80,  0)               # DRC check waiver area (Seal-Ring)
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # RECOGNITION LAYER AUTO GENERATION
 #
