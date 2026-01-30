@@ -24,7 +24,10 @@ flat                                # FLAT mode
 #
 MASK  = input(63, 0)                # DRC check waiver area
 PTECT = input(63, 1)                # MEASUREMT area recognition
-ESD   = input(63, 2)                # IO/ESD  area recognition
+ESDx  = input(63, 2)                # IO/ESD  area recognition
+ESD = ESDx.dup
+(ESDx      ).output(63,  2)               # DRC IO/ESD area recognition
+
 #
 AP    = input(3,  1)
 AN    = input(3,  2)
@@ -179,8 +182,8 @@ DLBGRR = (HVNW & PSD)
 (PIN       ).output(49,  0)               # PIN  M1
 #
 (MASK      ).output(63,  0)               # DRC check waiver area
-(PTECT     ).output(63,  2)               # PTECT area recognition (for protection)
-(ESD       ).output(63,  1)               # DRC IO/ESD area recognition
+(PTECT     ).output(63,  1)               # PTECT area recognition (for protection)
+#(ESD       ).output(63,  1)               # DRC IO/ESD area recognition
 (SCRB      ).output(80,  0)               # DRC check waiver area (Seal-Ring)
 #
 (DLWLMP    ).output(150, 0)
