@@ -30,14 +30,17 @@ AP    = input(3,  1)
 AN    = input(3,  2)
 AR    = input(3,  3)
 AC    = input(3,  4)
-GC    = input(8,  1).merged         # Salisaide
-GR    = input(8,  2).merged         # Salisaide
+#GC    = input(8,  1).merged         # Salisaide
+GC    = input(8,  1)                # Salisaide
+GR    = input(8,  2)                # Salisaide
 #
 PSUB  = input(140, 0)               # Nwell/Pwell
 CO    = input(11,  0)               # Contact
-M1    = input(13,  0).merged        # Metal-1
-TC    = input(19,  0).merged        # Via1
-M2    = input(20,  0).merged        # Metal-2
+#M1    = input(13,  0).merged        # Metal-1
+M1    = input(13,  0)               # Metal-1
+TC    = input(19,  0)               # Via1#
+#M2    = input(20,  0).merged        # Metal-2
+M2    = input(20,  0)               # Metal-2
 PRO   = input(14,  0)               # PAD
 #
 TC23  = input(121, 0)               # Via2

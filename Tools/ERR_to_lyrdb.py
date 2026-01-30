@@ -175,4 +175,5 @@ while True :
 # OUTPUT
 print_xml( args[0] )
 
+print(item_dic.keys())
 exit
