@@ -24,7 +24,7 @@ flat                                # FLAT mode
 #
 MASK  = input(63, 0)                # DRC check waiver area
 PTECT = input(63, 1)                # MEASUREMT area recognition
-ESD   = input(63, 2)                # IO/ESD area recognition
+ESDA  = input(63, 2)                # IO/ESDA area recognition
 #
 AP    = input(3,  1)
 AN    = input(3,  2)
@@ -79,10 +79,10 @@ SG   = (GC + GR)                    # SG
 # ----- ------ ----- ----- ------ ----- ----- ------ ----- 
 # IMPLANT MASK AUTO GENERATION
 #
-MP  = (AP & NWMP - ESD).interacting(GC)
-MN  = (AN & PWMN - ESD).interacting(GC)
-MPE = (AP & NWMP & ESD).interacting(GC)
-MNE = (AN & PWMN & ESD).interacting(GC)
+MP  = (AP & NWMP - ESDA).interacting(GC)
+MN  = (AN & PWMN - ESDA).interacting(GC)
+MPE = (AP & NWMP & ESDA).interacting(GC)
+MNE = (AN & PWMN & ESDA).interacting(GC)
 DP  = (AP & NWMP).not_interacting(GC)
 DN  = (AN & PWMN).not_interacting(GC)
 GP  = (AN & NWMP).not_interacting(GC)
@@ -180,7 +180,7 @@ DLBGRR = (HVNW & PSD)
 #
 (MASK      ).output(63,  0)               # DRC check waiver area
 (PTECT     ).output(63,  1)               # PTECT area recognition (for protection)
-(ESD       ).output(80,  1)               # DRC IO/ESD area recognition
+(ESDA      ).output(63,  2)               # DRC IO/ESD area recognition
 (SCRB      ).output(80,  0)               # DRC check waiver area (Seal-Ring)
 #
 (DLWLMP    ).output(150, 0)
