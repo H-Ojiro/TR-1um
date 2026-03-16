@@ -611,13 +611,17 @@
 ###########################################################################
 
 set    XSCHEM_LIBRARY_PATH {}
+
+set LIB "$env(PDK_ROOT)/$env(PDK)/libs.tech/spice/models"
+
 append XSCHEM_LIBRARY_PATH :${XSCHEM_SHAREDIR}/xschem_library
 append XSCHEM_LIBRARY_PATH ":$env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/IP62LIB"
 append XSCHEM_LIBRARY_PATH ":$env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/IP62_2_ESD"
 append XSCHEM_LIBRARY_PATH ":$env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/IP62_5_stdcell"
+append XSCHEM_LIBRARY_PATH ":$env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/systemlib"
 #puts stdout $XSCHEM_LIBRARY_PATH
 
-# set XSCHEM_START_WINDOW $env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/top.sch
+set XSCHEM_START_WINDOW $env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/top.sch
 
 #array unset dircolor
 #set dircolor(IP62LIB$) blue
