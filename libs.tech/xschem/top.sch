@@ -59,7 +59,7 @@ tc1=0
 tc2=0}
 C {DP.sym} 790 -620 0 0 {name=D1 model=DP m=1}
 C {DN.sym} 790 -460 0 0 {name=D2 model=DN m=1}
-C {IP62_5_stdcell/AND2_X1.sym} 980 -600 0 0 {name=x1}
-C {IP62_5_stdcell/BUF_X1.sym} 980 -460 0 0 {name=x2}
-C {IP62_5_stdcell/NAND2.sym} 980 -320 0 0 {name=x3}
-C {IP62_5_stdcell/OR2.sym} 980 -170 0 0 {name=x4}
+C {AND2_X1.sym} 980 -600 0 0 {name=x1}
+C {BUF_X1.sym} 980 -460 0 0 {name=x2}
+C {NAND2.sym} 980 -320 0 0 {name=x3}
+C {OR2.sym} 980 -170 0 0 {name=x4}
