@@ -158,17 +158,17 @@ N 1040 0 1060 0 {
 lab=S}
 N 1060 -140 1060 0 {
 lab=S}
-C {iopin.sym} -90 -140 0 1 {name=p1 lab=S}
-C {iopin.sym} -90 90 0 1 {name=p2 lab=D}
-C {MPE.sym} 0 0 0 0 {name=XM1 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
-C {MPE.sym} 100 0 0 0 {name=XM2 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
-C {MPE.sym} 200 0 0 0 {name=XM3 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
-C {MPE.sym} 300 0 0 0 {name=XM4 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
-C {MPE.sym} 400 0 0 0 {name=XM5 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
-C {MPE.sym} 500 0 0 0 {name=XM6 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
-C {MPE.sym} 600 0 0 0 {name=XM7 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
-C {MPE.sym} 700 0 0 0 {name=XM8 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
-C {MPE.sym} 800 0 0 0 {name=XM9 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
-C {MPE.sym} 900 0 0 0 {name=XM10 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
-C {MPE.sym} 1000 0 0 0 {name=XM11 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
-C {MPE.sym} 1100 0 0 0 {name=XM12 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1}
+C {devices/iopin.sym} -90 -140 0 1 {name=p1 lab=S}
+C {devices/iopin.sym} -90 90 0 1 {name=p2 lab=D}
+C {MPE.sym} 0 0 0 0 {name=XM1 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}
+C {MPE.sym} 100 0 0 0 {name=XM2 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}
+C {MPE.sym} 200 0 0 0 {name=XM3 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}
+C {MPE.sym} 300 0 0 0 {name=XM4 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}
+C {MPE.sym} 400 0 0 0 {name=XM5 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}
+C {MPE.sym} 500 0 0 0 {name=XM6 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}
+C {MPE.sym} 600 0 0 0 {name=XM7 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}
+C {MPE.sym} 700 0 0 0 {name=XM8 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}
+C {MPE.sym} 800 0 0 0 {name=XM9 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}
+C {MPE.sym} 900 0 0 0 {name=XM10 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}
+C {MPE.sym} 1000 0 0 0 {name=XM11 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}
+C {MPE.sym} 1100 0 0 0 {name=XM12 model=MPE w=50u l=2u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 dm=1 spiceprefix=X}

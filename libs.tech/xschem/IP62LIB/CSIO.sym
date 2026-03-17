@@ -8,12 +8,13 @@ value @name @value
 device @name @device
 @comptag"
 verilog_ignore=true
-template="name=XC1
+template="name=C1
 model=F_CSIO
 c=1u
 x=1u
 y=1u
-m=1"
+m=1
+spiceprefix=X"
 footprint=1206
 device=polarized_capacitor
 }

@@ -193,20 +193,20 @@ N 320 -260 320 -130 {
 lab=#net1}
 N 320 -280 320 -260 {
 lab=#net1}
-C {opin.sym} 570 -240 0 0 {name=p1 lab=Y}
-C {ipin.sym} 30 -380 0 0 {name=p2 lab=A}
-C {ipin.sym} 30 -260 0 0 {name=p3 lab=B}
-C {iopin.sym} 570 -380 0 0 {name=p4 lab=VDD}
-C {iopin.sym} 570 0 0 0 {name=p5 lab=GND}
-C {ipin.sym} 30 -220 0 0 {name=p6 lab=C}
-C {ipin.sym} 30 -130 0 0 {name=p7 lab=D}
-C {IP62LIB/MN.sym} 80 -310 0 0 {name=XM7 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 380 -170 0 0 {name=XM5 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 490 -170 0 0 {name=XM8 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 380 -50 0 0 {name=XM10 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MN.sym} 180 -70 0 0 {name=XM6 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MP.sym} 180 -310 0 0 {name=XM11 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MP.sym} 280 -310 0 0 {name=XM1 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MP.sym} 380 -310 0 0 {name=XM3 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MP.sym} 490 -310 0 0 {name=XM4 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
-C {IP62LIB/MP.sym} 180 -170 0 0 {name=XM2 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0}
+C {devices/opin.sym} 570 -240 0 0 {name=p1 lab=Y}
+C {devices/ipin.sym} 30 -380 0 0 {name=p2 lab=A}
+C {devices/ipin.sym} 30 -260 0 0 {name=p3 lab=B}
+C {devices/iopin.sym} 570 -380 0 0 {name=p4 lab=VDD}
+C {devices/iopin.sym} 570 0 0 0 {name=p5 lab=GND}
+C {devices/ipin.sym} 30 -220 0 0 {name=p6 lab=C}
+C {devices/ipin.sym} 30 -130 0 0 {name=p7 lab=D}
+C {MN.sym} 80 -310 0 0 {name=M7 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 spiceprefix=X}
+C {MN.sym} 380 -170 0 0 {name=M5 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 spiceprefix=X}
+C {MN.sym} 490 -170 0 0 {name=M8 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 spiceprefix=X}
+C {MN.sym} 380 -50 0 0 {name=M10 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 spiceprefix=X}
+C {MN.sym} 180 -70 0 0 {name=M6 model=NMOS w=3.4u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 spiceprefix=X}
+C {MP.sym} 180 -310 0 0 {name=M11 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 spiceprefix=X}
+C {MP.sym} 280 -310 0 0 {name=M1 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 spiceprefix=X}
+C {MP.sym} 380 -310 0 0 {name=M3 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 spiceprefix=X}
+C {MP.sym} 490 -310 0 0 {name=M4 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 spiceprefix=X}
+C {MP.sym} 180 -170 0 0 {name=M2 model=PMOS w=10.2u l=1u m=1 as=0 ad=0 ps=0 pd=0 nrd=0 nrs=0 spiceprefix=X}

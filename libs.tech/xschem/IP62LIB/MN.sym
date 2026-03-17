@@ -2,7 +2,7 @@ v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {type=nmos
 format="@spiceprefix@name @pinlist @model w=@w l=@l @extra nrd=@nrd nrs=@nrs m=@m"
-template="name=XM1 model=NMOS w=3.4u l=1u nrd=0 nrs=0 m=1 "}
+template="name=M1 model=NMOS w=3.4u l=1u nrd=0 nrs=0 m=1 spiceprefix=X"}
 V {}
 S {}
 E {}

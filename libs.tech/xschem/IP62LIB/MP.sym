@@ -3,7 +3,7 @@ v {xschem version=3.4.4 file_version=1.2
 G {}
 K {type=pmos
 format="@spiceprefix@name @pinlist @model w=@w l=@l @extra nrd=@nrd nrs=@nrs m=@m"
-template="name=XM1 model=PMOS w=3.4u l=1u nrd=0 nrs=0 m=1 "}
+template="name=M1 model=PMOS w=3.4u l=1u nrd=0 nrs=0 m=1 spiceprefix=X"}
 V {}
 S {}
 E {}
