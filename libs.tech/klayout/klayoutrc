@@ -38,7 +38,7 @@
  <def-import-spec/>
  <default-add-other-layers>false</default-add-other-layers>
  <default-font-size>0</default-font-size>
- <default-grids>10,1,0.1,0.05</default-grids>
+ <default-grids>0.01,0.005</default-grids>
  <default-layer-properties/>
  <default-text-size>0.3</default-text-size>
  <diff-detailed>false</diff-detailed>
@@ -69,7 +69,7 @@
  <edit-inst-row_x>0</edit-inst-row_x>
  <edit-inst-row_y>0</edit-inst-row_y>
  <edit-inst-rows>1</edit-inst-rows>
- <edit-inst-scale>20</edit-inst-scale>
+ <edit-inst-scale>1</edit-inst-scale>
  <edit-max-shapes-of-instances>1000</edit-max-shapes-of-instances>
  <edit-mode>true</edit-mode>
  <edit-move-angle-mode>any</edit-move-angle-mode>
@@ -97,7 +97,7 @@
  <grid-axis-color>auto</grid-axis-color>
  <grid-color>auto</grid-color>
  <grid-grid-color>auto</grid-grid-color>
- <grid-micron>10</grid-micron>
+ <grid-micron>0.005</grid-micron>
  <grid-ruler-color>auto</grid-ruler-color>
  <grid-show-ruler>true</grid-show-ruler>
  <grid-style0>invisible</grid-style0>
