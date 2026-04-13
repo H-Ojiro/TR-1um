@@ -111,7 +111,8 @@ end
 # ----- ----- ----- ----- ----- ----- ----- ----- 
 # PC/CO related
 #
-(GC     ).drc(             width <  1.0 ).output('GC.W1:GC Wmin <  1.0')
+(GC     ).drc(           width <    1.0 ).output('GC.W1:GC Wmin <   1.0')
+(GC     ).drc(           width >   30.0 ).output('GC.W1:GC Wmax >  30.0')
 (GC     ).drc(             space <  1.2 ).output('GC.S1:GC Smin <  1.2')
 (GC     ).drc(      sep(AP     ) <  0.4 ).output('GC.AP:GC-AP Smin <  0.4')
 (GC     ).drc(      sep(AN     ) <  0.4 ).output('GC.AN:GC-AN Smin <  0.4')
@@ -165,6 +166,8 @@ end
 # 
 (RS     ).drc(             space <  2.0 ).output('GR.S1:RS Smin <  2.0')
 (CO & AR).drc(             width <  1.0 ).output('CR.W1:CO(RR) Wmin <  1.0')
+(CL & AR).drc(           width <    1.0 ).output('CR.W2:CL(RR) Wmin <   1.0')
+(CL & AR).drc(           width >   97.5 ).output('CR.W2:CL(RR) Wmax >  97.5')
 (CO & AR).drc( enclosed(AR, projection, two_sides_allowed) <  1.5 ).output('CR.AT:CO(RR)-AR(T) Emin <  1.5')
 (CO & AR).drc( enclosed(AR     ) <  1.0 ).output('CR.AS:CO(RR)-AR(S) Emin <  1.0')
 (CO & AC).drc(             width <  1.2 ).output('CC.W1:CO(C) Wmin <  1.2')
