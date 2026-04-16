@@ -1,7 +1,8 @@
 #,Prohibited,,,,,
 Rule,L1,L2,Func,MIN,MAX,IP62 Rule Name
-WN.Z1,WN(R),AP+AC,None,0.0,,
-WN.Z2,WN(C),AP+AR,None,0.0,,
+WN.Z1,WN(R),AP,None,0.0,,
+WN.Z2,WN(C),AP,None,0.0,,
+WN.Z3,WN(C),AR,None,0.0,,
 CO.Z1,CO,AA+GC+GR,None,0.0,,
 CO.Z3,CO,M1,None,0.0,,
 V1.Z1,V1,M1,None,0.0,,

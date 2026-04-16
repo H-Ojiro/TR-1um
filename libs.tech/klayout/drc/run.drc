@@ -33,8 +33,9 @@ end
 # ----- ----- ----- ----- ----- ----- ----- ----- 
 # Prohibited
 #
-(WR     ).covering(AP + AC).output('WN.Z1:AP+AC not in WN(R)')
-(WC     ).covering(AP + AR).output('WN.Z2:AP+AR not in WN(C)')
+(WR     ).covering(AP   ).output('WN.Z1:AP not in WN(R)')
+(WC     ).covering(AP   ).output('WN.Z2:AP not in WN(C)')
+(WC     ).covering(AR   ).output('WN.Z3:AR not in WN(C)')
 (CO - ( AA + GC + GR )).output('CO.Z1:CO not on AA+GC+GR')
 (CO - ( M1           )).output('CO.Z3:CO not on M1')
 ((V1 - V1P) - (M1    )).output('V1.Z1:V1 not on M1')
