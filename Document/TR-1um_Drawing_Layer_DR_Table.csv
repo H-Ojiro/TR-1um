@@ -40,8 +40,8 @@ AP.WM,PMOS,AP-GC,Wmin/max,3.4,60.0,Table I-2-1
 AP.LM,PMOS,GC-AN,Lmin/max,1.0,30.0,Table I-2-1
 AP.WN,AP,WN,Emin,7.0,,ERWLMP02
 DP.W1,DP,,Wmin,2.8,,
-DP.S1,DP,DP,Smin,???,???,???
-DP.AP,DP,AP,Smin,2.8,,ERWLMP08
+DP.S1,DP,DP,Smin,1.4,,=AP.S1
+DP.AP,DP,AP(M),Smin,2.8,,ERWLMP08
 DP.AN,DP,AN,Smin,2.8,,ERWLMP09
 AN.W1,AN,,Wmin,1.4,,ER0004
 AN.S1,AN,AN,Smin,1.4,,ER0028
@@ -50,9 +50,9 @@ AN.WM,NMOS,AN-GC,Wmin/max,3.4,60.0,Table I-2-1
 AN.LM,NMOS,GC-AN,Lmin/max,1.0,30.0,Table I-2-1
 AN.WN,AN,WN(M),Emin,5.0,,ERWLMP03
 DN.W1,DN,,Wmin,2.8,,
-DN.S1,DN,DN,Smin,???,???,???
+DN.S1,DN,DN,Smin,1.4,,=AN.S1
 DN.AP,DN,AP,Smin,2.8,,ERWLMN10
-DN.AN,DN,AN,Smin,2.8,,ERWLMN11
+DN.AN,DN,AN(M),Smin,2.8,,ERWLMN11
 #,PC/CO related,,,,,
 Rule,L1,L2,Func,MIN,MAX,IP62 Rule Name
 GC.W1,GC,,Wmin,1.0,,ER0014

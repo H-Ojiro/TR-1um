@@ -43,6 +43,8 @@ L = {
     "AP+AN+AC+AR": "AA",
     "AP-GC": "AP - GC",
     "AN-GC": "AN - GC",
+    "AP(M)": "AP - DP",
+    "AN(M)": "AN - DN",
     "PMOS": "AP & GC",
     "NMOS": "AN & GC",
     "DP": "DP",
