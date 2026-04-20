@@ -1,4 +1,4 @@
-#,Prohibited,,,,,
+#,Cat-1: Prohibited,,,,,
 Rule,L1,L2,Func,MIN,MAX,IP62 Rule Name
 WN.Z1,WN(R),AP,None,0.0,,
 WN.Z2,WN(C),AP,None,0.0,,
@@ -10,7 +10,7 @@ V1.Z2,V1,M2,None,0.0,,
 PO.Z1,PO,M1,None,0.0,,
 PO.Z2,PO,M2,None,0.0,,
 PO.Z3,PO,V1(P),Exist,0.0,,
-#,WN-AC/AR related,,,,,
+#,Cat-2:  WN-AC/AR related,,,,,
 Rule,L1,L2,Func,MIN,MAX,IP62 Rule Name
 WN.W1,WN,,Wmin,8.0,,ER0001
 WN.S1,WN,WN,Smin,12.0,,ER0104
@@ -32,7 +32,7 @@ AN.WC,AN,WN(C),Emin,3.0,,ERCSIO04
 AC.AN,AC,AN,Smin,2.8,,ERCSIO11
 AC.GC,AC,GC,Emin,1.4,,ERCSIO13
 AC.R1,AC,AN(C),Donut,0.0,,
-#,AP/AN/DP/DN related,,,,,
+#,Cat-3: AP/AN/DP/DN related,,,,,
 Rule,L1,L2,Func,MIN,MAX,IP62 Rule Name
 AP.W1,AP,,Wmin,1.4,,ER0004
 AP.S1,AP,AP,Smin,1.4,,ER0028
@@ -54,7 +54,7 @@ DN.W1,DN,,Wmin,2.8,,
 DN.S1,DN,DN,Smin,1.4,,=AN.S1
 DN.AP,DN,AP,Smin,2.8,,ERWLMN10
 DN.AN,DN,AN(M),Smin,2.8,,ERWLMN11
-#,PC/CO related,,,,,
+#,Cat-4: GC/CO related,,,,,
 Rule,L1,L2,Func,MIN,MAX,IP62 Rule Name
 GC.W1,GC,,Wmin,1.0,,ER0014
 GC.S1,GC,GC,Smin,1.2,,ER0038
@@ -70,7 +70,7 @@ CO.AP,CO,AP,Emin,0.8,,ERMP10
 CO.AN,CO,AN,Emin,0.8,,ERMN11
 CO.GG,CO,GC(G),Smin,1.0,,ERMP12/ERMN12
 CO.GC,CO,GC+GR,Emin,0.8,,ER0050
-#,AR/GR related,,,,,
+#,Cat-5: AC/AR/GR related,,,,,
 Rule,L1,L2,Func,MIN,MAX,IP62 Rule Name
 AR.W1,RR,RR(L),Wmin/max,2.8,20.0,Table I-2-1
 AR.L1,RR,RR(W),Lmin/max,13.0,100.0,Table I-2-1
@@ -91,7 +91,7 @@ CC.W1,CO(C),,Wmin,1.2,,ERCSIO01
 CC.S1,CO(C),CO(C),Smin,1.2,,ERCSIO14
 CC.AC,CO(C),AC,Emin,2.9,,ERCSIO03
 CC.AN,CO(C),AN,Emin,1.2,,ERCSIO02
-#,BEOL related,,,,,
+#,Cat-6: BEOL related,,,,,
 Rule,L1,L2,Func,MIN,MAX,IP62 Rule Name
 M1.W1,M1,,Wmin,1.8,,ER0021
 M1.S1,M1,M1,Smin,1.4,,ER0045
@@ -109,7 +109,7 @@ V1.CL,V1,CO(L),Smin,1.4,,ER1507
 M2.W1,M2,,Wmin,3.0,,ER0023
 M2.S1,M2,M2,Smin,2.0,,ER0047
 M2.V1,M2,V1,Fmin,1.0,,ER0052
-#,ESD related,,,,,
+#,Cat-7: ESD related,,,,,
 Rule,L1,L2,Func,MIN,MAX,IP62 Rule Name
 APE.WM,PMOSE,APE-GC,Wmin/max,11.0,60.0,Table I-2-1
 APE.LM,PMOSE,GC-ANE,Lmin/max,2.0,30.0,Table I-2-1
@@ -127,7 +127,7 @@ CDE.GC,CD(E),GC,Smin,7.0,,ERMPE04/ERMNE08
 CSE.GC,CS(E),GC,Smin,3.0,,ERMPE03/ERMNE09
 COE.AP,CO(E) ,AP,Emin,4.0,,ERMPE05/ERMPE31
 COE.AN,CO(E) ,AN,Emin,4.0,,ERMNE10/ERMNE32
-#,PAD related,,,,,
+#,Cat-8: PAD related,,,,,
 Rule,L1,L2,Func,MIN,MAX,IP62 Rule Name
 PO.W1,PO,,Wmin,70.0,,ER1809
 PO.S1,PO,PO,Smin,64.0,,ER1810
@@ -143,7 +143,7 @@ M2.PE,M2,,EXTL,19.0,,ER1803
 M2.PW,M2,,EXTW,40.0,,ER1803
 M1.PE,M2,,EXTL,19.0,,ER1804
 M1.PW,M2,,EXTW,40.0,,ER1804
-#,Electrical / Optional,,,,,
+#,Cat-9: Electrical / Optional,,,,,
 Rule,L1,L2,Func,MIN,MAX,IP62 Rule Name
 GC.ANT,GC,,ANTE,0.0,,
 ,,,,,,
