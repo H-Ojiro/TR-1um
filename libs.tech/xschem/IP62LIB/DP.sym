@@ -1,8 +1,8 @@
 v {xschem version=3.4.6 file_version=1.2}
 G {}
 K {type=diode
-format="@spiceprefix@name @pinlist @model m=@m a=@A p=@P"
-template="name=D1 model=DP m=1 A=1 P=1 spiceprefix=X"}
+format="@spiceprefix@name @pinlist @model m=@m"
+template="name=D1 model=DP m=1"}
 V {}
 S {}
 E {}
@@ -18,5 +18,3 @@ T {PLUS} 5 51 0 0 0.2 0.2 {layer=13}
 T {MINUS} 4 1 0 0 0.2 0.2 {layer=13}
 T {DP_@name} 6 41 0 0 0.2 0.2 {}
 T {P} -25 25 0 0 0.3 0.3 {layer=4}
-T {a=@P
-p=@P} 18 14 0 0 0.2 0.2 {}
