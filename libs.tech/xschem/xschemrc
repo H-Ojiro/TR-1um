@@ -623,6 +623,15 @@ append XSCHEM_LIBRARY_PATH ":$env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/systemlib
 
 set XSCHEM_START_WINDOW $env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/top.sch
 
+# Source auxiliary xschem files
+if {[info exists PDK_ROOT]} {
+  if {[info exists env(PDK)]} {
+    source $env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/xschem-drc
+    # source $env(PDK_ROOT)/$env(PDK)/libs.tech/xschem/xschem-menu
+  }
+}
+
+
 #array unset dircolor
 #set dircolor(IP62LIB$) blue
 #set toolbar_visible 1 ;# Tool bar
