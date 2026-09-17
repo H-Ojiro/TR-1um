@@ -120,10 +120,22 @@ class MyWriter < RBA::NetlistSpiceWriterDelegate
     # Generate device terminals
     def generate_device_terminals(device, device_class)
         default_terminals = device_class.terminal_definitions.map do |td|
+          # puts("device_class.name = #{device_class.name} / td.name = #{td.name}")
+          # puts("device.net_for_terminal(td.id) = #{device.net_for_terminal(td.id)}")
           net_to_string(device.net_for_terminal(td.id))
         end
 
-        return "#{default_terminals.join(' ')} "
+        # return "#{default_terminals.join(' ')} " unless device_class.name.to_s.downcase.include?('nmos')
+        return "#{default_terminals.join(' ')} " unless device_class.name.to_s.downcase.include?('mos')
+
+        ordered_names = %w[D G S B]
+        ordered_ids = ordered_names.map { |name| device_class.terminal_id(name) }
+        return "#{default_terminals.join(' ')} " if ordered_ids.any?(&:nil?)
+
+        ordered_terminals = ordered_ids.map do |term_id|
+          net_to_string(device.net_for_terminal(term_id))
+        end
+        "#{ordered_terminals.join(' ')} "
     end
 
     # Determine the unit for each parameter
@@ -147,8 +159,20 @@ class MyWriter < RBA::NetlistSpiceWriterDelegate
             value = device.parameter(pd.id)
             next if value.nil?
 
+            # puts("device_name=#{device_class.name} pd.name=#{pd.name} value=#{value}")
             device_name = device_class.name
             param = pd.name
+            # if device_name.to_s.downcase.include?('pmos')
+            #     if param == "AS"
+            #         pd.name = "AD"
+            #     elsif param == "AD"
+            #         pd.name = "AS"
+            #     elsif param == "PS"
+            #         pd.name = "PD"
+            #     elsif param == "PD"
+            #         pd.name = "PS"
+            #     end
+            # end
             if device_name == "F_CSIO"
                 if param == "W" || param == "L"
                     # puts("pd_id=#{pd.id}")
@@ -165,6 +189,7 @@ class MyWriter < RBA::NetlistSpiceWriterDelegate
                     end
                 end
             end
+            # puts("device_name=#{device_class.name} pd.name=#{pd.name} value=#{value}")
 
             unit = get_unit(pd.name)
             if unit.empty?

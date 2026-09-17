@@ -30,10 +30,10 @@ diff = input(*mi.index('DIFF')).not(exclude)
 pol = input(*mi.index('POL')).not(exclude)
 cnt = input(*mi.index('CNT')).not(exclude)
 cnt_text = labels(*mi.index('CNT'))
-ml1 = input(*mi.index('ML1')).not(exclude)
+ml1 = input(*mi.index('ML1')).merged.not(exclude) #260917
 via1 = input(*mi.index('VIA1')).not(exclude)
 via1_text = labels(*mi.index('VIA1'))
-ml2 = input(*mi.index('ML2')).not(exclude)
+ml2 = input(*mi.index('ML2')).merged.not(exclude) #260917
 via2 = input(*mi.index('VIA2')).not(exclude)
 ml3 = input(*mi.index('ML3')).not(exclude)
 narea = input(*mi.index('Narea')).not(exclude)
@@ -70,10 +70,10 @@ dlbgrn = input(*mi.index('DLBGRN')).not(exclude)
 dlbgrh = input(*mi.index('DLBGRH')).not(exclude)
 dlbgrr = input(*mi.index('DLBGRR')).not(exclude)
 
-###res = input(*mi.index('RES')) 
+###res = input(*mi.index('RES'))
 ###res_text = labels(*mi.index('RES'))
 
-###rh = res.interacting(res_text.texts('RH')) 
+###rh = res.interacting(res_text.texts('RH'))
 hvnw = input(*mi.index('HVNW')).not(exclude)
 dlrn = input(*mi.index('DLRN')).not(exclude)
 dlrh = input(*mi.index('DLRH')).not(exclude)
@@ -202,89 +202,121 @@ metal3layer.output("3-layer metal option")#250303
 
 #puts 'Check GAP'
 nwl.space(4.um).output("ER0026:NW SP ER 4.0")#241004
-nwl.notch(4.um).output("ER0026:NW SP ER 4.0")#250303
+# nwl.notch(4.um).output("ER0026:NW SP ER 4.0")#250303
 hvnw.space(4.um).output("ER0027:HVNW SP ER 4.0")#241004
-hvnw.notch(4.um).output("ER0027:HVNW SP ER 4.0")#250303
+# hvnw.notch(4.um).output("ER0027:HVNW SP ER 4.0")#250303
 
 diff.space(1.4.um).output("ER0028:L SP ER 1.4")#250314
-diff.notch(1.4.um).output("ER0028:L SP ER 1.4")#250314
+# diff.notch(1.4.um).output("ER0028:L SP ER 1.4")#250314
 
 pol.space(1.2.um).output("ER0038:SG SP ER 1.2")#250314
-pol.notch(1.2.um).output("ER0038:SG SP ER 1.2")#250314
+# pol.notch(1.2.um).output("ER0038:SG SP ER 1.2")#250314
 ml1.space(1.4.um).output("ER0045:M1 SP ER 1.4")#250314
-ml1.notch(1.4.um).output("ER0045:M1 SP ER 1.4")#250314
+# ml1.notch(1.4.um).output("ER0045:M1 SP ER 1.4")#250314
 ml1.space(1.4.um).output("ER1404:M1(W10UNDER) SP ER 1.4")#241004
 ml1over10 = ml1.sized(-5.0.um).sized(5.0.um)#250303
-ml1.separation(ml1over10, 2.0.um).output("ER1402:M1(W10OVER&amp;MIX) SP ER 2.0")
-ml1over10.space(2.0.um).output("ER1402:M1(W10OVER&amp;MIX) SP ER 2.0")#250303
-ml1over10.notch(2.0.um).output("ER1402:M1(W10OVER&amp;MIX) SP ER 2.0")#250303
-ml2.space(2.um).output("ER0047:M2 SP ER 2.0")#250314
-ml2.notch(2.um).output("ER0047:M2 SP ER 2.0")#250314
-ml3.space(2.um).output("ER0074:M3 SP ER 2.0")#250314
-ml3.notch(2.um).output("ER0074:M3 SP ER 2.0")#250314
+# ml1over10.output('[Debug]ml1over10')
+ml1.separation(ml1over10, 2.0.um).output("ER1402(Org):M1(W10OVER&amp;MIX) SP ER 2.0")
+ml1.separation(ml1over10, 2.0.um, transparent, without_touching_edges, without_touching_corners).output("ER1402(Assura):M1(W10OVER&amp;MIX) SP ER 2.0")
+ml1.space(2.0.um).polygons.raw.interacting(ml1over10).output("ER1402(TR-1um):M1(W10OVER&amp;MIX) SP ER 2.0")
+ml1over10.space(2.0.um).output("ER1402(Org):M1(W10OVER&amp;MIX) SP ER 2.0")#250303
+# ml1over10.notch(2.0.um).output("ER1402:M1(W10OVER&amp;MIX) SP ER 2.0")#250303
 
+ml2.space(2.um).polygons.merged.output("ER0047:M2 SP ER 2.0")#250314
+# ml2.notch(2.um).output("ER0047:M2 SP ER 2.0")#250314
+ml3.space(2.um).polygons.merged.output("ER0074:M3 SP ER 2.0")#250314
+# ml3.notch(2.um).output("ER0074:M3 SP ER 2.0")#250314
+
+pol.separation(diff.inside(dlmp), 0.4.um).output("[Additional]ERWLMP07:SG-L(MP) SP ER 0.4")
 pol.separation(diff.inside(dlbgmn), 0.4.um).output("ERWLMN06:SG-L(BGMN) SP ER 0.4")
 pol.separation(diff.inside(dlbgmp), 0.4.um).output("ERWLMP05:SG-L(BGMP) SP ER 0.4")
 pol.separation(diff.inside(dldp), 0.4.um).output("ERDP01:SG-L(DP) SP ER 0.4")
 pol.separation(diff.inside(dldn), 0.4.um).output("ERWLMN08:SG-L(DN) SP ER 0.4")
+pol.separation(diff.inside(dlmn), 0.4.um).output("[Additional]ERWLMN09:SG-L(MN) SP ER 0.4")
 
 via1.separation(cnt, 1.0.um).output("ER1506:TC-CONTS SP ER 1.0")
 via1.separation(pol, 1.2.um).output("ER1508:TC-SG SP ER 1.2")
 
 cnt.space(1.0.um).output("ER0044:CONT SP ER 1.0")
-cnt.notch(1.0.um).output("ER0044:CONT SP ER 1.0")#250303
+# cnt.notch(1.0.um).output("ER0044:CONT SP ER 1.0")#250303
 psub.space(4.0.um).output("ER0025:PSUB SP ER 4.0")#250303
-psub.notch(4.0.um).output("ER0025:PSUB SP ER 4.0")#250303
+# psub.notch(4.0.um).output("ER0025:PSUB SP ER 4.0")#250303
 nf.space(2.0.um).output("ER0029:NF SP ER 2.0")#250303
-nf.notch(2.0.um).output("ER0029:NF SP ER 2.0")#250303
+# nf.notch(2.0.um).output("ER0029:NF SP ER 2.0")#250303
 pf.space(2.um).output("ER0030:PF SP ER 2.0")#241004
-pf.notch(2.um).output("ER0030:PF SP ER 2.0")#241004
+# pf.notch(2.um).output("ER0030:PF SP ER 2.0")#241004
 cl.space(3.um).output("ER0031:CL SP ER 3.0")#241004
-cl.notch(3.um).output("ER0031:CL SP ER 3.0")#250303
+# cl.notch(3.um).output("ER0031:CL SP ER 3.0")#250303
 hpbe.space(2.6.um).output("ER0032:HPBE SP ER 2.6")#241004
-hpbe.notch(2.6.um).output("ER0032:HPBE SP ER 2.6")#250303
+# hpbe.notch(2.6.um).output("ER0032:HPBE SP ER 2.6")#250303
 hnbe.space(2.6.um).output("ER0033:HNBE SP ER 2.6")#241004
-hnbe.notch(2.6.um).output("ER0033:HNBE SP ER 2.6")#250303
+# hnbe.notch(2.6.um).output("ER0033:HNBE SP ER 2.6")#250303
 pbe.space(2.6.um).output("ER0034:PBE SP ER 2.6")
-pbe.notch(2.6.um).output("ER0034:PBE SP ER 2.6")#250303
+# pbe.notch(2.6.um).output("ER0034:PBE SP ER 2.6")#250303
 nbe.space(2.6.um).output("ER0035:NBE SP ER 2.6")
-nbe.notch(2.6.um).output("ER0035:NBE SP ER 2.6")#250303
+# nbe.notch(2.6.um).output("ER0035:NBE SP ER 2.6")#250303
 hpm.space(2.6.um).output("ER0036:HPM SP ER 2.6")
-hpm.notch(2.6.um).output("ER0036:HPM SP ER 2.6")#250303
+# hpm.notch(2.6.um).output("ER0036:HPM SP ER 2.6")#250303
 rhp.space(2.6.um).output("ER0037:RHP SP ER 2.6")
-rhp.notch(2.6.um).output("ER0037:RHP SP ER 2.6")#250303
+# rhp.notch(2.6.um).output("ER0037:RHP SP ER 2.6")#250303
 pm.space(2.6.um).output("ER0039:PM SP ER 2.6")
-pm.notch(2.6.um).output("ER0039:PM SP ER 2.6")#250303
+# pm.notch(2.6.um).output("ER0039:PM SP ER 2.6")#250303
 nm.space(2.6.um).output("ER0040:NM SP ER 2.6")
-nm.notch(2.6.um).output("ER0040:NM SP ER 2.6")#250303
+# nm.notch(2.6.um).output("ER0040:NM SP ER 2.6")#250303
 r.space(2.6.um).output("ER0041:R SP ER 2.6")#241004
-r.notch(2.6.um).output("ER0041:R SP ER 2.6")#250303
+# r.notch(2.6.um).output("ER0041:R SP ER 2.6")#250303
 narea.space(2.2.um).output("ER0042:PSD SP ER 2.2") # psd 2.2#250314
-narea.notch(2.2.um).output("ER0042:PSD SP ER 2.2") #250314
+# narea.notch(2.2.um).output("ER0042:PSD SP ER 2.2") #250314
 parea.space(2.6.um).output("ER0043:NSD SP ER 2.6") # nsd  2.6#250314
-parea.notch(2.6.um).output("ER0043:NSD SP ER 2.6") #250314
+# parea.notch(2.6.um).output("ER0043:NSD SP ER 2.6") #250314
 pro.space(20.um).output("ER0048:PRO SP ER 20.0")#241004
-pro.notch(20.um).output("ER0048:PRO SP ER 20.0")#250303
+# pro.notch(20.um).output("ER0048:PRO SP ER 20.0")#250303
 
 psub.separation(ndiff.interacting(mn), 10.0.um).output("ER0127:PSUB-L(MN) SP ER 10.0")#250311-2
 psub.separation(diff.inside(bgmn), 5.0.um).output("ER0421:L(BGMN)-PSUB SP ER 5.0")#250303
 psub.separation(diff_rn, 10.um).output("ER0128:PSUB-L(RN) SP ER 10.0")#241004
 
-
 pdiff.interacting(mp).separation(diff.inside(dlbgmp), 2.8.um).output("ERWLMP04:L(MP)-L(MPBG) SP ER 2.8")#250314
 pdiff.interacting(mp).separation(diff.inside(dldp), 2.8).output("ERWLMP08:L(MP)-L(DP) SP ER 2.8")#250314
 dp.separation(diff.inside(dlbgmp), 2.8).output("ERWLMP09:L(DP)-L(BGMP) SP ER 2.8")
+
+erwlmp10_0 = (psub &amp; dlwlmp) ^ (nf &amp; dlwlmp)
+erwlmp10_1 = (psub &amp; dlwlmp) ^ (pf &amp; dlwlmp)
+erwlmp10_2 = (pf &amp; dlwlmp) ^ (nf &amp; dlwlmp)
+ERWLMP10 = (erwlmp10_0 + erwlmp10_1 + erwlmp10_2).merged
+ERWLMP10.output('[Additional]ERWLMP10:PSUB-NF-PF UNMATCH ER')
+
+erwlmp12_1 = nwl.outside(dlcsio).outside(chipring)
+ERWLMP12 = erwlmp12_1 ^ dlwlmp
+ERWLMP12.output('[Additional]ERWLMP12:DLWLMP-NW UNMATCH ER')
+ERWLMP13 = (mp + dp &amp; bgmp) - psub
+ERWLMP13.output('[Additional]ERWLMP13:PSUB NOT ON WLMP ER')
+
 (diff.covering(mpe)).separation(diff.inside(dldp), 2.8.um).output("ERWLMP27:L(MPE)-L(DP) SP ER 2.8") #0312
 
 ndiff.interacting(mn).separation(diff.inside(dlbgmn), 2.8.um).output("ERWLMN05:L(MN)-L(BGMN) SP ER 2.8") #250314
 ndiff.interacting(mn).separation(diff.inside(dldn), 2.8.um).output("ERWLMN10:L(MN)-L(DN) SP ER 2.8")#250314
 diff.inside(dldn).separation(diff.inside(dlbgmn), 2.8.um).output("ERWLMN11:L(DN)-L(BGMN) SP ER 2.8")
 psub.separation(diff.covering(mne), 10.0.um).output("ERWLMN12:PSUB-L(MNE) SP ER 10.0")#0312
+
+diff_mne.enclosed(dlwlmn, 10.0.um).output('[Additional]ERWLMN13:DLWLMN-L(MNE) ENC ER 10.0')
+diff_mne.separation(diff_bgmn, 10.0.um).output('[Additional]ERWLMN14:L(MNE)-L(BGMN) SP ER 10.0')
+cnt.separation(diff_mne, 2.0.um).output('[Additional]ERWLMN15:L(MNE)-CONT SP ER 2.0')
+diff_mne.space(1.4.um).output('[Additional]ERWLMN16:L(MNE) SP ER 1.4')
+pol.separation(diff_mne, 0.4.um).output('[Additional]ERWLMN17:SG-L(MNE) SP ER 0.4')
+
 (diff.covering(mne)).separation(diff.inside(dldn), 2.8.um).output("ERWLMN18:L(MNE)-L(DN) SP ER 2.8")#0312
 
 diff.inside(dlrr).space(4.0.um).output("ERWLRR03:L(RR) SP ER 4.0")
 
 diff.inside(dlrr).separation(diff.inside(dlbgrr), 4.0.um).output("ERWLRR04:L(RR)-L(BGRR) SP ER 4.0")
+psub.enclosed((hvnw &amp; dlwlrr), 1.5.um).output('[Additional]ERWLRR05:HVNW-PSUB ENC ER 1.5')
+
+ERWLRR06 = nf.inside(dlwlrr) ^ psub.inside(dlwlrr)
+ERWLRR06.output('[Additional]ERWLRR06:PSUB-NF UNMATCH ER')
+ERWLRR07 = dlwlrr ^ hvnw.overlapping(dlwlrr)
+ERWLRR07.output('[Additional]ERWLRR07:HVNW-DLWLRR UNMATCH ER')
+((rr + diff_bgrr) - psub).output('[Additional]ERWLRR08:PSUB NOT ON WLRR ER')
 
 psub.inside(dlwlmp.covering(dlmp)).space(12.0.um).output("ER0104:PSUB(MP) SP ER 12.0")
 psub_mp.separation(psub_rh, 9.5.um).output("ER0110:PSUB(MP)-PSUB(RH) SP ER 9.5")#250303
@@ -460,9 +492,14 @@ r.interacting(er0069_1).output("ER0069:R CROSS L ER")#241004
 er0070_1=er-narea#250311
 er0070_2=narea - (dlmpo+dlmno+dlrh+dlrr+dlrhhv)#250311 #250314
 er0070_3=er.inside(er0070_2)#250311
-er0070_4=er.overlapping(er0070_2)#250311
+# er0070_4=er.overlapping(er0070_2)#250311
+er0070_4=er.interacting(er0070_2)#250311 #260824
+# er0070_1.output('[Debug]er0070_1')
+# er0070_2.output('[Debug]er0070_2')
+# er0070_3.output('[Debug]er0070_3')
+# er0070_4.output('[Debug]er0070_4')
 er0070_5=er0070_4-er0070_3#250311
-er0070_5.output("ER0070:PSD CROSS L ER")#250311
+er0070_5.output("ER0070a:PSD CROSS L ER")#250311
 
 cnt.and(via1).output("ER1513:TC ON CONT ER")
 pol.and(via1).output("ER1514:TC ON SG ER")
@@ -557,6 +594,50 @@ er2002.output("ER2002:TC23 NOT ON M2/M3 ER")#250303#3層配線時ルール
 er2003=via1.outside(pad) &amp; (via2).outside(pad)
 er2003.output("ER2003:TC23 ON TC ER")#250303#3層配線時ルール
 
+ermp08_1 = (mp - pgate).drc(if_any(corners.count == 4))
+ermp08_2 = (mp - pgate).drc(if_any(corners.count == 6))
+ermp08_3 = (cnt &amp; mp).sized(0.5.um).sized(-0.5.um)
+ermp08_4 = ermp08_1 - ermp08_3
+ermp08_5 = ermp08_2 - ermp08_3
+ermp08_6 = ermp08_4.drc(if_any(corners.count > 8))
+ermp08_7 = ermp08_5.drc(if_any(corners.count > 10))
+# ermp08_7 = ermp08_5.drc(if_any(corners.count > 12))
+ermp08_8 = (mp -pgate).overlapping(ermp08_6) - ermp08_6
+ermp08_9 = (mp -pgate).overlapping(ermp08_7) - ermp08_7
+ermp08_10 = (cnt &amp; mp).space(1.0.um).polygons
+ERMP08 = ermp08_8 + ermp08_9 + ermp08_10
+# ermp08_1.output('[Debug]ermp08_1')
+# ermp08_2.output('[Debug]ermp08_2')
+# ermp08_3.output('[Debug]ermp08_3')
+# ermp08_4.output('[Debug]ermp08_4')
+# ermp08_5.output('[Debug]ermp08_5')
+# ermp08_6.output('[Debug]ermp08_6')
+# ermp08_7.output('[Debug]ermp08_7')
+# ermp08_8.output('[Debug]ermp08_8')
+# ermp08_9.output('[Debug]ermp08_9')
+# ermp08_10.output('[Debug]ermp08_10')
+ERMP08.output('[Additional]ERMP08:CONT(MP) SP MUST 1.0')
+
+cnt_mp=cnt_pol.inside(dlmp)#241004
+(cnt_mp.without_bbox_min(1.0.um) + cnt_mp.without_bbox_max(1.0.um)).merged.output('[Additional]ERMP09:CONT(MP) WIDTH MUST 1.0')
+
+ermn09_1 = (mn - ngate).drc(if_any(corners.count == 4))
+ermn09_2 = (mn - ngate).drc(if_any(corners.count == 6))
+ermn09_3 = (cnt &amp; mn).sized(0.5.um).sized(-0.5.um)
+ermn09_4 = ermn09_1 - ermn09_3
+ermn09_5 = ermn09_2 - ermn09_3
+ermn09_6 = ermn09_4.drc(if_any(corners.count > 8))
+ermn09_7 = ermn09_5.drc(if_any(corners.count > 10))
+# ermn09_7 = ermn09_5.drc(if_any(corners.count > 12))
+ermn09_8 = (mn - ngate).overlapping(ermn09_6) - ermn09_6
+ermn09_9 = (mn - ngate).overlapping(ermn09_7) - ermn09_7
+ermn09_10 = (cnt &amp; mn).space(1.0.um).polygons
+ERMN09 = ermn09_8 + ermn09_9 + ermn09_10
+ERMN09.output('[Additional]ERMN09:CONT(MN) SP MUST 1.0')
+
+cnt_mn=cnt_pol.inside(dlmn)#241004
+(cnt_mn.without_bbox_min(1.0.um) + cnt_mn.without_bbox_max(1.0.um)).merged.output('[Additional]ERMN10:CONT(MN) WIDTH MUST 1.0')
+
 ermp13_1=pol.interacting(diff_mp)&amp;diff_mp#250314
 ermp13_2=ermp13_1.inside(diff_mp)#250314
 ermp13_3=ermp13_2.edges.inside(diff_mp.edges)#250314
@@ -575,7 +656,22 @@ hpm.width(4.2.um).output("ER0012:HPM WIDTH ER 4.2")
 pm.width(4.2.um).output("ER0015:PM WIDTH ER 4.2")
 nm.width(4.2.um).output("ER0016:NM WIDTH ER 4.2")
 
+(cnt &amp; dlrs).width(1.0.um).output('[Additional]ERRS01:CONT WIDTH ER 1.0')
+(cnt &amp; dlrs).enclosed(ml1, 0.8.um).output('[Additional]ERRS02:M1-CONT ENC ER 0.8')
+(cnt &amp; dlrs).enclosed(pol, 0.8.um).output('[Additional]ERRS03:SG-CONT ENC ER 0.8')
 (pol &amp; dlrs).space(2.0.um).output("ERRS04:SG SP ER 2.0")
+(pol &amp; dlrs).width(1.0.um).output('[Additional]ERRS05:SG WIDTH ER 1.0')
+via1.separation((pol &amp; dlrs), 1.2.um).output('[Additional]ERRS06:TC-SG SP 1.2')
+(pol &amp; dlrs).enclosed(hpm, 1.4.um).output('[Additional]ERRS07:HPM-SG ENC ER 1.4')
+(pol &amp; dlrs).enclosed(pm, 1.4.um).output('[Additional]ERRS08:PM-SG ENC ER 1.4')
+(pol &amp; dlrs).enclosed(nm, 1.4.um).output('[Additional]ERRS09:NM-SG ENC ER 1.4')
+(pol &amp; dlrs).enclosed(psd, 1.4.um).output('[Additional]ERRS10:PSD-SG ENC ER 1.4')
+(dlrs - hpm).output('[Additional]ERRS11:HPM NOT ON RS ER')
+(dlrs - pm).output('[Additional]ERRS12:PM NOT ON RS ER')
+(dlrs - nm).output('[Additional]ERRS13:NM NOT ON RS ER')
+
+ERRS14 = dlrs - psd
+ERRS14.output('[Additional]ERRS14:PSD NOT ON RS ER')
 
 #puts 'Check Enclose'
 nwl.enclosing(pdiff, 8.5.um).output("Pdiff enclosure in NWL(NW) &lt; 8.5")  # 7.0 -&gt; 8.5 2024/5/8
@@ -590,6 +686,8 @@ hvnw.enclosing(psub_mpo, 1.5.um).output("ER0113:HVNW-PSUB(MPO) SP ER 1.5")#24100
 hvnw.enclosing(psub_mno, 1.5.um).output("ER0120:HVNW-PSUB(MNO) SP ER 1.5")#241004
 ml1.enclosing(pro, 5.um).output("ER1703:M1-PRO ENC ER 5.0")#241004
 ml2.enclosing(pro, 5.um).output("ER1704:M2-PRO ENC ER 5.0")#241004
+# ml1.enclosing(pro, 10.um).output("ER1703:M1-PRO ENC ER 10.0")#251009
+# ml2.enclosing(pro, 10.um).output("ER1704:M2-PRO ENC ER 10.0")#251009
 ml3.enclosing(pro, 5.um).output("ER1708:M3-PRO ENC ER 5.0")#241004
 
 #protect warning
@@ -597,7 +695,7 @@ ml3.enclosing(pro, 5.um).output("ER1708:M3-PRO ENC ER 5.0")#241004
 cnt_pol=cnt.outside(pol)#241004
 cnt_mp=cnt_pol.inside(dlmp)#241004
 cnt_dlmpo=cnt.inside(dlmpo)#241004
-diff_dlmpo=diff.inside(dlmpo)#241004  
+diff_dlmpo=diff.inside(dlmpo)#241004
 cnt_mpo=cnt_dlmpo &amp; diff_dlmpo#241004
 cnts=cnt.drc(area &lt; 1.5)#241004
 cntl=cnt-cnts#241004
@@ -742,9 +840,15 @@ er1302.outside(chipring).output("ER1302:BIG CONT(L=97) OVER ER")#250303
 ml1_chip=ml1.outside(sidemetal)#250303
 er1801=ml1_chip.separation(pad, 14.um)#250303
 er1801.output("ER1801:M1 PAD SP ER 14.0")#241004
+# er1801_add=ml1_chip.separation(pad, 14.um, transparent)#260902
+# er1801_add.output('[Debug]ER1801:M1 PAD SP ER 14.0')#260902
+# ml1_chip.output("[Debug]ER1801: ml1_chip")
+# pad.output("[Debug]ER1801: pad")
 ml2_chip=ml2.outside(sidemetal)#250303
 er1802=ml2_chip.separation(pad, 14.um)#250303
 er1802.output("ER1802:M2 PAD SP ER 14.0")#241004
+# er1802_add=ml2_chip.separation(pad, 14.um, transparent)#250303
+# er1802_add.output('[Debug]ER1802:M2 PAD SP ER 14.0')#241004
 er1807=pad.separation(pol, 14.um).output("ER1807:PAD METAL-SG SP ER 14.0")
 
 er1803_1 = pad.sized(14.um)#250303
@@ -813,11 +917,32 @@ end#250721
 er0901_8 = er0901_1 - er0901_1.interacting(er0901_7)#250721
 er0901_9 = er0901_5 &amp; er0901_8#250721
 er0901_10 = er0901_9.separation(er0901_2, 1.201, projection)#250721
-er0901_10.output("ER0901:SG-L ENDCAP ER 2.4")#250721
-er0901_10.output("ER0901:   If the SG-L space is 1.2 µm on only one side,")#250721
-er0901_10.output("ER0901:   an ENDCAP of 1.2 µm or greater is considered acceptable.")#250721
+er0901_10.output("ER0901(Org):SG-L ENDCAP ER 2.4")#250721
+er0901_10.output("ER0901(Org):   If the SG-L space is 1.2 µm on only one side,")#250721
+er0901_10.output("ER0901(Org):   an ENDCAP of 1.2 µm or greater is considered acceptable.")#250721
 
-pol.enclosing(diff_mos, 1.2.um).output("ER0902:SG-L ENDCAP ER 1.2")#250314
+er09_1 = er0901_1
+er09_2 = er0901_2
+er09_3 = er0901_3
+er09_4 = er0901_4
+er09_5 = er09_4.extended_in(2.4.um)  &amp; er09_1
+er09_6 = er09_2.separation(er09_5, 1.2.um+1.dbu, projection)
+er09_7 = er09_5.interacting(er09_5.edges.raw &amp; er09_6.edges, 2, 2)
+er09_8 = er09_5 - er09_7
+er09_9 = er09_1 &amp; (er09_7 + er09_8)
+er09_3.enclosed(er09_7, 2.4.um, projection, transparent).output('ER0901(Assura):SG-L ENDCAP ER 2.4')
+er09_3.enclosed((er09_8 + er09_9), 1.2.um, projection, transparent).output('ER0902(Assura):SG-L ENDCAP ER 1.2')
+# er09_1.output('[Debug]er09_1')
+# er09_2.output('[Debug]er09_2')
+# er09_3.output('[Debug]er09_3')
+# er09_4.output('[Debug]er09_4')
+# er09_5.output('[Debug]er09_5')
+# er09_6.output('[Debug]er09_6')
+# er09_7.output('[Debug]er09_7')
+# er09_8.output('[Debug]er09_8')
+# er09_9.output('[Debug]er09_9')
+
+pol.enclosing(diff_mos, 1.2.um).output("ER0902(Org):SG-L ENDCAP ER 1.2")#250314
 nwl.enclosing(psub_mp, 1.5.um).outside(chipring2).output("ER0102:NW-PSUB(MP) ENC ER 1.5")#250314
 
 (psub &amp; dlwlmp).enclosing(diff.inside(dlmp), 7.0.um).output("ERWLMP02:PSUB(WLMP)-L(MP) ENC ER 7.0")
@@ -840,7 +965,7 @@ pol_diff_edge = (dm_dcn.raw.edges &amp; pol.edges)
 pol_mos_edge  = (dm_dcn.raw.edges &amp; mos.edges)
 (pol_diff_edge - pol_mos_edge).output("dcont touches non-MOS Poly")
 
-er1903_1=ml1 - sidemetal - dlcsio #250408
+er1903_1=ml1 - sidemetal # - dlcsio #250408
 er1903_2=er1903_1 - pro#241004
 er1903_3=er1903_2.sized(-22.5.um)#241004
 er1903=er1903_3.sized(22.5.um)#241004
@@ -864,11 +989,29 @@ mno =  diff.overlapping(pol).inside(dlmno)
 mp = (diff &amp; pol).inside(dlmp) # MP = geomInside(geomOverlap(L SG) DLMP)
 mpo =  diff.overlapping(pol).inside(dlmpo)
 
-mp.not(dlwlmp).output("ERMP14:MP NOT ON DLWLMP ER") #geomAndNot(MP DLWLMP) 
+diff_mp.enclosed(pbe, 1.4.um).output('[Additional]ERMP01:PBE-L(MP) ENC ER 1.4')
+diff_mp.enclosed(hpm, 1.4.um).output('[Additional]ERMP02:HPM-L(MP) ENC ER 1.4')
+diff_mp.enclosed(nm, 1.4.um).output('[Additional]ERMP03:NM-L(MP) ENC ER 1.4')
+diff_mp.enclosed(nsd, 1.4.um).output('[Additional]ERMP04:NSD-L(MP) ENC ER 1.4')
+mp.width(1.0.um).output('[Additional]ERMP05:SG(MP) WIDTH ER 1.0')
+diff_mp.enclosed(pol.interacting(diff_mp), 1.2.um, projection).output('[Additional]ERMP06:MP ENDCAP ER 1.2')
+cnt_mp.enclosed(diff_mp, 0.8.um).output('[Additional]ERMP10:L-CONT ENC ER 0.8')
+
+ermp11_1 = cnt_mp.separation(mp, 1.01.um, projection).polygons - cnt_mp.separation(mp, 0.99.um, projection).polygons
+ERMP11 = cnt_mp.not_interacting(ermp11_1)
+ERMP11.output('[Additional]ERMP11:SG(MP)-CONT SP MUST 1.0')
+
+diff_mp.space(1.4.um).output('[Additional]ERMP12:L SPACE ER 1.4')
+
+mp.not(dlwlmp).output("ERMP14:MP NOT ON DLWLMP ER") #geomAndNot(MP DLWLMP)
 mp.not(psub).output("ERMP15:MP NOT ON PSUB ER") #geomAndNot(MP PSUB)
 mp.not(nwl).output("ERMP16:MP NOT ON NW ER") #geomAndNot(MP NW)
 mp.not(nf).output("ERMP17:MP NOT ON NF ER") #geomAndNot(MP NF)
 mp.not(pf).output("ERMP18:MP NOT ON PF ER") #geomAndNot(MP PF)
+mp.not(pbe).output('[Additional]ERMP19:PBE NOT ON MP ER') #geomAndNot(MP PBE)
+mp.not(hpm).output('[Additional]ERMP20:HPM NOT ON MP ER') #geomAndNot(MP HPM)
+mp.not(nm).output('[Additional]ERMP21:NM NOT ON MP ER') #geomAndNot(MP NM)
+mp.not(nsd).output('[Additional]ERMP22:NSD NOT ON MP ER') #geomAndNot(MP NSD)
 mp.interacting(hvnw).output("ERMP23:MP ON HVNW ER")
 mp.interacting(cl).output("ERMP24:CL ON MP ER")
 mp.interacting(hpbe).output("ERMP25:HPBE ON MP ER")
@@ -878,10 +1021,30 @@ mp.interacting(pm).output("ERMP28:PM ON MP ER")
 mp.interacting(r).output("ERMP29:R ON MP ER")
 mp.interacting(narea).output("ERMP30:PSD ON MP ER")
 
+diff_mn.enclosed(nbe, 1.4.um).output('[Additional]ERMN01:NBE-L(MN) ENC ER 1.4')
+diff_mn.enclosed(hpm, 1.4.um).output('[Additional]ERMN02:HPM-L(MN) ENC ER 1.4')
+diff_mn.enclosed(pm, 1.4.um).output('[Additional]ERMN03:PM-L(MN) ENC ER 1.4')
+diff_mn.enclosed(psd, 1.4.um).output('[Additional]ERMN04:PSD-L(MN) ENC ER 1.4')
+mn.width(1.0.um).output('[Additional]ERMN05:SG(MN) WIDTH ER 1.0')
+diff_mn.enclosed(pol.interacting(diff_mn), 1.2.um, projection).output('[Additional]ERMN06:MN ENDCAP ER 1.2')
+cnt_mn.enclosed(diff_mn, 0.8.um).output('[Additional]ERMN11:L(MN)-CONT ENC ER 0.8')
+
+ermn12_1 = cnt_mn.separation(mn, 1.01.um, projection).polygons - cnt_mn.separation(mn, 0.99.um, projection).polygons
+ERMN12 = cnt_mn.not_interacting(ermn12_1)
+ERMN12.output('[Additional]ERMN12:SG(MN)-CONT SP MUST 1.0')
+
+cnt_bgmn.enclosed(diff_bgmn, 0.8.um).output('[Additional]ERMN13:L(BGMN)-CONT ENC ER 0.8')
+
+diff_mn.space(1.4.um).output('[Additional]ERMN14:L SPACE ER 1.4')
+
 mn.interacting(psub).output("ERMN16:MN ON PSUB ER")
 mn.interacting(nwl).output("ERMN17:MN ON NW ER")
 mn.interacting(nf).output("ERMN18:MN ON NF ER")
 mn.interacting(pf).output("ERMN19:MN ON PF ER")
+mn.not(nbe).output('[Additional]ERMN20:NBE NOT ON MN ER')
+mn.not(hpm).output('[Additional]ERMN21:HPM NOT ON MN ER')
+mn.not(pm).output('[Additional]ERMN22:PM NOT ON MN ER')
+mn.not(psd).output('[Additional]ERMN23:PSD NOT ON MN ER')
 mn.interacting(hvnw).output("ERMN24:MN ON HVNW ER")
 mn.interacting(cl).output("ERMN25:CL ON MN ER")
 mn.interacting(hpbe).output("ERMN26:HPBE ON MN ER")
@@ -891,9 +1054,21 @@ mn.interacting(nm).output("ERMN29:NM ON MN ER")
 mn.interacting(r).output("ERMN30:R ON MN ER")
 mn.interacting(parea).output("ERMN31:NSD ON MN ER")
 mn.not(dlwlmn).output("ERMN32:MN NOT ON WLMN ER") #geomOutside(MN DLWLMN) -&gt; SHOULD BE geomAntNot(MN DLWLMN)
-dldn.not(dlwlmn).output("ERMN33:DN NOT ON WLMN ER") #geomOutside(DN DLWLMN) -&gt; SHOULD BE geomAntNot(DN DLWLMN) 
+dldn.not(dlwlmn).output("ERMN33:DN NOT ON WLMN ER") #geomOutside(DN DLWLMN) -&gt; SHOULD BE geomAntNot(DN DLWLMN)
+
+cnt_bgmn.space(1.0.um).output('[Additional]ERBGMN01:CONT(BGMN) SP ER 1.0')
+(cnt_bgmn.without_bbox_min(1.0.um) + cnt_bgmn.without_bbox_max(1.0.um)).merged.output('[Additional]ERBGMN02:CONT(BGMN) WIDTH MUST 1.0')
+cnt_bgmn.enclosed(diff_bgmn, 0.8.um).output('[Additional]ERBGMN03:L-CONT ENC ER 0.8')
+diff_bgmn.enclosed(hpm, 1.4.um).output('[Additional]ERBGMN04:HPM-L(BGMN) ENC ER 1.4')
+diff_bgmn.enclosed(pm, 1.4.um).output('[Additional]ERBGMN05:PM-L(BGMN) ENC ER 1.4')
+diff_bgmn.enclosed(nm, 1.4.um).output('[Additional]ERBGMN06:NM-L(BGMN) ENC ER 1.4')
+diff_bgmn.enclosed(psd, 1.4.um).output('[Additional]ERBGMN07:PSD-L(BGMN) ENC ER 1.4')
 
 bgmn = diff.inside(dlbgmn)
+(bgmn - hpm).output('[Additional]ERBGMN08:HPM NOT ON BGMN ER')
+(bgmn - pm).output('[Additional]ERBGMN09:PM NOT ON BGMN ER')
+(bgmn - nm).output('[Additional]ERBGMN10:NM NOT ON BGMN ER')
+(bgmn - nsd).output('[Additional]ERBGMN11:NSD NOT ON BGMN ER')
 bgmn.interacting(psub).output("ERBGMN12:BGMN ON PSUB ER")
 bgmn.interacting(nwl).output("ERBGMN13:BGMN ON NW ER")
 bgmn.interacting(nf).output("ERBGMN14:BGMN ON NF ER")
@@ -908,6 +1083,14 @@ bgmn.interacting(r).output("ERBGMN22:R ON BGMN ER")
 bgmn.interacting(narea).output("ERBGMN23:PSD ON BGMN ER")
 
 dn = diff.inside(dldn)
+dn.enclosed(hpm, 1.4.um).output('[Additional]ERDN01:HPM-D(DN) ENC ER 1.4')
+dn.enclosed(pm, 1.4.um).output('[Additional]ERDN02:PM-D(DN) ENC ER 1.4')
+dn.enclosed(psd, 1.4.um).output('[Additional]ERDN03:PSD-D(DN) ENC ER 1.4')
+dn.enclosed(nm, 1.4.um).output('[Additional]ERDN04:NM-D(DN) ENC ER 1.4')
+(cnt_dn.without_bbox_min(1.2.um) + cnt_dn.without_bbox_max(1.2.um)).merged.output('[Additional]ERDN05:CONT(DN) WIDTH MUST 1.2')
+(dn - hpm).output('[Additional]ERDP06:HPM NOT ON DN ER')
+(dn - pm).output('[Additional]ERDP07:PM NOT ON DN ER')
+(dn - psd).output('[Additional]ERDP08:PSD NOT ON DN ER')
 dn.interacting(psub).output("ERDN09:DN ON PSUB ER")
 dn.interacting(nwl).output("ERDN10:DN ON NW ER")
 dn.interacting(nf).output("ERDN11:DN ON NF ER")
@@ -918,11 +1101,25 @@ dn.interacting(hpbe).output("ERDN15:HPBE ON DN ER")
 dn.interacting(hnbe).output("ERDN16:HNBE ON DN ER")
 dn.interacting(pbe).output("ERDN17:PBE ON DN ER")
 dn.interacting(nbe).output("ERDN18:NBE ON DN ER")
+(dn - nm).output('[Additional]ERDP19:NM NOT ON DN ER')
 dn.interacting(r).output("ERDN20:R ON DN ER")
 dn.interacting(parea).output("ERDN21:NSD ON DN ER")
 psub.separation(diff.inside(dldn), 10.0.um).output("ERDN24:PSUB-L(DN) SP ER 10")
+(cnt &amp; dn).enclosed(diff, 1.2.um).output('[Additional]ERDN25:L(DN)-CONT(DN) ENC ER 1.2')
+
+cnt_bgmp.space(1.0.um).output('[Additional]ERBGMP01:CONT(BGMP) SP ER 1.0')
+(cnt_bgmp.without_bbox_min(1.0.um) + cnt_bgmp.without_bbox_max(1.0.um)).merged.output('[Additional]ERBGMP02:CONT(BGMP) WIDTH MUST 1.0')
+cnt_bgmp.enclosed(diff_bgmp, 0.8.um).output('[Additional]ERBGMP03:L-CONT ENC ER 0.8')
+diff_bgmp.enclosed(hpm, 1.4.um).output('[Additional]ERBGMP04:HPM-L(BGMP) ENC ER 1.4')
+diff_bgmp.enclosed(pm, 1.4.um).output('[Additional]ERBGMP05:PM-L(BGMP) ENC ER 1.4')
+diff_bgmp.enclosed(nm, 1.4.um).output('[Additional]ERBGMP06:NM-L(BGMP) ENC ER 1.4')
+diff_bgmp.enclosed(psd, 1.4.um).output('[Additional]ERBGMP07:PSD-L(BGMP) ENC ER 1.4')
 
 bgmp = diff.inside(dlbgmp)
+(bgmp - hpm).output('[Additional]ERBGMP09:HPM NOT ON BGMP ER')
+(bgmp - pm).output('[Additional]ERBGMP10:PM NOT ON BGMP ER')
+(bgmp - nm).output('[Additional]ERBGMP11:NM NOT ON BGMP ER')
+(bgmp - psd).output('[Additional]ERBGMP12:PSD NOT ON BGMP ER')
 bgmp.not(psub).output("ERBGMP13:BGMP NOT ON PSUB ER") #geomAndNot(BGMP PSUB)
 bgmp.not(nwl).output("ERBGMP14:BGMP NOT ON NW ER") #geomAndNot(BGMP NW)
 bgmp.not(nf).output("ERBGMP15:BGMP NOT ON NF ER") #geomAndNot(BGMP NF)
@@ -937,7 +1134,14 @@ bgmp.interacting(r).output("ERBGMP23:R ON BGMP ER")
 bgmp.interacting(parea).output("ERBGMP24:NSD ON BGMP ER")
 
 dp = diff.inside(dldp)
-dp.not(psub).output("ERDP10:DP NOT ON PSUB ER") #geomAndNot(DP PSUB) 
+dp.enclosed(hpm, 1.4.um).output('[Additional]ERDP02:HPM-L(DP) ENC ER 1.4')
+dp.enclosed(nm, 1.4.um).output('[Additional]ERDP03:NM-L(DP) ENC ER 1.4')
+dp.enclosed(nsd, 1.4.um).output('[Additional]ERDP04:NSD-L(DP) ENC ER 1.4')
+(cnt_dp.without_bbox_min(1.2.um) + cnt_dp.without_bbox_max(1.2.um)).merged.output('[Additional]ERDP05:CONT(DP) WIDTH MUST 1.2')
+(dp - hpm).output('[Additional]ERDP07:HPM NOT ON DP ER')
+(dp - nm).output('[Additional]ERDP08:NM NOT ON DP ER')
+(dp - nsd).output('[Additional]ERDP09:NSD NOT ON DP ER')
+dp.not(psub).output("ERDP10:DP NOT ON PSUB ER") #geomAndNot(DP PSUB)
 dp.not(nwl).output("ERDP11:DP NOT ON NW ER") #geomAndNot(DP NW)
 dp.not(nf).output("ERDP12:DP NOT ON NF ER") #geomAndNot(DP NF)
 dp.not(pf).output("ERDP13:DP NOT ON PF ER") #geomAndNot(DP PF)
@@ -947,17 +1151,101 @@ dp.interacting(hpbe).output("ERDP16:HPBE ON DP ER")
 dp.interacting(hnbe).output("ERDP17:HNBE ON DP ER")
 dp.interacting(pbe).output("ERDP18:PBE ON DP ER")
 dp.interacting(nbe).output("ERDP19:NBE ON DP ER")
+(dp - pm).output('[Additional]ERDP20:PM NOT ON DP ER')
 dp.interacting(r).output("ERDP21:R ON DP ER")
 dp.interacting(narea).output("ERDP22:PSD ON DP ER")
+dp.enclosed(pm, 1.4.um).output('[Additional]ERDP23:PM-L(DP) ENC ER 1.4')
+(cnt &amp; dp).enclosed(diff, 1.2.um).output('[Additional]ERDP24:L(DP)-CONT(DP) ENC ER 1.2')
+(psub &amp; dlwlmp).enclosed(dp, 7.0.um).output('[Additional]ERDP25:PSUB(WLMP)-L(DP) ENC ER 7.0')
 
+psub.separation((diff &amp; dlmn), 10.0.um).output('[Additional]ERWLMN01:PSUB-L(MN) SP ER 10.0')
 dlwlmn.enclosing(diff.inside(dlmn), 10.0.um).output("ERWLMN02:DLWLMN-L(MN) ENC ER 10.0")
+psub.separation((diff &amp; dlbgmn), 5.0.um).output('[Additional]ERWLMN03:PSUB-L(BGMN) SP ER 5.0')
 dlwlmn.enclosing(diff.inside(dlbgmn), 5.0.um).output("ERWLMN04:DLWLMN-L(BGMN) ENC ER 5.0")
 
-dlrr.not(psub).output("ERRR18:RR NOT ON PSUB ER") #geomAndNot(RR PSUB)
-dlrr.not(hvnw).output("ERRR19:RR NOT ON HVNW ER") #geomAndNot(RR HVNW)
-dlrr.not(nf).output("ERRR20:RR NOT ON NF ER") #geomAndNot(RR NF)
-
 rr = (diff &amp; dlrr).inside(dlrr)
+rr.not(psub).output("ERRR18:RR NOT ON PSUB ER") #geomAndNot(RR PSUB)
+rr.not(hvnw).output("ERRR19:RR NOT ON HVNW ER") #geomAndNot(RR HVNW)
+rr.not(nf).output("ERRR20:RR NOT ON NF ER") #geomAndNot(RR NF)
+rr.not(hpm).output('[Additional]ERRR21:HPM NOT ON RR ER') #geomAndNot(RR HPM)
+rr.not(pm).output('[Additional]ERRR22:PM NOT ON RR ER') #geomAndNot(RR PM)
+rr.not(nm).output('[Additional]ERRR23:NM NOT ON RR ER') #geomAndNot(RR NM)
+rr.not(r).output('[Additional]ERRR24:R NOT ON RR ER') #geomAndNot(RR R)
+rr.not(nsd).output('[Additional]ERRR25:NSD NOT ON RR ER') #geomAndNot(RR NSD)
+rr.enclosed(hpm, 1.4.um).output('[Additional]ERRR01:HPM-L(RR) ENC ER 2.0')
+rr.enclosed(pm, 1.4.um).output('[Additional]ERRR02:PM-L(RR) ENC ER 2.0')
+rr.enclosed(nm, 1.4.um).output('[Additional]ERRR03:NM-L(RR) ENC ER 2.0')
+rr.enclosed(nsd, 1.4.um).output('[Additional]ERRR04:NSD-L(RR) ENC ER 2.0')
+rr.enclosed(r, 1.4.um).output('[Additional]ERRR05:R-L(RR) ENC ER 2.0')
+(pol &amp; dlrr).width(2.0.um).output('[Additional]ERRR06:SG(RR) WIDTH ER 2.0')
+psd.edges.inside_part(rr).with_length(.. 2.8.um).output('[Additional]ERRR07:L(RR) WIDTH ER 2.8')
+
+cnt_rr=cnt_pol.inside(rr) # 2026-09-06
+errr08_1 = rr.edges.with_angle(ortho)
+errr08_2 = errr08_1.outside(psd)
+errr08_3 = cnt_rr.edges.enclosed(errr08_2, 1.5.um, projection)
+ERRR08 = errr08_3.output('[Additional]ERRR08:L(RR top)-CONTL ENC ER 1.5')
+
+errr09_1 = rr.corners(90.0, as_boxes)
+errr09_2 = rr.edges.with_angle(diagonal_only)
+# errr09_3 = errr09_2.with_length(.. 1.414213562)
+errr09_3 = errr09_2.with_length(.. 1.41449.um)
+ERRR09 = errr09_1 + errr09_3.extents
+ERRR09.output('[Additional]ERRR09:L(RR) DENKAI KANWA ER 1.0')
+
+errr10_0 = psd.edges.inside_part(rr).with_length(4.0.um ..)
+errr10_1 = rr.overlapping(errr10_0.extended_out(1.dbu))
+errr10_2 = cnt_rr &amp; errr10_1
+errr10_31 = errr10_2.sized(-0.5.um+1.dbu).sized(0.5.um-1.dbu)
+errr10_32 = errr10_2.sized(-0.5.um).sized(0.5.um)
+errr10_3 = errr10_2 - (errr10_31 - errr10_32)
+errr10_4 = errr10_2.with_bbox_max(1.0.um+1.dbu .. 1.6.um)
+errr10_5 = errr10_2.with_bbox_min(1.0.um) &amp; errr10_2.with_bbox_max(1.0.um)
+ERRR10 = (errr10_3 + errr10_4 + errr10_5).merged
+ERRR10.output('[Additional]ERRR10:CONTL long side WIDTH ER 1.6,CONTL short side WIDTH MUST 1.0(when m>=4.0)')
+# errr10_0.output('[Debug]errr10_0')
+# errr10_1.output('[Debug]errr10_1')
+# errr10_2.output('[Debug]errr10_2')
+# errr10_3.output('[Debug]errr10_3')
+# errr10_4.output('[Debug]errr10_4')
+# errr10_5.output('[Debug]errr10_5')
+
+errr11_0 = psd.edges.inside_part(rr).with_length(2.8.um)
+errr11_1 = rr.overlapping(errr11_0.extended_out(1.dbu))
+errr11_2 = cnt_rr &amp; errr11_1
+(errr11_2.without_bbox_min(1.0.um) + errr11_2.without_bbox_max(1.0.um)).merged.output('[Additional]ERRR11:CONT WIDTH MUST 1.0(when m=2.8)')
+
+errr13_0 = cnt_rr &amp; errr10_1
+errr13_0.enclosed(rr, 1.2.um, projection).output('[Additional]ERRR13:L(RR)-CONTL ENC ER 1.2(when m>=4.0)')
+
+errr14_0 = cnt_rr &amp; errr11_1
+errr14_0.enclosed(rr, 0.9.um, projection).output('[Additional]ERRR14:L(RR)-CONTL ENC ER 0.8(when m=2.8)')
+
+errr15_1 = rr.edges.with_angle(ortho)
+errr15_2 = errr15_1.extended_out(1.0.um)
+errr15_3 = errr15_2.edges.raw.and((pol &amp; dlrr).edges.raw)
+ERRR15 = errr15_2.not_interacting(errr15_3).output('[Addtional]ERRR15:SG-L(RR) SP MUST 1.0')
+
+ERRR16 = rr.enclosed(psd, 2.0.um, projection).output('[Additional]ERRR16:PSD-L(RR) CROSS ER 2.0')
+
+errr17_1 = rr &amp; (cnt &amp; dlrr)
+errr17_2 = rr &amp; psd
+errr17_3 = errr17_1 + errr17_2
+errr17_4 = errr17_3.separation(errr17_3, 4.2.um, projection).edges
+errr17_5 = errr17_3.separation(errr17_3, 4.2.um+1.dbu, projection).edges
+errr17_6 = errr17_5 - errr17_4
+# errr17_7 = errr17_3.edges.raw.and(errr17_6)
+errr17_7 = errr17_3.interacting(errr17_3.edges.raw.and(errr17_6))
+ERRR17 = errr17_3 - errr17_7
+ERRR17.output('[Additional]ERRR17:PSD-CONTL(RR) SP ER 4.2')
+# errr17_1.output('[Debug]errr17_1')
+# errr17_2.output('[Debug]errr17_2')
+# errr17_3.output('[Debug]errr17_3')
+# errr17_4.output('[Debug]errr17_4')
+# errr17_5.output('[Debug]errr17_5')
+# errr17_6.output('[Debug]errr17_6')
+# errr17_7.output('[Debug]errr17_7')
+
 rr.interacting(nwl).output("ERRR27:RR ON NW ER")
 rr.interacting(pf).output("ERRR28:RR ON PF ER")
 rr.interacting(cl).output("ERRR29:CL ON RR ER")
@@ -966,10 +1254,33 @@ rr.interacting(hnbe).output("ERRR31:HNBE ON RR ER")
 rr.interacting(pbe).output("ERRR32:PBE ON RR ER")
 rr.interacting(nbe).output("ERRR33:NBE ON RR ER")
 rr.interacting(rhp).output("ERRR34:RHP ON RR ER")
+
+errr35_0 = psd.edges.inside_part(rr).with_length(2.8.um+1.dbu ..)
+errr35_1 = errr35_0.extents(0.1.um)
+errr35_2 = psd.edges.inside_part(rr).with_length(.. 4.0.um)
+errr35_3 = errr35_2.extents(0.1.um)
+ERRR35 = errr35_1 &amp; errr35_3
+ERRR35.output('[Additional]L(RR) WIDTH ER 2.8~4 forbidden')
+
 sg_rr = pol &amp; dlrr
-sg_rr.interacting(cnt).output("ERRR36:SG(RR) ON CONT ER")
+# sg_rr.interacting(cnt).output("ERRR36:SG(RR) ON CONT ER")
+cnt.interacting(sg_rr).output('ERRR36:SG(RR) ON CONT ER')
 
 bgrr = (diff &amp; dlbgrr).inside(dlbgrr)
+bgrr.enclosed(hpm, 1.4.um).output('[Addtional]ERBGRR01:HPM-L(BGRR) ENC ER 1.4')
+bgrr.enclosed(pm, 1.4.um).output('[Addtional]ERBGRR02:PM-L(BGRR) ENC ER 1.4')
+bgrr.enclosed(nm, 1.4.um).output('[Addtional]ERBGRR03:NM-L(BGRR) ENC ER 1.4')
+bgrr.enclosed(psd, 1.4.um).output('[Addtional]ERBGRR04:PSD-L(BGRR) ENC ER 1.4')
+
+cnt_bgrr=cnt_pol.inside(dlbgrr) # 2026-09-05
+cnt_bgrr.separation(cnt, 1.0.um, transparent).output('[Additional]ERBGRR05:CONT(BGRR) SP ER 1.0')
+(cnt_bgrr.without_bbox_min(1.0.um) + cnt_bgrr.without_bbox_max(1.0.um)).merged.output('[Additional]ERBGRR06:CONT(BGRR) WIDTH MUST 1.0')
+
+(bgrr - hpm).output('[Additional]ERBGRR07:HPM NOT ON BGRR ER"')
+(bgrr - pm).output('[Additional]ERBGRR08:PM NOT ON BGRR ER"')
+(bgrr - nm).output('[Additional]ERBGRR09:NM NOT ON BGRR ER"')
+(bgrr - psd).output('[Additional]ERBGRR10:PSD NOT ON BGRR ER"')
+
 bgrr.not(psub).output("ERBGRR11:BGRR NOT ON PSUB ER") #geomAndNot(BGRR PSUB)
 bgrr.not(hvnw).output("ERBGRR12:BGRR NOT ON HVNW ER") #geomAndNot(BGRR HVNW)
 bgrr.interacting(nwl).output("ERBGRR13:BGRR ON NW ER") #geomAnd(BGRR NW)
@@ -983,6 +1294,19 @@ bgrr.interacting(nbe).output("ERBGRR20:NBE ON BGRR ER")
 bgrr.interacting(r).output("ERBGRR21:R ON BGRR ER")
 bgrr.interacting(parea).output("ERBGRR22:NSD ON BGRR ER")
 bgrr.interacting(rhp).output("ERBGRR23:RHP ON BGRR ER")
+
+ercsio24_1 = (hpm &amp; dlbgrr) ^ (pm &amp; dlbgrr)
+ercsio24_2 = (hpm &amp; dlbgrr) ^ (nm &amp; dlbgrr)
+ercsio24_3 = (hpm &amp; dlbgrr) ^ (psd &amp; dlbgrr)
+ercsio24_4 = (hpm &amp; dlbgrr) ^ dlbgrr
+ercsio24_5 = (pm &amp; dlbgrr) ^ (nm &amp; dlbgrr)
+ercsio24_6 = (pm &amp; dlbgrr) ^ (psd &amp; dlbgrr)
+ercsio24_7 = (pm &amp; dlbgrr) ^ dlbgrr
+ercsio24_8 = (nm &amp; dlbgrr) ^ (psd &amp; dlbgrr)
+ercsio24_9 = (nm &amp; dlbgrr) ^ dlbgrr
+ercsio24_10 = (psd &amp; dlbgrr) ^ dlbgrr
+ERCSIO24 = (ercsio24_1 + ercsio24_2 + ercsio24_3 + ercsio24_4 + ercsio24_5 + ercsio24_6 + ercsio24_7 + ercsio24_8 + ercsio24_9 + ercsio24_10).merged
+ERCSIO24.output('[Additional]ERBGRR24:HPM-PM-NM-PSD-DLBGRR UNMATCH ER')
 
 pf.interacting(csio).output("ERCSIO25:CSIO ON PF ER")
 hpbe.interacting(csio).output("ERCSIO27:HPBE ON CSIO ER")
@@ -1003,7 +1327,34 @@ cont_csio_cl    = cnt.inside(cl &amp; dlcsio)
 cont_csio_ring  = cnt.inside(dlcsio).not(cont_csio_cl)
 cont_csio = cont_csio_cl | cont_csio_ring
 cont_csio.without_perimeter(4.8.um).output("ERCSIO01:CONT(CSIO) WIDTH MUST 1.2")
+(cont_csio.without_bbox_min(1.2.um) + cont_csio.without_bbox_max(1.2.um)).merged.output('[Additional]ERCSIO01:CONT(CSIO) WIDTH MUST 1.2') # 2026-09-04
 ml1.enclosing(cont_csio_ring, 1.2.um).output("ERCSIO02:M1-CONT(CSIO RING) ENC ER 1.2")
+cont_csio_cl.enclosed(csio, 2.9.um).output('[Additional]ERCSIO03:L(CSIO_CL)-CONT(CSIO) ENC ER 2.9')
+
+diff_csio_ring = csio - (pol &amp; dlcsio)
+diff_csio_cl = csio &amp; (pol &amp; dlcsio)
+
+diff_csio_ring.enclosed(psub, 3.0.um).output('[Additional]ERCSIO04:PSUB-L(CSIO RING) ENC ER 3.0')
+cont_csio_cl.enclosed(ml1, 1.3.um).output('[Additional]ERCSIO05:M1-CONT(CSIO CL) ENC ER 1.3')
+diff_csio_ring.enclosed(hpm, 1.4.um).output('[Additional]ERCSIO07:HPM-L(CSIO RING) ENC ER 1.4')
+diff_csio_ring.enclosed(pm, 1.4.um).output('[Additional]ERCSIO08:PM-L(CSIO RING) ENC ER 1.4')
+diff_csio_ring.enclosed(nm, 1.4.um).output('[Additional]ERCSIO09:NM-L(CSIO RING) ENC ER 1.4')
+diff_csio_ring.enclosed(psd, 1.4.um).output('[Additional]ERCSIO10:PSD-L(CSIO RING) ENC ER 1.4')
+
+ercsio11_0 = ((hpm &amp; dlcsio) - diff_csio_ring - diff_csio_cl).overlapping(cl)
+ercsio11_1 = ercsio11_0.sized(-1.4.um).sized(1.4.um)
+ercsio11_2 = diff_csio_ring.separation(diff_csio_cl, 2.8.um, projection).polygons
+ERCSIO11 = ercsio11_1 + ercsio11_2
+ERCSIO11.output('[Additional]ERCSIO11:L(CSIO RING)-L(CSIO CL) SP MUST 2.8')
+
+(psub &amp; dlcsio).enclosed(nwl, 1.5.um).output('[Additional]ERCSIO12:NW-PSUB(CSIO) ENC ER 1.5')
+
+ercsio13_0 = (pol &amp; dlcsio).enclosed(diff, 1.4.um).polygons
+ercsio13_1 = (pol &amp; dlcsio) - (diff &amp; pol &amp; dlcsio)
+ercsio13_2 = ercsio13_1.sized(-0.7.um).sized(0.7.um)
+ERCSIO13 = ercsio13_0 + ercsio13_2
+ERCSIO13.output('[Additional]ERCSIO13:SG-L(CSIO) ENC MUST 1.4')
+
 cont_csio.space(1.2.um).output("ERCSIO14:CONT SP ER 1.2" )
 l_csio_ring = diff.inside(dlcsio).not(diff &amp; pol &amp; dlcsio)
 m1_csio_ring    =ml1.and(dlcsio).not(ml1.and(dlcsio).overlapping(pol.and(dlcsio))).and(l_csio_ring)
@@ -1022,7 +1373,31 @@ ercsio06_1 = ercsio06_0.select do |polygon|#250721
 end#250721
 ercsio06_1.output("ERCSIO06:M1(CSIO CL) SP MUST 10.0")#250721
 
+ERCSIO15 = (psub &amp; dlcsio) ^ (nf &amp; dlcsio)
+ERCSIO15.output('[Additional]ERCSIO15:CSIO PSUB-NF UNMATCH ER')
+
+ercsio16_0 = (pol &amp; dlcsio) ^ (nsd &amp; dlcsio)
+ercsio16_1 = (pol &amp; dlcsio) ^ (cl &amp; dlcsio)
+ercsio16_2 = (nsd &amp; dlcsio) ^ (cl &amp; dlcsio)
+ERCSIO16 = (ercsio16_0 + ercsio16_1 + ercsio16_2).merged
+ERCSIO16.output('[Additional]ERCSIO16:CSIO SG-NSD-CL UNMATCH ER')
+# ercsio16_0.output('[Debug]ercsio16_0')
+# ercsio16_1.output('[Debug]ercsio16_1')
+# ercsio16_2.output('[Debug]ercsio16_2')
+#
 dlcsio.interacting(hvnw).output("ERCSIO17:CSIO ON HVNW ER")
+(csio - nf).output('[Additional]ERCSIO18:CSIO NOT ON NF ER')
+(csio - hpm).output('[Additional]ERCSIO19:HPM NOT ON CSIO ER')
+(csio - pm).output('[Additional]ERCSIO20:PM NOT ON CSIO ER')
+(csio - nm).output('[Additional]ERCSIO21:NM NOT ON CSIO ER')
+(csio - psd).output('[Additional]ERCSIO22:PSD NOT ON CSIO ER')
+(diff_csio_cl - nsd).output('[Additional]ERCSIO23:NSD NOT ON CSIO ER')
+(csio - nwl).output('[Additional]ERCSIO24:CSIO NOT ON NW ER')
+(diff_csio_cl - cl).output('[Additional]ERCSIO26:CL NOT ON CSIO ER')
+
+ercsio33_1 = nwl.overlapping(dlcsio)
+ERCSIO33 = dlcsio ^ ercsio33_1
+ERCSIO33.output('[Additional]ERCSIO33:NW-DLCSIO UNMATCH ER')
 
 er0705_1 = pol.overlapping(dlrh) &amp; cnt
 er0705_2 = ml1.overlapping(er0705_1)
@@ -1045,6 +1420,65 @@ errr37_1 = pol.covering(sg_rr)
 errr37 = errr37_1.not(pol.covering(cnt))
 errr37.output("ERRR37:SG(RR) CONNECT TO SG NOT ON CONT ER")
 
+mpe.width(2.0.um).output('[Additional]ERMPE01:SG(MPE) WIDTH ER 2.0')
+diff_mpe.enclosed(pol.interacting(diff_mpe), 1.2.um, projection).output('[Additional]ERMPE02:MP ENDCAP ER 1.2')
+
+ermpe03_11 = cntl_mpe.separation(mpe, 3.0.um+1.dbu, projection).polygons
+ermpe03_12 = cntl_mpe.separation(mpe, 3.0.um, projection).polygons
+ermpe03_1 = ermpe03_11 - ermpe03_12
+ermpe03_21 = cntl_mpe.separation(mpe, 7.0.um+1.dbu, projection).polygons
+ermpe03_22 = cntl_mpe.separation(mpe, 7.0.um, projection).polygons
+ermpe03_2 = ermpe03_21 - ermpe03_22
+ermpe03_3 = diff_mpe.covering(ermpe03_1).covering(ermpe03_2)
+ermpe03_4 = (ermpe03_3 - pol).overlapping(ermpe03_1)
+ermpe03_5 = (cntl_mpe &amp; ermpe03_4).not_interacting(ermpe03_1)
+ermpe03_6 = (ermpe03_3 - pol).overlapping(ermpe03_2)
+ermpe03_7 = (cntl_mpe &amp; ermpe03_6).not_interacting(ermpe03_2)
+ERMPE03 = ermpe03_5.output('[Additional+]ERMPE03:SG-CONTL(MPE S) SP MUST 3.0')
+ERMPE04 = ermpe03_7.output('[Additional+]ERMPE04:SG-CONTL(MPE D) SP MUST 7.0')
+# ermpe03_1.output('[Debug]ermpe03_1')
+# ermpe03_2.output('[Debug]ermpe03_2')
+# ermpe03_3.output('[Debug]ermpe03_3')
+# ermpe03_4.output('[Debug]ermpe03_4')
+# ermpe03_5.output('[Debug]ermpe03_5')
+# ermpe03_6.output('[Debug]ermpe03_6')
+# ermpe03_7.output('[Debug]ermpe03_7')
+
+ermpe05_1 = diff_mpe.edges.with_angle(90.0)
+cntl_mpe.edges.enclosed(ermpe05_1, 4.0, projection).output('[Additional]ERMPE05:L(MPE)-CONTL(YOKO) ENC ER 4.0')
+
+ermpe06_0 = diff_mpe.corners(90.0, as_boxes)
+ermpe06_1 = diff_mpe.edges.with_angle(diagonal_only)
+ermpe06_2 = ermpe06_1.with_length(.. 1.97.um)
+ERMPE06 = ermpe06_0 + ermpe06_2.extents
+ERMPE06.output('[Additional]ERMPE06:L(MPE) DENKAI KANWA ER 1.4')
+
+diff_mpe.enclosed(pbe, 1.4.um).output('[Additional]ERMPE07:PBE-L(MPE) ENC ER 1.4')
+diff_mpe.enclosed(hpm, 1.4.um).output('[Additional]ERMPE08:HPM-L(MPE) ENC ER 1.4')
+diff_mpe.enclosed(nm, 1.4.um).output('[Additional]ERMPE09:NM-L(MPE) ENC ER 1.4')
+diff_mpe.enclosed(nsd, 1.4.um).output('[Additional]ERMPE10:NSD-L(MPE) ENC ER 1.4')
+
+ermpe11_1 = diff_mpe &amp; pol
+ermpe11_2 = ermpe11_1.edges.inside_part(diff_mpe)
+ERMPE11 = ermpe11_2.with_length(.. 11.0.um)
+ERMPE11.output('[Additional]ERMPE11:L(MPE) WIDTH ER 11')
+
+(cntl_mpe.without_bbox_min(3.0.um) + cntl_mpe.without_bbox_max(3.0.um)).merged.output('[Additional]ERMPE12:CONT(MPE) WIDTH MUST 3.0')
+
+cntl_mpe.space(1.6.um).output('[Additional]ERMPE13:CONTL(MPE) SP ER 1.6')
+
+ermpe14_1 = pol.overlapping(diff_mpe)
+cnt.enclosed(ermpe14_1, 0.8.um).output('[Additional]ERMPE14:SG CONT ENC ER 0.8')
+
+mpe.not(psub).output('[Additional]ERMPE15:MPE NOT ON PSUB ER')
+mpe.not(nwl).output('[Additional]ERMPE16:MPE NOT ON NW ER')
+mpe.not(nf).output('[Additional]ERMPE17:MPE NOT ON NF ER')
+mpe.not(pf).output('[Additional]ERMPE18:MPE NOT ON PF ER')
+mpe.not(pbe).output('[Additional]ERMPE19:MPE NOT ON PBE ER')
+mpe.not(hpm).output('[Additional]ERMPE20:MPE NOT ON HPM ER')
+mpe.not(nm).output('[Additional]ERMPE21:MPE NOT ON NM ER')
+mpe.not(nsd).output('[Additional]ERMPE22:MPE NOT ON NSD ER')
+
 mpe.and(hvnw).output("ERMPE23:MPE ON HVNW ER")
 mpe.and(cl).output("ERMPE24:CL ON MPE ER")
 mpe.and(hpbe).output("ERMPE25:HPBE ON MPE ER")
@@ -1054,10 +1488,83 @@ mpe.and(pm).output("ERMPE28:PM ON MPE ER")
 mpe.and(r).output("ERMPE29:R ON MPE ER")
 mpe.and(narea).output("ERMPE30:PSD ON MPE ER")
 
+cntl_mpe.enclosed(diff_mpe, 2.5.um, projection).output('[Additional]ERMPE31:L(MPE)-CONTL(TATE) ENC ER 2.5')
+
+diff_mpe.enclosed((psub &amp; dlwlmp), 7.0.um).output('[Additional]ERWLMP14:PSUB(WLMP)-L(MPE) ENC ER 7.0')
+diff_mpe.separation(diff_bgmp, 10.0.um).output('[Additional]ERWLMP15:L(MPE)-L(BGMP) SP ER 10.0')
+cnt.separation(diff_mpe, 2.0.um).output('[Additional]ERWLMP16:L(MPE)-CONT SP ER 2.0')
+diff_mpe.space(1.4.um).output('[Additional]ERWLMP17:L(MPE) SP ER 1.4')
+pol.separation(diff_mpe, 0.4.um).output('[Additional]ERWLMP18:SG-L(MPE) SP ER 0.4')
+
+erwlmp19_0 = (psub &amp; dlwlmp) ^ (nf &amp; dlwlmp)
+erwlmp19_1 = (psub &amp; dlwlmp) ^ (pf &amp; dlwlmp)
+erwlmp19_2 = (pf &amp; dlwlmp) ^ (nf &amp; dlwlmp)
+ERWLMP19 = (erwlmp19_0 + erwlmp19_1 + erwlmp19_2).merged
+ERWLMP19.output('[Additional]ERWLMP19:PSUB-NF-PF UNMATCH ER')
+
+erwlmp21_1 = nwl.outside(dlcsio).outside(chipring)
+ERWLMP21 = erwlmp21_1 ^ dlwlmp
+ERWLMP21.output('[Additional]ERWLMP21:DLWLMP-NW UNMATCH ER')
+
+erwlmp22_1 = mpe + bgmp + dp
+# erwlmp22_1.output('[Debug]erwlmp22_1')
+erwlmp22_1.not(psub).output('[Additional]ERWLMP22:PSUB NOT ON WLMP ER')
+
+mne.width(2.0.um).output('[Additional]ERMNE01:SG(mne) WIDTH ER 2.0')
+diff_mne.enclosed(pol.interacting(diff_mne), 1.2.um, projection).output('[Additional]ERMNE02:MP ENDCAP ER 1.2')
+
+diff_mne.enclosed(nbe, 1.4.um).output('[Additional]ERMPE03:NBE-L(MNE) ENC ER 1.4')
+diff_mne.enclosed(hpm, 1.4.um).output('[Additional]ERMPE04:HPM-L(MNE) ENC ER 1.4')
+diff_mne.enclosed(pm, 1.4.um).output('[Additional]ERMPE05:PM-L(MNE) ENC ER 1.4')
+diff_mne.enclosed(psd, 1.4.um).output('[Additional]ERMPE06:PSD-L(MNE) ENC ER 1.4')
+
+ermne07_1 = pol.overlapping(diff_mne)
+cnt.enclosed(ermne07_1, 0.8.um).output('[Additional]ERMNE07:SG CONT ENC ER 0.8')
+
+ermne08_11 = cntl_mne.separation(mne, 3.0.um+1.dbu, projection).polygons
+ermne08_12 = cntl_mne.separation(mne, 3.0.um, projection).polygons
+ermne08_1 = ermne08_11 - ermne08_12
+ermne08_21 = cntl_mne.separation(mne, 7.0.um+1.dbu, projection).polygons
+ermne08_22 = cntl_mne.separation(mne, 7.0.um, projection).polygons
+ermne08_2 = ermne08_21 - ermne08_22
+ermne08_3 = diff_mne.covering(ermne08_1).covering(ermne08_2)
+ermne08_4 = (ermne08_3 - pol).overlapping(ermne08_1)
+ermne08_5 = (cntl_mne &amp; ermne08_4).not_interacting(ermne08_1)
+ermne08_6 = (ermne08_3 - pol).overlapping(ermne08_2)
+ermne08_7 = (cntl_mne &amp; ermne08_6).not_interacting(ermne08_2)
+ERMNE08 = ermne08_5.output('[Additional+]ERMNE08:SG-CONTL(MNE S) SP MUST 3.0')
+ERMNE09 = ermne08_7.output('[Additional+]ERMNE09:SG-CONTL(MNE D) SP MUST 7.0')
+
+ermne10_1 = diff_mne.edges.with_angle(90.0)
+cntl_mne.edges.enclosed(ermne10_1, 4.0, projection).output('[Additional]ERMNE10:L(MNE)-CONTL(YOKO) ENC ER 4.0')
+
+ermne12_1 = diff_mne &amp; pol
+ermne12_2 = ermne12_1.edges.inside_part(diff_mne)
+ERMNE12 = ermne12_2.with_length(.. 11.0.um)
+ERMNE12.output('[Additional]ERMNE12:L(MNE) WIDTH ER 11')
+
+(cntl_mne.without_bbox_min(3.0.um) + cntl_mne.without_bbox_max(3.0.um)).merged.output('[Additional]ERMNE13:CONT(MNE) WIDTH MUST 3.0')
+
+cntl_mne.space(1.6.um).output('[Additional]ERMNE14:CONTL(MNE) SP ER 1.6')
+
+ermne15_0 = diff_mne.corners(90.0, as_boxes)
+ermne15_1 = diff_mne.edges.with_angle(diagonal_only)
+ermne15_2 = ermne15_1.with_length(.. 1.97.um)
+ERMNE15 = ermne15_0 + ermne15_2.extents
+ERMNE15.output('[Additional]ERMNE15:L(MNE) DENKAI KANWA ER 1.4')
+
+
 mne.and(psub).output("ERMNE16:MNE ON PSUB ER")
 mne.and(nwl).output("ERMNE17:MNE ON NW ER")
 mne.and(nf).output("ERMNE18:MNE ON NF ER")
 mne.and(pf).output("ERMNE19:MNE ON PF ER")
+
+mne.not(nbe).output('[Additional]ERMNE20:MNE NOT ON NBE ER')
+mne.not(hpm).output('[Additional]ERMNE21:MNE NOT ON HPM ER')
+mne.not(pm).output('[Additional]ERMNE22:MNE NOT ON PM ER')
+mne.not(nm).output('[Additional]ERMNE23:MNE NOT ON NM ER')
+mne.not(psd).output('[Additional]ERMNE24:MNE NOT ON PSD ER')
+
 mne.and(cl).output("ERMNE25:CL ON MNE ER")
 mne.and(hpbe).output("ERMNE26:HPBE ON MNE ER")
 mne.and(hnbe).output("ERMNE27:HNBE ON MNE ER")
@@ -1065,6 +1572,8 @@ mne.and(pbe).output("ERMNE28:PBE ON MNE ER")
 mne.and(r).output("ERMNE29:R ON MNE ER")
 mne.and(parea).output("ERMNE30:NSD ON MNE ER")
 mne.and(hvnw).output("ERMNE31:MNE ON HVNW ER")
+
+cntl_mne.enclosed(diff_mne, 2.5.um, projection).output('[Additional]ERMNE31:L(MNE)-CONTL(TATE) ENC ER 2.5')
 
 if defined? extra_drc_check
   extra_drc_check mpo, psub, hvnw, nf, nwl, pf, cl, hnbe, hpbe, pbe, nbe, hpm, r, rhp, diff,

@@ -48,7 +48,6 @@ netlist.make_top_level_pins             # Generate top pin
 #
 netlist.purge                           # delete empty cell
 netlist.purge_nets                      # delete floating net
-# netlist.combine_devices
 #
 # use_net_names = true
 # target_netlist(Lay_file, write_spice(true), "Created by KLayout")
@@ -58,7 +57,7 @@ target_netlist(Lay_file, writer, "Created by KLayout")
 #
 if NET_ONLY
     puts("Starting TR-1um LVS in Net Only Mode")
-    netlist.combine_devices
+    # netlist.combine_devices
     puts("Done")
 else
 #
@@ -93,12 +92,15 @@ else
     #
     if IGNORE_TOP_PORTS_MISMATCH
         puts("Starting TR-1um LVS Comparison")
+        puts("Running compare ..")
         success = compare
     else
         puts("Starting TR-1um LVS Comparison in strict port mode")
         puts("flag_missing_ports enabled: missing/mislabeled top-level ports are treated as errors")
         # success = compare && flag_missing_ports
+        puts("Running comparison ..")
         compare_result = compare
+        puts("Checking ports ..")
         port_check_result = flag_missing_ports
         success = compare_result && port_check_result
     end
