@@ -118,25 +118,40 @@ class MyWriter < RBA::NetlistSpiceWriterDelegate
     end
 
     # Generate device terminals
-    def generate_device_terminals(device, device_class)
-        default_terminals = device_class.terminal_definitions.map do |td|
-          # puts("device_class.name = #{device_class.name} / td.name = #{td.name}")
-          # puts("device.net_for_terminal(td.id) = #{device.net_for_terminal(td.id)}")
-          net_to_string(device.net_for_terminal(td.id))
-        end
+    # def generate_device_terminals(device, device_class)
+    #     default_terminals = device_class.terminal_definitions.map do |td|
+    #       # puts("device_class.name = #{device_class.name} / td.name = #{td.name}")
+    #       # puts("device.net_for_terminal(td.id) = #{device.net_for_terminal(td.id)}")
+    #       net_to_string(device.net_for_terminal(td.id))
+    #     end
 
-        # return "#{default_terminals.join(' ')} " unless device_class.name.to_s.downcase.include?('nmos')
-        return "#{default_terminals.join(' ')} " unless device_class.name.to_s.downcase.include?('mos')
+    #     # return "#{default_terminals.join(' ')} " unless device_class.name.to_s.downcase.include?('nmos')
+    #     return "#{default_terminals.join(' ')} " unless device_class.name.to_s.downcase.include?('mos')
 
-        ordered_names = %w[D G S B]
-        ordered_ids = ordered_names.map { |name| device_class.terminal_id(name) }
-        return "#{default_terminals.join(' ')} " if ordered_ids.any?(&:nil?)
+    #     ordered_names = %w[D G S B]
+    #     ordered_ids = ordered_names.map { |name| device_class.terminal_id(name) }
+    #     return "#{default_terminals.join(' ')} " if ordered_ids.any?(&:nil?)
 
-        ordered_terminals = ordered_ids.map do |term_id|
-          net_to_string(device.net_for_terminal(term_id))
-        end
-        "#{ordered_terminals.join(' ')} "
-    end
+    #     ordered_terminals = ordered_ids.map do |term_id|
+    #       net_to_string(device.net_for_terminal(term_id))
+    #     end
+    #     "#{ordered_terminals.join(' ')} "
+    # end
+
+   # Generate device terminals
+   def generate_device_terminals(device, device_class)
+       # mosfet terminal order is fixed
+       if device_class.name.to_s.downcase.include?('mos')
+           my_terminal_ids = %w[D G S B].map { |name| device_class.terminal_id(name) }
+       else
+           my_terminal_ids = device_class.terminal_definitions.map { |td| td.id }
+       end
+
+       my_terminals = my_terminal_ids.map do |term_id|
+           net_to_string(device.net_for_terminal(term_id))
+       end
+       return "#{my_terminals.join(' ')} "
+   end
 
     # Determine the unit for each parameter
     def get_unit(key)

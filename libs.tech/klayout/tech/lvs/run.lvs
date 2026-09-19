@@ -42,6 +42,17 @@ if $ignore_top_ports_mismatch
 else
     IGNORE_TOP_PORTS_MISMATCH = false
 end
+
+skip_warnings = false
+
+skip_combine = defined?($skip_combine) &&
+               $skip_combine.to_s.downcase == "true"
+puts "Skip combine_devices (skip_combine=true)" if skip_combine
+
+equivalent_pins = defined?($equivalent_pins) &&
+                  $equivalent_pins.to_s.downcase == "true"
+puts "Setting equivalent_pins for STDCELL (equivalent_pins=true)" if equivalent_pins
+
 #----
 # %include ../drc/00_Layers.drc
 # %include ../drc/02_Device.drc
