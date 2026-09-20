@@ -57,7 +57,7 @@ target_netlist(Lay_file, writer, "Created by KLayout")
 #
 if NET_ONLY
     puts("Starting TR-1um LVS in Net Only Mode")
-    unless skip_combine
+    unless no_combine
         netlist.combine_devices
     end
     puts("Done")
@@ -74,12 +74,12 @@ else
     #
     align
     #
-    unless skip_combine
+    unless no_combine
         schematic.combine_devices
         netlist.combine_devices
     end
     #
-    if equivalent_pins
+    unless strict_stdcel_pins
         equivalent_pins("AND2_X1", "A", "B")
         equivalent_pins("AND3_X1", "A", "B", "C")
         equivalent_pins("AND4_X1", "A", "B", "C", "D")

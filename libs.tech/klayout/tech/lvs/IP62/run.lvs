@@ -43,13 +43,13 @@ else
     IGNORE_TOP_PORTS_MISMATCH = false
 end
 
-skip_combine = defined?($skip_combine) &&
-               $skip_combine.to_s.downcase == "true"
-puts "Skip combine_devices (skip_combine=true)" if skip_combine
+no_combine = defined?($no_combine) &&
+               $no_combine.to_s.downcase == "true"
+puts "no combine_devices (no_combine=true)" if no_combine
 
-equivalent_pins = defined?($equivalent_pins) &&
-                  $equivalent_pins.to_s.downcase == "true"
-puts "Setting equivalent_pins for STDCELL (equivalent_pins=true)" if equivalent_pins
+strict_stdcel_pins = defined?($strict_stdcel_pins) &&
+                  $strict_stdcel_pins.to_s.downcase == "true"
+puts "Unset equivalent_pins for STDCELL (strict_stdcel_pins=true)" if strict_stdcel_pins
 
 #----
 # %include ../../drc/IP62/00_Layers.drc
