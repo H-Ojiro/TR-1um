@@ -97,4 +97,8 @@ CONTL = CONT.drc( area > 1.5 )
 (CONTL       ).drc( sep(TC)    < 1.4 ).output("ERR07: CONT-L sep to TC < 1.4")
 (CONT - CONTL).drc( sep(TC)    < 1.0 ).output("ERR08: CONT   sep to TC < 1.0")
 #
+#  Inhibit Contact on SG in DLRR
+#
+(CONT & SG & DLRR).output("ERRR36:SG(RR) ON CONT ER")
+#
 CONTL.forget  # release tempolary memory
