@@ -22,6 +22,15 @@ module DeviceCombinerMethods
     a_net && b_net && same_po
   end
 
+  def same_net2(a, b, name_a, name_b)
+    a_net = a.net_for_terminal(name_a)
+    b_net = b.net_for_terminal(name_b)
+
+    # same polarity
+    same_po = a_net.expanded_name == b_net.expanded_name if a_net && b_net
+    a_net && b_net && same_po
+  end
+
   # A helper function to check whether two device connected in parallel
   def supp_parallel(a, b, net1, net2)
     return false unless %w[W L].all? { |param| same_parameter(a, b, param) }
@@ -70,6 +79,26 @@ module DeviceCombinerMethods
   end
 end
 
+class DiodeDeviceCombiner < RBA::GenericDeviceCombiner
+  include DeviceCombinerMethods
+
+  # Method to check and perform device combination
+  def combine_devices(a, b)
+    return false unless same_net(a, b, 'A') && same_net(a, b, 'C') 
+    # Check if parameters are the same
+    return false unless same_parameter(a, b, 'A') && same_parameter(a, b, 'P')
+
+    # Combine by summing up 'm' parameter
+    a.set_parameter('m', a.parameter('m') + b.parameter('m'))
+
+    # Disconnect the second device and let the system clean it up
+    b.disconnect_terminal('A')
+    b.disconnect_terminal('C')
+
+    true
+  end
+end
+
 class CAPDeviceCombiner < RBA::GenericDeviceCombiner
   include DeviceCombinerMethods
 
@@ -112,10 +141,8 @@ class RESDeviceCombiner < RBA::GenericDeviceCombiner
 
     # Check if terminals series or parallel (With same params)
     if supp_parallel(a, b, 0, 1)
-
       a.set_parameter('m', a.parameter('m') + b.parameter('m'))
     elsif supp_series(a, b, 0, 1)
-
       a.set_parameter('L', a.parameter('L') + b.parameter('L'))
     else
       return false
@@ -127,6 +154,57 @@ class RESDeviceCombiner < RBA::GenericDeviceCombiner
     if term_size == 3
       b.disconnect_terminal(sub_term) if !b.device_class.terminal_id(sub_term).nil?
     end
+
+    true
+  end
+end
+
+class XMOS4DeviceCombiner < RBA::GenericDeviceCombiner
+  include DeviceCombinerMethods
+
+  def merge_params(a, b, map)
+    %w[W AD AS PD PS].each do |p|
+      a.set_parameter(
+        p,
+        a.parameter('m') * a.parameter(p) +
+        b.parameter('m') * b.parameter(map[p])
+      )
+    end
+  end
+
+  # Method to check and perform device combination
+  def combine_devices(a, b)
+    # model = a.device_class.name
+    # term_size = a.device_class.terminal_definitions.size
+    # puts("%%%%% MOS combiner model=#{model} term_size=#{term_size}")
+
+    # Check if exact parameters are the same
+    # params_to_check = %w[W L]
+    params_to_check = %w[L]
+    # puts("%%%%% MOS combiner model=#{model} params_to_check=#{params_to_check}")
+    return false unless params_to_check.all? { |param| same_parameter(a, b, param) }
+
+    # Combine parameters
+    # puts("%%%%% MOS combiner model=#{model} Combine param=m")
+    # Check if terminals have the same net
+
+    mos_nets  = %w[D G S B]
+    mos_nets2 = %w[S G D B]
+
+    if mos_nets.all? { |net| same_net(a, b, net) }
+      merge_params(a, b, { 'W'=>'W', 'AD'=>'AD', 'AS'=>'AS', 'PD'=>'PD', 'PS'=>'PS' })
+
+    elsif mos_nets.zip(mos_nets2).all? { |na, nb| same_net2(a, b, na, nb) }
+      merge_params(a, b, { 'W'=>'W', 'AD'=>'AS', 'AS'=>'AD', 'PD'=>'PS', 'PS'=>'PD' })
+
+    else
+      return false
+    end
+
+    a.set_parameter('m', 1)
+
+    # Disconnect the second device
+    mos_nets.each { |term| b.disconnect_terminal(term) }
 
     true
   end

@@ -43,15 +43,19 @@ else
     IGNORE_TOP_PORTS_MISMATCH = false
 end
 
-skip_warnings = true
+skip_warnings = false
+
+NO_COMBINE = $no_combine
+puts "no combine_devices (no_combine=true)" if NO_COMBINE
+
+STRICT_STDCEL_PINS = $strict_stdcel_pins
+puts "Unset equivalent_pins for STDCELL (strict_stdcel_pins=true)" if STRICT_STDCEL_PINS
 
 #----
 # %include ../drc/00_Layers.drc
 # %include ../drc/02_Device.drc
-# %include 03_Combiner.lvs
-# %include 02_Extract.lvs
-# %include 01_Extract.lvs
-### %include 03_Extract.lvs
+# %include 01_Combiner.lvs
+# %include 02_Device.lvs
+# %include 03_Extract.lvs
 # %include 04_Custom.lvs
 # %include 05_Compare.lvs
-### %include test.lvs

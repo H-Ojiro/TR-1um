@@ -1,11 +1,29 @@
 # Device extraction
-# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
-# Original version was made by jun1okamura from TokaiRika's document 
+# ----- ------ ----- ----- ------ ----- ----- ------ -----
+# Original version was made by jun1okamura from TokaiRika's document
 # LICENSE: Apache License Version 2.0, January 2004,
 #          http://www.apache.org/licenses/
-# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
-# Capacitance extraction ( F_CSIO: 3 terminal capacitor device is optional, either one to use )
+# ----- ------ ----- ----- ------ ----- ----- ------ -----
+# MOS extraction
 #
+class XMOS4Transistor < RBA::DeviceClassMOS4Transistor
+    def initialize
+        super
+
+        enable_parameter("W", true)
+        enable_parameter("L", true)
+        add_parameter(RBA::DeviceParameterDefinition.new('m', 'multiplier', 1, true))
+        enable_parameter("m", false)
+
+        self.combiner = XMOS4DeviceCombiner.new
+        self.supports_serial_combination = false
+        self.supports_parallel_combination = true
+    end
+end
+#
+#
+# ----- ------ ----- ----- ------ ----- ----- ------ -----
+# Capacitance extraction ( F_CSIO: 3 terminal capacitor device is optional, either one to use )
 #
 class LWCapacitorWithBulk < RBA::DeviceClassCapacitorWithBulk
   def initialize
@@ -25,7 +43,7 @@ class LWCapacitorWithBulk < RBA::DeviceClassCapacitorWithBulk
 end
 #
 #
-# ----- ------ ----- ----- ------ ----- ----- ------ ----- 
+# ----- ------ ----- ----- ------ ----- ----- ------ -----
 # L/W extraction Class definition
 #
 class LWResistor < RBA::DeviceClassResistor
@@ -52,6 +70,17 @@ class LWResistorWithBulk < RBA::DeviceClassResistorWithBulk
 
     self.combiner = RESDeviceCombiner.new
     self.supports_serial_combination = true
+    self.supports_parallel_combination = true
+  end
+end
+
+class MDiode < RBA::DeviceClassDiode # Diode with no parameters
+  def initialize
+    super
+    add_parameter(RBA::DeviceParameterDefinition.new('m', 'multiplier', 1, true))
+    enable_parameter("m", true)
+    self.combiner = DiodeDeviceCombiner.new
+    self.supports_serial_combination = false
     self.supports_parallel_combination = true
   end
 end

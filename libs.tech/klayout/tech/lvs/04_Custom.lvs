@@ -4,11 +4,16 @@
 #          http://www.apache.org/licenses/
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
 # Translate Xres/cap to Rres or Ccap
+# Translate Xmos     to Mmos
+#
 #
 class MyReader < RBA::NetlistSpiceReaderDelegate
     def wants_subcircuit(name)
-        name == "F_RR" || name == "F_RS" || name == "F_CSIO"
+        # name == "F_RR" || name == "F_RS" || name == "F_CSIO"
         # name != "DP" && name != "DN"
+        return true if ["PMOS", "NMOS", "NMOSE"].include?(name)
+        return true if ["F_CSIO", "F_RS", "F_RR"].include?(name)
+        false
     end
 
     #
@@ -16,15 +21,17 @@ class MyReader < RBA::NetlistSpiceReaderDelegate
     #
     def element(circuit, el, name, model, value, nets, params)
 
-        if el != "X"
+        if el != "X" && el != "D"
             # all other elements are left to the standard implementation
-            return super
+            # puts("##### Skip model = #{model}")
+            super
         end
         # ----- ------ -----
         # provide a device class
         cls = circuit.netlist.device_class_by_name(model)
         # ----- ------ -----
         if ! cls
+            # puts("##### Set cls for model #{model}")
             if model == "F_RS"
                 # cls = RBA::DeviceClassResistor::new
                 cls = LWResistor::new
@@ -34,6 +41,12 @@ class MyReader < RBA::NetlistSpiceReaderDelegate
             elsif model == "F_CSIO"
                 # cls = RBA::DeviceClassCapacitorWithBulk::new
                 cls = LWCapacitorWithBulk::new
+            elsif model.include?("MOS")
+                # cls = RBA::DeviceClassMOS4Transistor::new
+                # cls.add_parameter(RBA::DeviceParameterDefinition.new('m', 'multiplier', 1, true))
+                cls = XMOS4Transistor::new
+            elsif model == "DN" || model == "DP"
+                cls = MDiode.new
             end
             cls.name = model
             circuit.netlist.add(cls)
@@ -42,17 +55,30 @@ class MyReader < RBA::NetlistSpiceReaderDelegate
         # create a device
         #
         device = circuit.create_device(cls, name)
+
         if nets.size == 2
-            [ "A", "B" ].each_with_index do |t,index|
+            if model == "DN" || model == "DP"
+                port_list = [ "A", "C" ]
+            else
+                port_list = [ "A", "B" ]
+            end
+            port_list.each_with_index do |t,index|
                 device.connect_terminal(t, nets[index])
             end
         elsif nets.size == 3
             [ "A", "B", "W" ].each_with_index do |t,index|
-            device.connect_terminal(t, nets[index])
+                device.connect_terminal(t, nets[index])
             end
+        elsif nets.size == 4
+            # puts("##### device name = #{device.name}")
+            # [ "D", "G", "S", "B" ].each_with_index do |t,index|
+            #      puts("##### t,index,nets => #{t},#{index},#{nets[index]}")
+            # end
+            (0..3).each { |i| device.connect_terminal(i, nets[i]) } # D, G, S, B
         else
             error("Subcircuit #{model} not enough nodes")
         end
+
         params.each do |p,value|
             if p == "L" || p == "W"             # compare L/W * 1e6
                 device.set_parameter(p, value * 1e6)
@@ -66,6 +92,16 @@ class MyReader < RBA::NetlistSpiceReaderDelegate
                 device.set_parameter('m', value)
             end
         end
+
+        if model.include?("MOS")
+            # puts("##### model=#{model} W=#{device.parameter('W')}, m=#{device.parameter('m')}")
+            device.set_parameter("W", device.parameter("W") * device.parameter("m"))
+            device.set_parameter("m", 1)
+        elsif model == "DN" || model == "DP"
+            device.set_parameter("A", 12.96) unless device.parameter("A") > 0
+            device.set_parameter("P", 14.4) unless device.parameter("P") > 0
+        end
+        true
     end
 end
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
@@ -153,9 +189,16 @@ class MyWriter < RBA::NetlistSpiceWriterDelegate
             value = device.parameter(pd.id)
             next if value.nil?
 
+            # puts("device_name=#{device_class.name} pd.id=#{pd.id} pd.name=#{pd.name} value=#{value}")
             device_name = device_class.name
             param = pd.name
-            if device_name == "F_CSIO"
+            if device_name == "DN" || device_name == "DP"
+                if param == "m"
+                    value = ( device.parameter("A") / 12.96 + device.parameter("P") / 14.4 ) * device.parameter("m") / 2
+                else
+                    next
+                end
+            elsif device_name == "F_CSIO"
                 if param == "W" || param == "L"
                     # puts("pd_id=#{pd.id}")
                     area = device.parameter("A")
@@ -169,8 +212,11 @@ class MyWriter < RBA::NetlistSpiceWriterDelegate
                         pd.name = "Y"
                         value = length
                     end
+                elsif param == "C"
+                    value = device.parameter("A") * 0.6e-3
                 end
             end
+            # puts("device_name=#{device_class.name} pd.name=#{pd.name} value=#{value}")
 
             unit = get_unit(pd.name)
             if unit.empty?

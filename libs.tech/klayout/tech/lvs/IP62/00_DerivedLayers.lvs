@@ -60,6 +60,7 @@ SDNE = (AANE - SGG)      # MNE S/D
 # Global node
 #
 connect_global(BULK, "VSS")
+# connect_global(AAGN, "VSS")
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
 # Connections
