@@ -30,6 +30,7 @@ class LWCapacitorWithBulk < RBA::DeviceClassCapacitorWithBulk
     super
     enable_parameter("A", true)
     enable_parameter("P", true)
+    enable_parameter("C", false)
     add_parameter(RBA::DeviceParameterDefinition.new('W', 'Width', 0, false))
     add_parameter(RBA::DeviceParameterDefinition.new('L', 'Length', 0, false))
     add_parameter(RBA::DeviceParameterDefinition.new('m', 'multiplier', 1, true))
@@ -51,6 +52,7 @@ class LWResistor < RBA::DeviceClassResistor
     super
     enable_parameter("W", true)
     enable_parameter("L", true)
+    enable_parameter("R", false)
     add_parameter(RBA::DeviceParameterDefinition.new('m', 'multiplier', 1, true))
     enable_parameter("m", true)
 
@@ -65,6 +67,7 @@ class LWResistorWithBulk < RBA::DeviceClassResistorWithBulk
     super
     enable_parameter("W", true)
     enable_parameter("L", true)
+    enable_parameter("R", false)
     add_parameter(RBA::DeviceParameterDefinition.new('m', 'multiplier', 1, true))
     enable_parameter("m", true)
 
@@ -77,6 +80,8 @@ end
 class MDiode < RBA::DeviceClassDiode # Diode with no parameters
   def initialize
     super
+    enable_parameter("A", true)
+    enable_parameter("P", true)
     add_parameter(RBA::DeviceParameterDefinition.new('m', 'multiplier', 1, true))
     enable_parameter("m", true)
     self.combiner = DiodeDeviceCombiner.new

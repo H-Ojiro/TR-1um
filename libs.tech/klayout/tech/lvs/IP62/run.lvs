@@ -42,6 +42,18 @@ if $ignore_top_ports_mismatch
 else
     IGNORE_TOP_PORTS_MISMATCH = false
 end
+# ----- ------ ----- ----- ------ ----- ----- ------ -----
+# Spice net format {simulation(default), lvs}
+if $spice_format == 'lvs'
+    puts("Setting spice net format => lvs")
+    spice_format = 'lvs'
+else
+    puts("Setting spice net format => simulation")
+    spice_format = 'simulation'
+end
+# ----- ------ ----- ----- ------ ----- ----- ------ -----
+
+skip_warnings = false
 
 NO_COMBINE = $no_combine
 puts "no combine_devices (no_combine=true)" if NO_COMBINE
@@ -58,4 +70,3 @@ puts "Unset equivalent_pins for STDCELL (strict_stdcel_pins=true)" if STRICT_STD
 # %include 03_Extract.lvs
 # %include ../04_Custom.lvs
 # %include ../05_Compare.lvs
-### %include test.lvs

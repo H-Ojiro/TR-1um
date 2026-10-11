@@ -11,7 +11,7 @@ class MyReader < RBA::NetlistSpiceReaderDelegate
     def wants_subcircuit(name)
         # name == "F_RR" || name == "F_RS" || name == "F_CSIO"
         # name != "DP" && name != "DN"
-        return true if ["PMOS", "NMOS", "NMOSE"].include?(name)
+        return true if ["PMOS", "NMOS", "NMOSE", "MPE", "MNE"].include?(name)
         return true if ["F_CSIO", "F_RS", "F_RR"].include?(name)
         false
     end
@@ -21,7 +21,7 @@ class MyReader < RBA::NetlistSpiceReaderDelegate
     #
     def element(circuit, el, name, model, value, nets, params)
 
-        if el != "X" && el != "D"
+        if el != "X" && el != "D" && el != "M"
             # all other elements are left to the standard implementation
             # puts("##### Skip model = #{model}")
             super
@@ -41,9 +41,8 @@ class MyReader < RBA::NetlistSpiceReaderDelegate
             elsif model == "F_CSIO"
                 # cls = RBA::DeviceClassCapacitorWithBulk::new
                 cls = LWCapacitorWithBulk::new
-            elsif model.include?("MOS")
+            elsif model.include?("MOS") || model.start_with?('M')
                 # cls = RBA::DeviceClassMOS4Transistor::new
-                # cls.add_parameter(RBA::DeviceParameterDefinition.new('m', 'multiplier', 1, true))
                 cls = XMOS4Transistor::new
             elsif model == "DN" || model == "DP"
                 cls = MDiode.new
@@ -93,7 +92,7 @@ class MyReader < RBA::NetlistSpiceReaderDelegate
             end
         end
 
-        if model.include?("MOS")
+        if model.include?("MOS") || model.start_with?('M')
             # puts("##### model=#{model} W=#{device.parameter('W')}, m=#{device.parameter('m')}")
             device.set_parameter("W", device.parameter("W") * device.parameter("m"))
             device.set_parameter("m", 1)
@@ -118,14 +117,16 @@ end
 
 # Prefix for each device
 PREFIX_MAP = {
-    'NMOS' => 'XM',
+    'NMOS'  => 'XM',
     'NMOSE' => 'XM',
-    'PMOS' => 'XM',
-    'DN' => 'D',
-    'DP' => 'D',
+    'PMOS'  => 'XM',
+    'MNE'   => 'XM',
+    'MPE'   => 'XM',
+    'DN'    => 'D',
+    'DP'    => 'D',
     'F_CSIO' => 'XC',
-    'F_RR' => 'XR',
-    'F_RS' => 'XR'
+    'F_RR'  => 'XR',
+    'F_RS'  => 'XR'
 }.freeze
 
 class MyWriter < RBA::NetlistSpiceWriterDelegate

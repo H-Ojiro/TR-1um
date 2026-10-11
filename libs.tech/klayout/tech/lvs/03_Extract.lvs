@@ -4,10 +4,27 @@
 # LICENSE: Apache License Version 2.0, January 2004,
 #          http://www.apache.org/licenses/
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
+if $spice_format == 'lvs'
+  MOS_MODEL = {
+      'NMOS' => 'NMOS',
+      'PMOS' => 'PMOS',
+      'NESD' => 'NMOSE',
+      'PESD' => 'PMOS',
+  }.freeze
+else
+  MOS_MODEL = {
+      'NMOS' => 'NMOS',
+      'PMOS' => 'PMOS',
+      'NESD' => 'MNE',
+      'PESD' => 'MPE',
+  }.freeze
+end
+# ----- ------ ----- ----- ------ ----- ----- ------ -----
 # MOS extraction 5V CMOS
 #
 # extract_devices(mos4("PMOS" ),
-extract_devices(mos4("PMOS", XMOS4Transistor),
+# extract_devices(mos4("PMOS", XMOS4Transistor),
+extract_devices(mos4(MOS_MODEL['PMOS'], XMOS4Transistor),
                             { "SD" => (MP - GC),        # S/D region
                               "G"  => (MP & GC),        # Channel region
                               "W"  => (MP & GC & WN),   # Backgate region
@@ -16,11 +33,14 @@ extract_devices(mos4("PMOS", XMOS4Transistor),
                               "tG" => (GC),             # Terminal: Gate
                               "tB" => (WN) })           # Terminal: Backgate
 #
-tolerance("PMOS", "W", :relative => 0.01)           # 1% tolerance
-tolerance("PMOS", "L", :relative => 0.0)            # 0% tolerance
+# tolerance("PMOS", "W", :relative => 0.01)               # 1% tolerance
+# tolerance("PMOS", "L", :relative => 0.0)                # 0% tolerance
+tolerance(MOS_MODEL['PMOS'], "W", :relative => 0.01)    # 1% tolerance
+tolerance(MOS_MODEL['PMOS'], "L", :relative => 0.0)     # 0% tolerance
 #
 # extract_devices(mos4("NMOS" ),
-extract_devices(mos4("NMOS", XMOS4Transistor),
+# extract_devices(mos4("NMOS", XMOS4Transistor),
+extract_devices(mos4(MOS_MODEL['NMOS'], XMOS4Transistor),
                             { "SD" => (MN - GC),        # S/D region
                               "G"  => (MN & GC),        # Channel region
                               "W"  => (MN & GC & BULK), # Backgate region
@@ -29,14 +49,17 @@ extract_devices(mos4("NMOS", XMOS4Transistor),
                               "tG" => (GC),             # Terminal: Gate
                               "tB" => (BULK) })         # Terminal: Backgate
 #
-tolerance("NMOS", "W", :relative => 0.01)           # 1% tolerance
-tolerance("NMOS", "L", :relative => 0.0)            # 0% tolerance
+# tolerance("NMOS", "W", :relative => 0.01)               # 1% tolerance
+# tolerance("NMOS", "L", :relative => 0.0)                # 0% tolerance
+tolerance(MOS_MODEL['NMOS'], "W", :relative => 0.01)    # 1% tolerance
+tolerance(MOS_MODEL['NMOS'], "L", :relative => 0.0)     # 0% tolerance
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
 # MOS extraction 5V CMOS for ESD only NMOS is special
 #
 # extract_devices(mos4("PMOS" ),
-extract_devices(mos4("PMOS", XMOS4Transistor),
+# extract_devices(mos4("PMOS", XMOS4Transistor),
+extract_devices(mos4(MOS_MODEL['PESD'], XMOS4Transistor),
                             { "SD" => (MPE - GC),       # S/D region
                               "G"  => (MPE & GC),       # Channel region
                               "W"  => (MPE & GC & WN),  # Backgate region
@@ -46,7 +69,8 @@ extract_devices(mos4("PMOS", XMOS4Transistor),
                               "tB" => (WN) })           # Terminal: Backgate
 
 # extract_devices(mos4("NMOSE" ),
-extract_devices(mos4("NMOSE", XMOS4Transistor),
+# extract_devices(mos4("NMOSE", XMOS4Transistor),
+extract_devices(mos4(MOS_MODEL['NESD'], XMOS4Transistor),
                             { "SD" => (MNE - GC),        # S/D region
                               "G"  => (MNE & GC),        # Channel region
                               "W"  => (MNE & GC & BULK), # Backgate region
@@ -55,56 +79,58 @@ extract_devices(mos4("NMOSE", XMOS4Transistor),
                               "tG" => (GC),              # Terminal: Gate
                               "tB" => (BULK) })          # Terminal: Backgate
 #
-tolerance("NMOSE", "W", :relative => 0.01)            # 1% tolerance
-tolerance("NMOSE", "L", :relative => 0.0)             # 0% tolerance
+# tolerance("NMOSE", "W", :relative => 0.01)              # 1% tolerance
+# tolerance("NMOSE", "L", :relative => 0.0)               # 0% tolerance
+tolerance(MOS_MODEL['NESD'], "W", :relative => 0.01)    # 1% tolerance
+tolerance(MOS_MODEL['NESD'], "L", :relative => 0.0)     # 0% tolerance
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
 # DIODE extraction
 #
 extract_devices(diode("DP", MDiode),
-                            { "P"  => (DP),           # P region
-                              "N"  => (DP & WN),      # N region
-                              "tA" => (DP),           # Terminal: Anode
-                              "tC" => (WN) })         # Terminal: Cathode
+                            { "P"  => (DP),             # P region
+                              "N"  => (DP & WN),        # N region
+                              "tA" => (DP),             # Terminal: Anode
+                              "tC" => (WN) })           # Terminal: Cathode
 #
-tolerance("DP", "A", :relative => 0.0)               # 0% tolerance
-tolerance("DP", "P", :relative => 0.0)               # 0% tolerance
-tolerance("DP", "m", :relative => 0.0)               # 0% tolerance
+tolerance("DP", "A", :relative => 0.0)                  # 0% tolerance
+tolerance("DP", "P", :relative => 0.0)                  # 0% tolerance
+tolerance("DP", "m", :relative => 0.0)                  # 0% tolerance
 #
-extract_devices(diode("DN", MDiode),                  # Floating Protection
-                            { "P"  => (DN & BULK),    # P region
-                              "N"  => (DN),           # N region
-                              "tA" => (BULK),         # Terminal: Anode
-                              "tC" => (DN) })         # Terminal: Cathode
+extract_devices(diode("DN", MDiode),                    # Floating Protection
+                            { "P"  => (DN & BULK),      # P region
+                              "N"  => (DN),             # N region
+                              "tA" => (BULK),           # Terminal: Anode
+                              "tC" => (DN) })           # Terminal: Cathode
 #
-tolerance("DN", "A", :relative => 0.0)               # 0% tolerance
-tolerance("DN", "P", :relative => 0.0)               # 0% tolerance
-tolerance("DN", "m", :relative => 0.0)               # 0% tolerance
+tolerance("DN", "A", :relative => 0.0)                  # 0% tolerance
+tolerance("DN", "P", :relative => 0.0)                  # 0% tolerance
+tolerance("DN", "m", :relative => 0.0)                  # 0% tolerance
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
 # Resistor extraction
 #
 extract_devices(resistor("F_RS", 1, LWResistor),
-                    { "R"  => (RS),              # Resistance Layer`
-                      "C"  => (RSC),             # Contact Layer
-                      "tA" => (RSC),             # Terminal: A
-                      "tB" => (RSC) })           # Terminal: B
+                    { "R"  => (RS),                     # Resistance Layer`
+                      "C"  => (RSC),                    # Contact Layer
+                      "tA" => (RSC),                    # Terminal: A
+                      "tB" => (RSC) })                  # Terminal: B
 #
-tolerance("F_RS", "W", :relative => 0.01)        # 1% tolerance
-tolerance("F_RS", "L", :relative => 0.01)        # 1% tolerance
-ignore_parameter("F_RS", "R")                    # ignore "R" for comparison
+tolerance("F_RS", "W", :relative => 0.01)               # 1% tolerance
+tolerance("F_RS", "L", :relative => 0.01)               # 1% tolerance
+ignore_parameter("F_RS", "R")                           # ignore "R" for comparison
 #
 extract_devices(resistor_with_bulk("F_RR", 1, LWResistorWithBulk),
-                    { "R"  => (RR),              # Resistance Layer`
-                      "C"  => (ARC),             # Contact Layer
-                      "W"  => (AR),              # NWELL plate
-                      "tA" => (ARC),             # Terminal: A
-                      "tB" => (ARC),             # Terminal: B
-                      "tW" => (WR) })            # Terminal: NWELL
+                    { "R"  => (RR),                     # Resistance Layer`
+                      "C"  => (ARC),                    # Contact Layer
+                      "W"  => (AR),                     # NWELL plate
+                      "tA" => (ARC),                    # Terminal: A
+                      "tB" => (ARC),                    # Terminal: B
+                      "tW" => (WR) })                   # Terminal: NWELL
 #
-tolerance("F_RR", "W", :relative => 0.01)        # 1% tolerance
-tolerance("F_RR", "L", :relative => 0.01)        # 1% tolerance
-ignore_parameter("F_RR", "R")                    # ignore "R" for comparison
+tolerance("F_RR", "W", :relative => 0.01)               # 1% tolerance
+tolerance("F_RR", "L", :relative => 0.01)               # 1% tolerance
+ignore_parameter("F_RR", "R")                           # ignore "R" for comparison
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
 equivalent_pins("F_RS", "A", "B")
@@ -114,16 +140,16 @@ equivalent_pins("F_RR", "A", "B")
 # Capacitor extraction
 #
 extract_devices(capacitor_with_bulk("F_CSIO", 0.6e-15, LWCapacitorWithBulk),
-                    { "P1" => (GC),             # Top plate
-                      "P2" => (AC),             # Bottom plate
-                      "W"  => (WC),             # Bulk plate
-                      "tA" => (GC),             # Terminal: A
-                      "tB" => (WC),             # Terminal: B
-                      "tW" => (BULK) })         # Terminal: BULK
+                    { "P1" => (GC),                     # Top plate
+                      "P2" => (AC),                     # Bottom plate
+                      "W"  => (WC),                     # Bulk plate
+                      "tA" => (GC),                     # Terminal: A
+                      "tB" => (WC),                     # Terminal: B
+                      "tW" => (BULK) })                 # Terminal: BULK
 
-# tolerance("F_CSIO", "C", :relative => 0.01)     # 1% tolerance
-tolerance("F_CSIO", "A", :relative => 0.01)     # 1% tolerance
-tolerance("F_CSIO", "P", :relative => 0.01)     # 1% tolerance
-ignore_parameter("F_CSIO", "C")                 # ignore "C" for comparison
-ignore_parameter("F_CSIO", "W")                 # ignore "W" for comparison
-ignore_parameter("F_CSIO", "L")                 # ignore "L" for comparison
+# tolerance("F_CSIO", "C", :relative => 0.01)             # 1% tolerance
+tolerance("F_CSIO", "A", :relative => 0.01)             # 1% tolerance
+tolerance("F_CSIO", "P", :relative => 0.01)             # 1% tolerance
+ignore_parameter("F_CSIO", "C")                         # ignore "C" for comparison
+ignore_parameter("F_CSIO", "W")                         # ignore "W" for comparison
+ignore_parameter("F_CSIO", "L")                         # ignore "L" for comparison
