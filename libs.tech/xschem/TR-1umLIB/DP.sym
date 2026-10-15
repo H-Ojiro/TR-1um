@@ -1,14 +1,16 @@
 v {xschem version=3.4.8RC file_version=1.3}
 G {}
 K {type=diode
-format="@spiceprefix@name @pinlist @model m=@m"
-lvs_format="D@name @pinlist @model A=@a P=@p m=@m"
+format="@spiceprefix@name @pinlist @model m=@m Area=@a_ratio Pj=@p_ratio \\\\$A=@a \\\\$P=@p"
+lvs_format="D@name @pinlist @model Area=@a_ratio Pj=@p_ratio A=@a P=@p m=@m"
 template="name=D1
 model=DP
 w=3.6u
 l=3.6u
 a=\\"expr_eng( @w * @l )\\"
 p=\\"expr_eng( 2 * ( @w + @l ) )\\"
+a_ratio=\\"expr_eng( @w * @l / 12.96p )\\"
+p_ratio=\\"expr_eng( 2 * ( @w + @l ) / 14.4u )\\"
 spiceprefix=D
 m=1"
 drc="diode_drc @name @symname @model @w @l"

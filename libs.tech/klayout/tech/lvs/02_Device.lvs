@@ -84,6 +84,9 @@ class MDiode < RBA::DeviceClassDiode # Diode with no parameters
     enable_parameter("P", true)
     add_parameter(RBA::DeviceParameterDefinition.new('m', 'multiplier', 1, true))
     enable_parameter("m", true)
+    add_parameter(RBA::DeviceParameterDefinition.new('Area', 'area scale factor', 1, false))
+    add_parameter(RBA::DeviceParameterDefinition.new('Pj', 'perimeter scale factor', 1, false))
+
     self.combiner = DiodeDeviceCombiner.new
     self.supports_serial_combination = false
     self.supports_parallel_combination = true

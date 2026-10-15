@@ -46,10 +46,8 @@ end
 # Spice net format {simulation(default), lvs}
 if $spice_format == 'lvs'
     puts("Setting spice net format => lvs")
-    spice_format = 'lvs'
 else
     puts("Setting spice net format => simulation")
-    spice_format = 'simulation'
 end
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
 
