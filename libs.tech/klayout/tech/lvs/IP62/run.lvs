@@ -4,6 +4,17 @@
 #          http://www.apache.org/licenses/
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
 # See: https://www.klayout.de/doc-qt5/manual/lvs_device_extractors.html
+require 'rubygems'
+tool_version = RBA::Application.instance.version.sub(/^KLayout\s+/, "")
+check_version = Gem::Version.new(tool_version) >= Gem::Version.new("0.30.13")
+
+if check_version
+  puts("Klayout version => #{tool_version} (Using recommended API)")
+else
+  # raise "KLayout #{required} or later is required (found #{tool_version})"
+  puts("Klayout version => #{tool_version} (Using older API)")
+end
+
 # Run mode {deep(default), flat}
 if $run_mode == 'flat'
     puts("Setting running mode => flat")

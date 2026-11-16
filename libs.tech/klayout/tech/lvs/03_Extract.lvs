@@ -22,9 +22,9 @@ end
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
 # MOS extraction 5V CMOS
 #
-# extract_devices(mos4("PMOS" ),
-# extract_devices(mos4("PMOS", XMOS4Transistor),
-extract_devices(mos4(MOS_MODEL['PMOS'], XMOS4Transistor),
+if check_version
+  puts("INFO: Using default extract_devices class for MOS devices")
+  extract_devices(mos4(MOS_MODEL['PMOS']),
                             { "SD" => (MP - GC),        # S/D region
                               "G"  => (MP & GC),        # Channel region
                               "W"  => (MP & GC & WN),   # Backgate region
@@ -32,15 +32,23 @@ extract_devices(mos4(MOS_MODEL['PMOS'], XMOS4Transistor),
                               "tD" => (SDP),            # Terminal: Drain
                               "tG" => (GC),             # Terminal: Gate
                               "tB" => (WN) })           # Terminal: Backgate
+else
+  puts("INFO: Using custom extract_devices class 'XMOSTransistor' for MOS devices")
+  extract_devices(mos4(MOS_MODEL['PMOS'], XMOS4Transistor),
+                            { "SD" => (MP - GC),        # S/D region
+                              "G"  => (MP & GC),        # Channel region
+                              "W"  => (MP & GC & WN),   # Backgate region
+                              "tS" => (SDP),            # Terminal: Source
+                              "tD" => (SDP),            # Terminal: Drain
+                              "tG" => (GC),             # Terminal: Gate
+                              "tB" => (WN) })           # Terminal: Backgate
+end
 #
-# tolerance("PMOS", "W", :relative => 0.01)               # 1% tolerance
-# tolerance("PMOS", "L", :relative => 0.0)                # 0% tolerance
 tolerance(MOS_MODEL['PMOS'], "W", :relative => 0.01)    # 1% tolerance
 tolerance(MOS_MODEL['PMOS'], "L", :relative => 0.0)     # 0% tolerance
 #
-# extract_devices(mos4("NMOS" ),
-# extract_devices(mos4("NMOS", XMOS4Transistor),
-extract_devices(mos4(MOS_MODEL['NMOS'], XMOS4Transistor),
+if check_version
+  extract_devices(mos4(MOS_MODEL['NMOS']),
                             { "SD" => (MN - GC),        # S/D region
                               "G"  => (MN & GC),        # Channel region
                               "W"  => (MN & GC & BULK), # Backgate region
@@ -48,18 +56,25 @@ extract_devices(mos4(MOS_MODEL['NMOS'], XMOS4Transistor),
                               "tD" => (SDN),            # Terminal: Drain
                               "tG" => (GC),             # Terminal: Gate
                               "tB" => (BULK) })         # Terminal: Backgate
+else
+  extract_devices(mos4(MOS_MODEL['NMOS'], XMOS4Transistor),
+                            { "SD" => (MN - GC),        # S/D region
+                              "G"  => (MN & GC),        # Channel region
+                              "W"  => (MN & GC & BULK), # Backgate region
+                              "tS" => (SDN),            # Terminal: Source
+                              "tD" => (SDN),            # Terminal: Drain
+                              "tG" => (GC),             # Terminal: Gate
+                              "tB" => (BULK) })         # Terminal: Backgate
+end
 #
-# tolerance("NMOS", "W", :relative => 0.01)               # 1% tolerance
-# tolerance("NMOS", "L", :relative => 0.0)                # 0% tolerance
 tolerance(MOS_MODEL['NMOS'], "W", :relative => 0.01)    # 1% tolerance
 tolerance(MOS_MODEL['NMOS'], "L", :relative => 0.0)     # 0% tolerance
 #
 # ----- ------ ----- ----- ------ ----- ----- ------ -----
 # MOS extraction 5V CMOS for ESD only NMOS is special
 #
-# extract_devices(mos4("PMOS" ),
-# extract_devices(mos4("PMOS", XMOS4Transistor),
-extract_devices(mos4(MOS_MODEL['PESD'], XMOS4Transistor),
+if check_version
+  extract_devices(mos4(MOS_MODEL['PESD']),
                             { "SD" => (MPE - GC),       # S/D region
                               "G"  => (MPE & GC),       # Channel region
                               "W"  => (MPE & GC & WN),  # Backgate region
@@ -67,10 +82,22 @@ extract_devices(mos4(MOS_MODEL['PESD'], XMOS4Transistor),
                               "tD" => (SDPE),           # Terminal: Drain
                               "tG" => (GC),             # Terminal: Gate
                               "tB" => (WN) })           # Terminal: Backgate
-
-# extract_devices(mos4("NMOSE" ),
-# extract_devices(mos4("NMOSE", XMOS4Transistor),
-extract_devices(mos4(MOS_MODEL['NESD'], XMOS4Transistor),
+else
+  extract_devices(mos4(MOS_MODEL['PESD'], XMOS4Transistor),
+                            { "SD" => (MPE - GC),       # S/D region
+                              "G"  => (MPE & GC),       # Channel region
+                              "W"  => (MPE & GC & WN),  # Backgate region
+                              "tS" => (SDPE),           # Terminal: Source
+                              "tD" => (SDPE),           # Terminal: Drain
+                              "tG" => (GC),             # Terminal: Gate
+                              "tB" => (WN) })           # Terminal: Backgate
+end
+#
+tolerance(MOS_MODEL['PESD'], "W", :relative => 0.01)    # 1% tolerance
+tolerance(MOS_MODEL['PESD'], "L", :relative => 0.0)     # 0% tolerance
+#
+if check_version
+  extract_devices(mos4(MOS_MODEL['NESD']),
                             { "SD" => (MNE - GC),        # S/D region
                               "G"  => (MNE & GC),        # Channel region
                               "W"  => (MNE & GC & BULK), # Backgate region
@@ -78,9 +105,17 @@ extract_devices(mos4(MOS_MODEL['NESD'], XMOS4Transistor),
                               "tD" => (SDNE),            # Terminal: Drain
                               "tG" => (GC),              # Terminal: Gate
                               "tB" => (BULK) })          # Terminal: Backgate
+else
+  extract_devices(mos4(MOS_MODEL['NESD'], XMOS4Transistor),
+                            { "SD" => (MNE - GC),        # S/D region
+                              "G"  => (MNE & GC),        # Channel region
+                              "W"  => (MNE & GC & BULK), # Backgate region
+                              "tS" => (SDNE),            # Terminal: Source
+                              "tD" => (SDNE),            # Terminal: Drain
+                              "tG" => (GC),              # Terminal: Gate
+                              "tB" => (BULK) })          # Terminal: Backgate
+end
 #
-# tolerance("NMOSE", "W", :relative => 0.01)              # 1% tolerance
-# tolerance("NMOSE", "L", :relative => 0.0)               # 0% tolerance
 tolerance(MOS_MODEL['NESD'], "W", :relative => 0.01)    # 1% tolerance
 tolerance(MOS_MODEL['NESD'], "L", :relative => 0.0)     # 0% tolerance
 #
